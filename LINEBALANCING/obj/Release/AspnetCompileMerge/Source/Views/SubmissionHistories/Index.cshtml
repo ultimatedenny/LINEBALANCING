@@ -1,0 +1,474 @@
+﻿@model LineBalancing.ViewModels.VMSubmissionHistory
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "List Submission History";
+
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+
+    .slick-slide:focus, .slick-slide a {
+        outline: none;
+    }
+
+    .slide-stopwatch {
+        display: none !important;
+    }
+
+        .slide-stopwatch.slick-initialized {
+            display: block !important;
+        }
+</style>
+
+@* Back Button Previous Page Desktop *@
+<button type="button" class="btn-back-corner-md hidden-sm hidden-xs setDelay hideCont" onclick="window.location='/MainMenu/Index'"><i class="fas fa-arrow-left"></i> </button>
+
+
+
+
+<div class="l-box__list ">
+    <div class="h-text--title-box-form-v1 setDelay hideCont">
+        <button type="button" class="btn-back-page-mobile hidden-lg hidden-md" onclick="window.location='/MainMenu/Index'"><i class="fas fa-arrow-left"></i> </button>
+        Submission History
+    </div>
+
+    <div class="solid-line-width hidden-sm hidden-xs"></div>
+
+    <div class="margin-t-40 margin-b-40 md-margin-b-20 setDelay hideCont">
+        <div class="row space-row-10">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="c-form__inside-icon">
+                    @Html.TextBox("Search", null, new { @class = "form-control", @placeholder = "Search", @id = "searchText" })
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="text-right">
+                    <button type="button" class="btn-expand-all">
+                        <i class="fas fa-expand-arrows-alt"></i> <span class="hidden-sm hidden-xs">Expand All</span>
+                    </button>
+                    <button type="button" class="btn-collapse-all">
+                        <i class="fas fa-compress-arrows-alt"></i> <span class="hidden-sm hidden-xs">Collapse All</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @* List Item *@
+    <div class="row setDelay hideCont">
+
+        <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+        <div id="list" class="overflow-y-box-list">
+            @{ Html.RenderAction("Scroll", new { startIndex = 0 }); }
+        </div>
+
+    </div>
+</div>
+
+
+@* Floating Action Button Filter*@
+<div>
+    <button type="button" class="c-fab__main setDelay hideCont" data-toggle="modal" id="btnFilter"><i class="fas fa-filter"></i></button>
+</div>
+
+
+<!-- Modal  Filter -->
+<div id="modalFilter" class="modal fade overflow-h setDelay hideCont" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body padding-30">
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                <div class="h-text--title-box-form-v1">Filter Submission History</div>
+                <div class="solid-line-width"></div>
+
+                <button type="submit" class="btn btn-success" id="reset">
+                    RESET FILTER
+                </button>
+
+                <form action="">
+
+                    <div class="margin-t-40 md-margin-t-20 sm-margin-t-20">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">From</label>
+                                @Html.DropDownList("From", Model.SelectListFrom, null, new { @class = "form-control select-option-custom", @id = "ddlListFrom" })
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Period</label>
+                                @Html.DropDownList("Periode", Model.SelectListPeriode, null, new { @class = "form-control select-option-custom", @id = "ddlListPeriode" })
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (isAdmin)
+                    {
+                        <div class="margin-t-20 md-margin-t-10">
+                            <div class="row">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label class="h-text--lbl-form">Leader</label>
+                                    <select class="form-control select-option-custom selectpicker show-tick" id="ddlListLeader" data-size="auto"></select>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+                    <div class="margin-t-20 md-margin-t-5 md-margin-t-5">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Plant</label>
+                                <select class="form-control select-option-custom" id="ddlListPlant"></select>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Line</label>
+                                <select class="form-control select-option-custom" id="ddlListLine"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="margin-t-20 md-margin-t-5 md-margin-t-5  margin-b-40 md-margin-b-20 margin-b-30">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Model</label>
+                                <select class="form-control select-option-custom selectpicker show-tick" id="ddlListModel" data-size="7"></select>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Status</label>
+                                @Html.DropDownList("Status", Model.SelectListStatus, null, new { @class = "form-control select-option-custom", @id = "ddlListStatus" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-apply-circle" id="apply">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var url = '@Url.Action("Scroll", "SubmissionHistories")';
+    var list = $('#list');
+
+    // Get data for dropdownlist
+    $(document).ready(function () {
+
+        $('.selectpicker').selectpicker({
+            liveSearch: true,
+            showSubtext: true
+        });
+
+        $.getJSON('/Leaders/Leaders', null, function (data) {
+            $('#ddlListLeader').append('<option value=' + "Select Leader" + '>' + "Select Leader" + '</option>');
+
+            $.each(data.Leaders, function () {
+                $('#ddlListLeader').append('<option value=' + this.LeaderName + '>' + this.LeaderName + '</option>');
+            });
+
+            var delayInMilliseconds = 3000;
+
+            setTimeout(function () {
+                $('.selectpicker').selectpicker('refresh');
+            }, delayInMilliseconds);
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting leader !');
+        });
+
+        getPlant();
+    });
+
+    function getPlant() {
+        // Set default value for select picker
+        $.getJSON('/Plants/Plants', null, function (data) {
+            $('#ddlListPlant option').remove();
+
+            $('#ddlListPlant').append('<option value=' + "ALL" + '>' + "Select Plant" + '</option>');
+
+            $.each(data.Plants, function () {
+                $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+            });
+
+            $('#ddlListLine option').remove();
+            $('#ddlListLine').append('<option value=' + "ALL" + '>' + "Select Line" + '</option>');
+
+            $('#ddlListModel option').remove();
+            $('#ddlListModel').append('<option value=' + "ALL" + '>' + "Select Model" + '</option>');
+            $("#ddlListModel").selectpicker("refresh");
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting plants !');
+        });
+    }
+
+
+    $('#ddlListPlant').change(function () {
+
+        var selectedPlant = $('#ddlListPlant').val();
+        if (selectedPlant != null) {
+            // console.log("selectedPlant", selectedPlant);
+
+            // Lines
+            $.getJSON('/Lines/Lines', { plant: selectedPlant, department: null }, function (data) {
+
+                $('#ddlListLine option').remove();
+                $('#ddlListLine').append('<option value=' + "ALL" + '>' + "Select Line" + '</option>');
+
+                $.each(data.Lines, function () {
+                    $('#ddlListLine').append('<option value=' + this.LineCode + '>' + this.LineCode + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+                $('#ddlListModel option').remove();
+                $('#ddlListModel').append('<option value=' + "ALL" + '>' + "Select Model" + '</option>');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting lines !');
+            });
+        }
+    });
+
+    $('#ddlListLine').change(function ()
+    {
+        // Get lines
+        var selectedLine = $('#ddlListLine').val();
+        if (selectedLine != null) {
+            var selectedPlant = $('#ddlListPlant').val();
+
+            // console.log("selectedLine", selectedLine);
+
+            // Models
+            $.getJSON('/Model/Models', { plant: selectedPlant, department: '', line: selectedLine }, function (data) {
+
+                $('#ddlListModel option').remove();
+                $('#ddlListModel').append('<option value=' + "ALL" + '>' + "Select Model" + '</option>');
+
+                $.each(data.Models, function () {
+                    $('#ddlListModel').append('<option data-subtext=' + this.ModelName + '>' + this.ModelName + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting models !');
+            });
+        }
+    });
+
+
+    // Searching
+    var delayTimer;
+    $('#searchText').bind('input', function ()
+    {
+        $('#list').html('');
+
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function () {
+            var search = $('#searchText').val();
+            if (search.length > 0) {
+                $.get(url, { startIndex: 0, searchFor: search }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+            else {
+                $.get(url, { startIndex: 0 }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+        }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+    });
+
+    // Infinite scroll
+    $("#list").scroll(function ()
+    {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight)
+        {
+            $.get(url, { startIndex: start }, function (response)
+            {
+                if (response != "")
+                {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    // Edit pop up
+    $(document).on("click", "#btnContinue", function (e)
+    {
+        e.preventDefault();
+
+        // Get balancing process item id
+        var submissionHistoryId = $(this).data('id');
+        // console.log("submissionHistoryId", submissionHistoryId);
+
+        // Call server
+        var url = "/SubmissionHistories/Detail/" + submissionHistoryId;
+        $.get(url, function (response)
+        {
+            var balancingProcessId = response.DTOBalancing.BalancingProcessId;
+            var plant = response.DTOBalancing.Plant;
+            var department = response.DTOBalancing.Department;
+            var line = response.DTOBalancing.Line;
+            var employeeNo = response.DTOBalancing.EmployeeNo;
+            var model = response.DTOBalancing.Model;
+            var isOneByOne = response.DTOBalancing.IsOneByOne;
+            var checkId = response.DTOBalancing.CheckId;
+
+            // Redirect to balancing process detail
+            var openBalancingProcess = "/BalancingProcesses/Index?balancingProcessId=" + balancingProcessId +
+                                                                "&plant=" + plant +
+                                                                "&department=" + department +
+                                                                "&line=" + line +
+                                                                "&employeeNo=" + employeeNo +
+                                                                "&model=" + model +
+                                                                "&isOneByOne=" + isOneByOne +
+                                                                "&checkId=" + checkId
+                                                                "&isContinue=true";
+            window.open(openBalancingProcess, "_self");
+        });
+    });
+
+    // Filter pop up
+    $(document).on("click", "#btnFilter", function (e) {
+        e.preventDefault();
+
+        $('#modalFilter').modal('show');
+    });
+
+    // Apply filter
+    $(document).on("click", "#apply", function (e) {
+        e.preventDefault();
+
+        var from = $('#ddlListFrom :selected').text();
+        var periode = $('#ddlListPeriode :selected').text();
+        var leader = $('#ddlListLeader :selected').text();
+        var plant = $('#ddlListPlant :selected').text();
+        var line = $('#ddlListLine :selected').text();
+        var model = $('#ddlListModel :selected').text();
+        var status = $('#ddlListStatus :selected').text();
+
+        var submissionHistoryFilter = {
+            From: from,
+            Periode: periode,
+            Leader: leader,
+            Plant: plant,
+            Line: line,
+            Model: model,
+            Status: status
+        };
+
+        // console.log("submissionHistoryFilter", submissionHistoryFilter);
+
+        $('#modalFilter').modal('hide');
+
+        $('#list').html('');
+
+        // Call server
+        var url = "/SubmissionHistories/Filter";
+        $.post(url, submissionHistoryFilter, function (response) {
+
+            if (response.Message != null)
+            {
+                $('#dataNotFound').show();
+                $('#dataNotFound').text(response.Message);
+            }
+            else
+            {
+                $('#dataNotFound').hide();
+
+                list.append(response);
+            }
+        });
+    });
+
+    // Reset filter
+    $(document).on("click", "#reset", function (e) {
+        e.preventDefault();
+
+        $('#modalFilter form')[0].reset();
+
+        // reset data plant
+        getPlant();
+
+        // console.log("reset");
+    });
+</script>

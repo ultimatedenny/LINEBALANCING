@@ -1,0 +1,38 @@
+﻿/// <reference path="lib/_mixins.scss" />
+/// <reference path="lib/_variable.scss" />
+/// <reference path="lib/_colors.scss" />
+/// <reference path="lib/_base.scss" />
+
+/// <reference path="lib/helpers/_all-helpers.scss" />
+
+
+
+//Combine All Lib SCSS In Here
+
+
+@import 'lib/_mixins.scss',
+ 'lib/_variable.scss',
+ 'lib/_colors.scss',
+ 'lib/_base.scss',
+
+ 'lib/helpers/_all-helpers.scss',
+ 'lib/helpers/_text.scss',
+
+ 'lib/Layout/_box.scss',
+
+ 'lib/component/_buttons.scss',
+ 'lib/component/_login.scss',
+ 'lib/component/_menu-box.scss',
+ 'lib/component/_sidemenu.scss',
+ 'lib/component/_modal.scss',
+ 'lib/component/_fab.scss',
+ 'lib/component/_form.scss',
+ 'lib/component/_status.scss',
+ 'lib/component/_timer.scss',
+ 'lib/component/_import-upload.scss',
+
+
+ 'lib/plugins/fontawesome/_fontawesome.scss',
+ 'lib/plugins/fontawesome/_solid.scss',
+ 'lib/plugins/fontawesome/_regular.scss',
+ 'lib/plugins/fontawesome/_brands.scss';

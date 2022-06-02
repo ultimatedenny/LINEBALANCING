@@ -1,0 +1,873 @@
+﻿@model LineBalancing.ViewModels.VMModelProcess
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Master Data Model Process";
+
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+
+<div class="l-box__list ">
+    <div class="setDelay hideCont">
+        <button type="button" class="btn-back-homes-corner " data-dismiss="modal" onclick="window.location='@Url.Action("Index", "MainMenu")'"><i class="fas fa-home"></i> </button>
+
+        <div class="h-text--title-box-form-v1">List Master Data Model Process</div>
+
+        <div class="solid-line-width"></div>
+
+        <div class="margin-t-50  md-margin-t-30 sm-margin-t-20 margin-b-40 md-margin-b-20 ">
+            @Html.TextBox("Search", null, new { @class = "c-form__input form-control", @placeholder = "Search", @id = "searchText" })
+        </div>
+
+        @* List Item *@
+        <div class="row">
+
+            <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+            <div id="list" class="overflow-y-box-list">
+                @{ Html.RenderAction("Scroll", new { startIndex = 0 }); }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (isAdmin)
+{
+    @* Floating Action Button *@
+    <div class="setDelay hideCont">
+        <button type="button" class="c-fab__main"><i class="fas fa-plus"></i></button>
+        <div class="c-fab__box-item">
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-one">Add Data</label>
+                <div class="c-fab__item c-fab__item-one" id="add">
+                    <img src="~/Images/ic_adddata.png" />
+                </div>
+            </div>
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-two">Export File</label>
+                <div class="c-fab__item c-fab__item-two" id="export">
+                    <img src="~/Images/ic_export.png" />
+                </div>
+            </div>
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-three">Import File</label>
+                <div class="c-fab__item c-fab__item-three" id="import">
+                    <img src="~/Images/ic_import.png" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+<!-- Modal Add & Edit Data -->
+<div id="AddEditModal" class="modal fade overflow-h setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeAddEditModal"><i class="fas fa-times"></i> </button>
+
+        <!-- Modal content-->
+        <div class="modal-content md-modal-content sm-modal-content">
+            <div class="modal-body">
+
+                <div class="h-text--title-box-form-v1" id="modalTitle">Add Master Data Model Process</div>
+                <div class="solid-line-width"></div>
+
+                <label id="modelProcessId" hidden="hidden"></label>
+                <label id="createdTime" hidden="hidden"></label>
+                <label id="createdUser" hidden="hidden"></label>
+
+                <div class="margin-t-20">
+                    <label class="h-text--lbl-form">Plant</label>
+                    <select class="form-control select-option-custom" id="ddlListPlant"></select>
+                </div>
+
+                <div class="row margin-t-20">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div>
+                            <label class="h-text--lbl-form">Department</label>
+                            <select class="form-control select-option-custom" id="ddlListDepartment"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div>
+                            <label class="h-text--lbl-form">Model</label>
+                            <select class="form-control select-option-custom selectpicker show-tick" id="ddlListModel" data-size="7"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="margin-t-20">
+                    <label class="h-text--lbl-form">Process</label>
+                    <select class="form-control select-option-custom selectpicker show-tick" id="ddlListProcess" data-size="7"></select>
+
+                    <label id="processCode" hidden="hidden"></label>
+                    <label id="processName" hidden="hidden"></label>
+                </div>
+
+                <div class="margin-t-30">
+                    <label class="c-login__container-checkbox">
+                        Active
+                        @Html.CheckBox("Active", false, new { @id = "active" })
+                        <span class="c-login__checkmark"></span>
+                    </label>
+                </div>
+
+                <input type="submit" class="btn-oranges" id="save" value="SAVE" />
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@* Modal Delete Data *@
+<div id="DeleteModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeDeleteModal"><i class="fas fa-times"></i> </button>
+
+                <div class="h-text--confirmation-modal">
+                    Are you sure want to delete this data ?
+                </div>
+
+                <button type="button" class="btn-confirmation-delete margin-t-30" id="delete">Yes</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Import -->
+<div id="ImportModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeImportModal"><i class="fas fa-times"></i> </button>
+
+                <div>
+                    <label for="fileImport" class="c-import-upload__box-v1">
+                        <span class="display-block">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="display-block">
+                            <p class="c-import-upload__file-name file-name"></p>
+                        </span>
+
+                        <span class="font-size-14 text-center display-block color-base">Upload file with extension .xlsx or .xls</span>
+                    </label>
+
+                </div>
+
+                <div class="display-none">
+                    <input type="file" id="fileImport" name="file" accept=".xlsx, .xls" />
+                </div>
+
+                <div class="margin-t-10 text-center">
+                    <button type=button id="downloadTemplate" class="font-size-15 color-base-green fweight-600 btn-link">Click to Download Template</button>
+                </div>
+                <div class="margin-t-60">
+                    <input type="submit" value="Import File" class="btn-import-file" id="upload" />
+                </div>
+
+                <div class="margin-t-10">
+                    <button type=button id="resetFileImport" class="btn-link btn-reset-file cursor-pointer">Reset Import</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Notification -->
+<div id="NotificationModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog top-10pc">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeNotificationModal"><i class="fas fa-times"></i> </button>
+
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" id="success" />
+                <img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" id="fail" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    <label id="notificationMessage"></label>
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="closeNotification">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var url = '@Url.Action("Scroll", "ModelProcesses")';
+    var list = $('#list');
+
+    var currentPlant = "";
+    var currentDepartment = "";
+    var currentModelCode = "";
+    var currentProcessCode = "";
+
+    function loadData()
+    {
+        $('#list').html('');
+
+        var url = "/ModelProcesses/Scroll/"
+        $.get(url, { startIndex: 0 }, function (response) {
+            if (response != "") {
+
+                list.append(response);
+
+                if (start === 0) {
+                    start += 10; // increment for next call
+                }
+                else {
+                    start = 10; // reset to default value
+                }
+            }
+        });
+    }
+
+    // Get data for dropdownlist
+    $(document).ready(function () {
+
+        $('.selectpicker').selectpicker({
+            liveSearch: true,
+            showSubtext: true
+        });
+
+    });
+
+
+    // Dropdown list plant change event.
+    $('#ddlListPlant').change(function () {
+
+        // Get departments
+        var selectedPlant = $('#ddlListPlant').val();
+        if (selectedPlant != null)
+        {
+            $.getJSON('/Departments/Departments', { searchFor: selectedPlant }, function (data) {
+
+                $('#ddlListDepartment option').remove();
+                $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+                $.each(data.Departments, function () {
+                    $('#ddlListDepartment').append('<option value=' + this.DepartmentName + '>' + this.DepartmentName + "-" + this.DepartmentDescription + '</option>');
+                });
+
+                $('#ddlListModel option').remove();
+                $('#ddlListModel').append('<option value=' + "Select Model" + '>' + "Select Model" + '</option>');
+
+                $('#ddlListProcess option').remove();
+                $('#ddlListProcess').append('<option value=' + "Select Process" + '>' + "Select Process" + '</option>');
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting departments !');
+            });
+        }
+
+    });
+
+    // Dropdown list department change event.
+    $('#ddlListDepartment').change(function () {
+
+        var selectedDepartment = $('#ddlListDepartment').val();
+        if (selectedDepartment != null)
+        {
+            var selectedPlant = $('#ddlListPlant').val();
+
+            // Models
+            $.getJSON('/Model/Models', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                $('#ddlListModel option').remove();
+                $('#ddlListModel').append('<option value=' + "Select Model" + '>' + "Select Model" + '</option>');
+
+                $.each(data.Models, function () {
+                    $('#ddlListModel').append('<option data-subtext=' + this.ModelName + '>' + this.ModelName + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting models !');
+            });
+
+            // Processes
+            $.getJSON('/Processes/Processes', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                $('#ddlListProcess option').remove();
+                $('#ddlListProcess').append('<option value=' + "Select Process" + '>' + "Select Process" + '</option>');
+
+                $.each(data.Processes, function () {
+                    $('#ddlListProcess').append('<option data-subtext=' + this.ProcessName + '>' + this.ProcessCode + " | " + this.ProcessName + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting processes !');
+            });
+        }
+    });
+
+
+    // Searching
+    var delayTimer;
+    $('#searchText').bind('input', function () {
+        $('#list').html('');
+
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function () {
+            var search = $('#searchText').val();
+            if (search.length > 0) {
+                $.get(url, { startIndex: 0, searchFor: search }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+            else {
+                $.get(url, { startIndex: 0 }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+        }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+    });
+
+    // Infinite scroll
+    $("#list").scroll(function ()
+    {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight)
+        {
+            var url = "/ModelProcesses/Scroll/"
+            $.get(url, { startIndex: start }, function (response)
+            {
+                if (response != "")
+                {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    $("#add").click(function () {
+
+        $('#AddEditModal').modal('show');
+
+        $("#modalTitle").text('Add Master Data Model Process');
+
+        $("#createdTime").text('');
+        $("#createdUser").text('');
+
+        // Set default value for select picker
+        $.getJSON('/Plants/Plants', null, function (data) {
+            $('#ddlListPlant option').remove();
+
+            $('#ddlListPlant').append('<option value=' + "Select Plant" + '>' + "Select Plant" + '</option>');
+
+            $.each(data.Plants, function () {
+                $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+            });
+
+            $('#ddlListDepartment option').remove();
+            $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+            $('#ddlListModel option').remove();
+            $('#ddlListModel').append('<option value=' + "Select Model" + '>' + "Select Model" + '</option>');
+            $('.selectpicker').selectpicker('refresh');
+
+            $('#ddlListProcess option').remove();
+            $('#ddlListProcess').append('<option value=' + "Select Process" + '>' + "Select Process" + '</option>');
+            $('.selectpicker').selectpicker('refresh');
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting plants !');
+        });
+
+        $("#processCode").text('');
+        $("#processName").text('');
+
+        $('#active').prop('checked', false);
+
+        $(".c-fab__box-item").hide();
+    });
+
+    // Save / Update
+    $("#save").on("click", function () {
+
+        var createdTime = $("#createdTime").text();
+        var createdUser = $("#createdUser").text();
+
+        var plant = $('#ddlListPlant :selected').text();
+        var department = $('#ddlListDepartment :selected').text();
+        var modelCode = $('#ddlListModel :selected').text();
+
+        if (plant === 'Select Plant' || plant === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select plant !");
+            return;
+        }
+
+        if (department === 'Select Department' || department === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select department !");
+            return;
+        }
+
+        // Split department code & name then override value
+        var splitSelectedDepartment = department.split('-');
+        if (splitSelectedDepartment.length > 1) {
+            department = splitSelectedDepartment[0];
+        }
+
+
+        if (modelCode === 'Select Model' || modelCode === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select model !");
+            return;
+        }
+
+        var process = $("#ddlListProcess :selected").text();
+        if (process === 'Select Process' || process === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select process !");
+            return;
+        }
+
+        // Split process code & name then override value
+        var processCode = "";
+        var processName = "";
+        var splitSelectedProcess = process.split(' | ');
+        if (splitSelectedProcess.length > 1) {
+            processCode = splitSelectedProcess[0];
+            processName = splitSelectedProcess[1];
+        }
+
+        if (processCode === '' || processName === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select process !");
+            return;
+        }
+
+        var active = $("#active").prop("checked");
+
+        var createNewModelProcess = $("#modalTitle").text();
+        if (createNewModelProcess === 'Add Master Data Model Process')
+        {
+            // Parse new value for creating data
+            var modelProcess =
+            {
+                Plant: plant,
+                Department: department,
+                ModelCode: modelCode,
+                ProcessName: processName,
+                ProcessCode: processCode,
+                Active: active
+            };
+
+            // console.log("save", modelProcess);
+
+            // Call server
+            var url = "/ModelProcesses/Create";
+            $.post(url, modelProcess, function (response)
+            {
+                if (response.Message != null)
+                {
+                    $('#AddEditModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#AddEditModal').modal('hide');
+                loadData();
+            });
+        }
+        else
+        {
+            // Override created time format
+            var createdTime = new Date(parseInt(createdTime)).toJSON();
+
+            // Parse new value for creating data
+            var modelProcess =
+            {
+                Plant: plant,
+                Department: department,
+                ModelCode: modelCode,
+                ProcessName: processName,
+                ProcessCode: processCode,
+                Active: active,
+                CreatedTime: createdTime,
+                CreatedUser: createdUser
+            }
+
+            // console.log("update", modelProcess);
+
+            // Call server
+            var url = "/ModelProcesses/Edit?currentPlant=" + currentPlant +
+                                            "&currentDepartment=" + currentDepartment +
+                                            "&currentModelCode=" + currentModelCode +
+                                            "&currentProcessCode=" + currentProcessCode;
+            $.post(url, modelProcess, function (response) {
+
+                if (response.Message != null) {
+                    $('#AddEditModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#AddEditModal').modal('hide');
+                loadData();
+            });
+        }
+    });
+
+    // Get data then show pop up
+    $(document).on("click", "#btnEditCorner", function (e)
+    {
+        e.preventDefault();
+
+        $('#AddEditModal').modal('show');
+
+        var parameters = $(this).attr("data-id")
+        var values = parameters.split(',');
+        currentPlant = values[0];
+        currentDepartment = values[1];
+        currentModelCode = values[2];
+        currentProcessCode = values[3];
+
+        // Change modal title
+        if (currentPlant != '' && currentDepartment != '' && currentModelCode != '' && currentProcessCode != '') {
+            $("#modalTitle").text("Update Master Data Model Process");
+        }
+
+         // Call server
+        var url = "/ModelProcesses/Edit?plant=" + currentPlant +
+                                       "&department=" + currentDepartment +
+                                       "&modelCode=" + currentModelCode +
+                                       "&processCode=" + currentProcessCode;
+        $.get(url, function (response)
+        {
+            // console.log("Model process server", response.ModelProcess);
+
+            // Format date time
+            if (response.ModelProcess.CreatedTime != null) {
+                var replaceString = /-?\d+/;
+                var replacedDate = replaceString.exec(response.ModelProcess.CreatedTime);
+                var createdTime = parseInt(replacedDate[0], 10);
+
+                $("#createdTime").text(createdTime);
+            }
+
+            // Set value into properties
+            $("#createdUser").text(response.ModelProcess.CreatedUser);
+
+            // Get plants
+            var selectedPlant = response.ModelProcess.Plant;
+            if (selectedPlant != null) {
+                $.getJSON('/Plants/Plants', function (data) {
+
+                    $('#ddlListPlant option').remove();
+                    $('#ddlListPlant').append('<option value=' + "Select Plant" + '>' + "Select Plant" + '</option>');
+
+                    $.each(data.Plants, function () {
+                        $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+                    });
+
+                    $("[id*=ddlListPlant] option").each(function () {
+                        if ($(this).val().toUpperCase() == selectedPlant.toUpperCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting plants !');
+                });
+            }
+
+            // Get departments
+            var selectedDepartment = response.ModelProcess.Department;
+            if (selectedDepartment != null)
+            {
+                $.getJSON('/Departments/Departments', { searchFor: selectedPlant }, function (data) {
+
+                    $('#ddlListDepartment option').remove();
+                    $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+                    $.each(data.Departments, function () {
+                        $('#ddlListDepartment').append('<option value=' + this.DepartmentName + '>' + this.DepartmentName + "-" + this.DepartmentDescription + '</option>');
+                    });
+
+                    $("[id*=ddlListDepartment] option").each(function () {
+                        if ($(this).val().toUpperCase() == selectedDepartment.toUpperCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting departments !');
+                });
+
+                // Models
+                var selectedModelCode = response.ModelProcess.ModelCode;
+                if (selectedModelCode != null) {
+                    $.getJSON('/Model/Models', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                        $('#ddlListModel option').remove();
+                        $('#ddlListModel').append('<option value=' + "Select Model" + '>' + "Select Model" + '</option>');
+
+                        $.each(data.Models, function () {
+                            $('#ddlListModel').append('<option data-subtext=' + this.ModelName + '>' + this.ModelName + '</option>');
+                        });
+
+                        $('select[id*=ddlListModel]').val(selectedModelCode);
+                        $('.selectpicker').selectpicker('refresh');
+
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        alert('Error getting models !');
+                    });
+                }
+
+                // Processes
+                var selectedProcessCode = response.ModelProcess.ProcessCode;
+                var selectedProcessName = response.ModelProcess.ProcessName;
+                if (selectedProcessCode != null && selectedProcessName != null) {
+                    var selectedProcess = selectedProcessCode + " | " + selectedProcessName;
+
+                    $.getJSON('/Processes/Processes', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                        $('#ddlListProcess option').remove();
+                        $('#ddlListProcess').append('<option value=' + "Select Process" + '>' + "Select Process" + '</option>');
+
+                        $.each(data.Processes, function () {
+                            $('#ddlListProcess').append('<option data-subtext=' + this.ProcessName + '>' + this.ProcessCode + " | " + this.ProcessName + '</option>');
+                        });
+
+                        $('select[id*=ddlListProcess]').val(selectedProcess);
+                        $('.selectpicker').selectpicker('refresh');
+
+                        // Assign splitted value (employee no & leader name)
+                        var process = $('#ddlListProcess :selected').text();
+                        var splitSelected = process.split(' | ');
+
+                        if (splitSelected.length === 1) {
+                            $("#processCode").text("");
+                            $("#processName").text("");
+                        }
+                        else {
+                            $("#processCode").text(splitSelected[0]);
+                            $("#processName").text(splitSelected[1]);
+                        }
+
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        alert('Error getting processes !');
+                    });
+                }
+            }
+
+            $('#active').prop('checked', response.ModelProcess.Active);
+
+        });
+    });
+
+    // Delete
+    $("#delete").on("click", function () {
+
+        // Call server
+        var url = "/ModelProcesses/Delete?currentPlant=" + currentPlant +
+                                        "&currentDepartment=" + currentDepartment +
+                                        "&currentModelCode=" + currentModelCode +
+                                        "&currentProcessCode=" + currentProcessCode;
+        $.post(url, function (response) {
+
+            if (response.Message != null) {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text(response.Message);
+                return;
+            }
+
+            $('#DeleteModal').modal('hide');
+            loadData();
+        });
+    });
+
+    // Show delete pop up
+    $(document).on("click", "#btnDeleteCorner", function (e) {
+        e.preventDefault();
+
+        var parameters = $(this).attr("data-id")
+        var values = parameters.split(',');
+        currentPlant = values[0];
+        currentDepartment = values[1];
+        currentModelCode = values[2];
+        currentProcessCode = values[3];
+
+        $('#DeleteModal').modal('show');
+    });
+
+    // Import data
+    $("#import").on("click", function () {
+        $('#ImportModal').modal('show');
+    });
+
+    // Upload data
+    $("#upload").on("click", function () {
+
+        var data = new FormData();
+        data.append('file', $('#fileImport').prop('files')[0]);
+
+        $.ajax({
+            type: "POST",
+            url: '/ModelProcesses/Import',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                if (response.Message != null) {
+                    $('#ImportModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#ImportModal').modal('hide');
+                loadData();
+
+                 // This function is set on app.js
+                resetUpload();
+            }
+        });
+    });
+
+    // Export data
+    $("#export").on("click", function () {
+        window.open("/ModelProcesses/Export/", "_self");
+
+        $('#NotificationModal').modal('show');
+        $('#success').show();
+        $('#fail').hide();
+        $('#notificationMessage').text("Export success !");
+    });
+
+    // Download template
+    $("#downloadTemplate").on("click", function () {
+        window.open("/ModelProcesses/Template/", "_self");
+    });
+
+</script>

@@ -1,0 +1,108 @@
+﻿@model LineBalancing.ViewModels.VMDepartment
+
+@{
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@foreach (var item in Model.Departments)
+{
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30">
+        <div class="l-box__item">
+
+            <div class="row">
+
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        Plant
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-5 col-xs-5">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Plant)
+                    </div>
+                </div>
+
+                @if (isAdmin)
+                {
+                    var plant = item.Plant;
+                    var department = item.DepartmentName;
+
+                    var parameters = plant + "," + department;
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <button type="button" class="btn-edit-corner" id="btnEditCorner" data-toggle="modal" data-id="@Html.DisplayFor(modelItem => parameters)" data-dom-cache="false">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+
+                        <button type="button" class="btn-delete-corner" id="btnDeleteCorner" data-toggle="modal" data-id="@Html.DisplayFor(modelItem => parameters)" data-dom-cache="false">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                }
+
+            </div>
+
+            <hr class="dotted-line" />
+
+            <div class="row margin-t-5">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        Name
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-5 col-xs-5">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.DepartmentName)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl font-size-14">
+                        Description
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-5 col-xs-5">
+                    <div class="h-text--value-navy font-size-14">
+                        :  @Html.DisplayFor(modelItem => item.DepartmentDescription)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl font-size-14">
+                        Status
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-5 col-xs-5">
+                    <div class="h-text--value-navy font-size-14">
+                        :  @Html.DisplayFor(modelItem => item.Status)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

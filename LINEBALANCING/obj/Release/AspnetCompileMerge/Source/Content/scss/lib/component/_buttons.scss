@@ -1,0 +1,955 @@
+//[Buttons On Hover]
+
+
+//Button Base Color
+.btn-base {
+    @include buttons($color-base, $color-white, transparent, $color-base, 1px, transparent, $color-base);
+
+    .btn-base-element-xs {
+        @include buttons-element(transparent, darken($color-base, 4%), 6px 9px);
+    }
+
+    .btn-base-element-sm {
+        @include buttons-element(transparent, darken($color-base, 4%), 9px 11px);
+    }
+
+    .btn-base-element-md {
+        @include buttons-element(transparent, darken($color-base, 4%), 12px 13px);
+    }
+
+    .btn-base-element-lg {
+        @include buttons-element(transparent, darken($color-base, 4%), 15px 15px);
+    }
+}
+
+//Button Base Color Orange
+.btn-base-orange {
+    @include buttons($color-base-orange, $color-white, transparent, $color-base-orange, 1px, transparent, $color-base-orange);
+
+    .btn-base-element-xs {
+        @include buttons-element(transparent, darken($color-base-orange, 4%), 6px 9px);
+    }
+
+    .btn-base-element-sm {
+        @include buttons-element(transparent, darken($color-base-orange, 4%), 9px 11px);
+    }
+
+    .btn-base-element-md {
+        @include buttons-element(transparent, darken($color-base-orange, 4%), 12px 13px);
+    }
+
+    .btn-base-element-lg {
+        @include buttons-element(transparent, darken($color-base-orange, 4%), 15px 15px);
+    }
+}
+
+//Button Base White Color
+.btn-white {
+    @include buttons($color-white, $color-dark, transparent, $color-white, 1px, transparent, $color-white);
+
+    .btn-base-element-xs {
+        @include buttons-element(transparent, darken($color-white, 6%), 6px 9px);
+    }
+
+    .btn-base-element-sm {
+        @include buttons-element(transparent, darken($color-white, 6%), 9px 11px);
+    }
+
+    .btn-base-element-md {
+        @include buttons-element(transparent, darken($color-white, 6%), 12px 13px);
+    }
+
+    .btn-base-element-lg {
+        @include buttons-element(transparent, darken($color-white, 6%), 15px 15px);
+    }
+}
+
+
+//[Buttons Border]
+
+//Button Base Color
+.btn-base-brd {
+    @include buttons($color-base, $color-white, transparent, $color-base, 2px, $color-base, $color-base);
+
+    .btn-base-element-xs {
+        @include buttons-element(transparent, darken($color-base, 4%), 6px 9px);
+    }
+
+    .btn-base-element-sm {
+        @include buttons-element(transparent, darken($color-base, 4%), 9px 11px);
+    }
+
+    .btn-base-element-md {
+        @include buttons-element(transparent, darken($color-base, 4%), 12px 13px);
+    }
+
+    .btn-base-element-lg {
+        @include buttons-element(transparent, darken($color-base, 4%), 15px 15px);
+    }
+}
+
+//Button Base White Color
+.btn-white-brd {
+    @include buttons($color-white, $color-dark, transparent, $color-white, 1px, $color-white, $color-white);
+
+    .btn-base-element-xs {
+        @include buttons-element(transparent, darken($color-white, 6%), 6px 9px);
+    }
+
+    .btn-base-element-sm {
+        @include buttons-element(transparent, darken($color-white, 6%), 9px 11px);
+    }
+
+    .btn-base-element-md {
+        @include buttons-element(transparent, darken($color-white, 6%), 12px 13px);
+    }
+
+    .btn-base-element-lg {
+        @include buttons-element(transparent, darken($color-white, 6%), 15px 15px);
+    }
+}
+
+
+//[Buttons Sizes]
+
+//Mini Size
+.btn-base-xs {
+    @include buttons-size($font-size-12, $font-weight-300, 8px 15px);
+
+    &.btn-base-animate-to-top,
+    &.btn-base-animate-to-right {
+        padding-right: 40px;
+    }
+}
+
+//Small Size
+.btn-base-sm {
+    @include buttons-size($font-size-14, $font-weight-300, 9px 22px);
+
+    &.btn-base-animate-to-top,
+    &.btn-base-animate-to-right {
+        padding-right: 50px;
+    }
+}
+
+//Medium Size
+.btn-base-md {
+    @include buttons-size($font-size-16, $font-weight-300, 12px 25px);
+
+    &.btn-base-animate-to-top,
+    &.btn-base-animate-to-right {
+        padding-right: 65px;
+    }
+}
+
+//Large Size
+.btn-base-lg {
+    @include buttons-size($font-size-20, $font-weight-300, 15px 30px);
+
+    &.btn-base-animate-to-top,
+    &.btn-base-animate-to-right {
+        padding-right: 75px;
+    }
+}
+
+//[Buttons Toggle]
+
+//Button White Toggle
+.btn-group {
+    &.btn-white-toggle {
+        &.open {
+            .btn-white-bg {
+                box-shadow: none;
+
+                &:after {
+                    color: $color-base;
+                    content: "\f0d8";
+                }
+            }
+        }
+
+        .btn-white-bg {
+            width: 300px;
+            @include font($size: $font-size-15, $weight: $font-weight-300);
+            color: $color-dark;
+            background: $color-white;
+            padding: 12px 100px 12px 15px;
+
+            &:after {
+                @include position(absolute, $top: 12px, $right: 15px);
+                @include font($size: $font-size-15, $family: $font-family-font-awesome);
+                color: $color-dark;
+                content: "\f0d7";
+            }
+
+            &:hover,
+            &:focus,
+            &.focus {
+                color: $color-dark;
+                background: $color-white;
+                border-color: $color-white;
+                box-shadow: inset none;
+            }
+        }
+
+        .dropdown-menu {
+            width: 300px;
+            border: none;
+            @include border-radius(3px);
+            box-shadow: none;
+            padding: 0;
+            margin: 1px 0 0;
+
+            > li {
+                > a {
+                    @include font($size: $font-size-15, $weight: $font-weight-300);
+                    color: $color-dark;
+                    border-bottom: 1px solid $color-sky-light;
+                    padding: 10px 15px;
+
+                    .dropdown-menu-icon {
+                        min-width: 25px;
+                        text-align: center;
+                        vertical-align: middle;
+                        margin-right: 5px;
+                    }
+
+                    &:hover,
+                    &:focus {
+                        background: $color-base;
+                        color: $color-white;
+                    }
+                }
+
+                &:first-child {
+                    > a {
+                        border-top-right-radius: 3px;
+                        border-top-left-radius: 3px;
+                    }
+                }
+
+                &:last-child {
+                    > a {
+                        border-bottom: none;
+                        border-bottom-right-radius: 3px;
+                        border-bottom-left-radius: 3px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//[Buttons Icon Animate To Top]
+
+.btn-base-animate-to-top {
+    z-index: 1;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+
+    &:hover {
+        .btn-base-element-icon {
+            @include animation(toTopFromBottom .3s forwards);
+        }
+    }
+}
+
+@include keyframes(toTopFromBottom) {
+    49% {
+        @include translate3d(0,-100%,0);
+    }
+
+    50% {
+        opacity: 0;
+        @include translate3d(0,100%,0);
+    }
+
+    51% {
+        opacity: 1;
+    }
+}
+
+
+
+//[Buttons Icon Animate To Right]
+
+.btn-base-animate-to-right {
+    z-index: 1;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+
+    &:hover {
+        .btn-base-element-icon {
+            @include animation(toRightFromLeft .3s forwards);
+        }
+    }
+}
+
+@include keyframes(toRightFromLeft) {
+    49% {
+        @include translate3d(0,100%,0);
+    }
+
+    50% {
+        opacity: 0;
+        @include translate3d(0,-100%,0);
+    }
+
+    51% {
+        opacity: 1;
+    }
+}
+
+.btn-back-corner-md {
+    position: absolute;
+    color: #fff !important;
+    top: 25px;
+    left: 25px;
+    font-size: 30px;
+    opacity: 1 !important;
+    width: 80px;
+    background: #00A0E9 !important;
+    border: 1px solid #00A0E9;
+    height: 80px;
+    border-radius: 100%;
+    outline: none;
+}
+
+.btn-back-page-mobile {
+    margin-right: 10px;
+    color: #fff !important;
+    font-size: 25px;
+    opacity: 1 !important;
+    width: 45px;
+    background: #00A0E9 !important;
+    border: 1px solid #00A0E9;
+    height: 45px;
+    border-radius: 100%;
+    outline: none;
+}
+
+.btn-back-homes-corner {
+    position: absolute;
+    color: #fff !important;
+    top: -15px;
+    right: -15px;
+    font-size: 25px;
+    opacity: 1 !important;
+    width: 60px;
+    background: #00A0E9 !important;
+    border: 1px solid #00A0E9;
+    height: 60px;
+    border-radius: 100%;
+    outline: none;
+}
+
+
+.btn-oranges {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff6f00), color-stop(1, #ff6f00));
+    background: -moz-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+    background: -webkit-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+    background: -o-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+    background: -ms-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+    background: linear-gradient(to bottom, #ff6f00 5%, #ff6f00 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6f00', endColorstr='#ff6f00',GradientType=0);
+    background-color: #ff6f00;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #ff6f00;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 25px;
+    padding: 20px 34px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    outline: none;
+    margin-top: 60px;
+
+    &:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff6f00), color-stop(1, #ff6f00));
+        background: -moz-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+        background: -webkit-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+        background: -o-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+        background: -ms-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+        background: linear-gradient(to bottom, #ff6f00 5%, #ff6f00 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6f00', endColorstr='#ff6f00',GradientType=0);
+        background-color: #ff6f00;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    @include xw(768) {
+        margin-top: 40px;
+        padding: 15px 20px;
+    }
+}
+
+
+
+
+.btn-expand-all {
+    background: $color-white;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 3px solid #0D3858;
+    display: inline-block;
+    cursor: pointer;
+    color: #0D3858;
+    font-size: 18px;
+    padding: 20px;
+    text-decoration: none;
+    outline: none;
+    height: 75px;
+    margin-right: -5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 50%;
+
+    @include xw(1600) {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    @include xw(1199) {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    @include xw(991) {
+        height: 70px;
+        font-size: 23px;
+        background: $color-base-navy;
+        margin-right: 5px;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        padding: 0;
+        width: 45%;
+    }
+
+
+    @include xw(768) {
+        height: 60px;
+    }
+
+    &:hover {
+        background: #0D3858;
+        color: #fff;
+    }
+
+
+
+    i {
+        padding: 5px 6px;
+        background: $color-base-navy;
+        color: #fff;
+        border-radius: 4px;
+
+        @include xw(991) {
+            padding: 0;
+        }
+    }
+}
+
+.btn-collapse-all {
+    background: $color-white;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 3px solid #0D3858;
+    cursor: pointer;
+    color: #0D3858;
+    font-size: 18px;
+    padding: 20px;
+    text-decoration: none;
+    outline: none;
+    height: 75px;
+    display: inline-block;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 50%;
+
+    @include xw(1600) {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    @include xw(1199) {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    @include xw(991) {
+        height: 70px;
+        font-size: 23px;
+        background: #0D3858;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        padding: 0;
+        width: 45%;
+    }
+
+    @include xw(768) {
+        height: 60px;
+    }
+
+    &:hover {
+        background: #0D3858;
+        color: #fff;
+    }
+
+
+
+
+    i {
+        padding: 5px 6px;
+        background: #0D3858;
+        color: #fff;
+        border-radius: 4px;
+
+        @include xw(991) {
+            padding: 0;
+        }
+    }
+}
+
+.btn-close-modal {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0D3858), color-stop(1, #0D3858));
+    background: -moz-linear-gradient(top, #0D3858 5%, #0D3858 100%);
+    background: -webkit-linear-gradient(top, #0D3858 5%, #0D3858 100%);
+    background: -o-linear-gradient(top, #0D3858 5%, #0D3858 100%);
+    background: -ms-linear-gradient(top, #0D3858 5%, #0D3858 100%);
+    background: linear-gradient(to bottom, #0D3858 5%, #0D3858 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0D3858', endColorstr='#0D3858',GradientType=0);
+    background-color: #0D3858;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 50px;
+    border: 1px solid #0D3858;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 25px;
+    padding: 15px;
+    text-decoration: none;
+    display: block;
+    width: 50%;
+    outline: none;
+    margin: 60px auto 0 auto;
+
+    &:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0D3858), color-stop(1, #0D3858));
+        background: -moz-linear-gradient(top, #0D3858 5%, #0D3858 100%);
+        background: -webkit-linear-gradient(top, #0D3858 5%, #0D3858 100%);
+        background: -o-linear-gradient(top, #0D3858 5%, #0D3858 100%);
+        background: -ms-linear-gradient(top, #0D3858 5%, #0D3858 100%);
+        background: linear-gradient(to bottom, #0D3858 5%, #0D3858 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0D3858', endColorstr='#0D3858',GradientType=0);
+        background-color: #0D3858;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    @include xw(991) {
+        font-size: 18px;
+        padding: 14px;
+    }
+}
+
+
+
+
+
+.btn-apply-circle {
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+    border: 1px solid #FF7000;
+    background: #FF7000;
+    color: #fff;
+    font-size: 25px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2.3;
+    font-weight: 600;
+    outline: none;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    bottom: 0;
+}
+
+.btn-import-file {
+    border-radius: 8px;
+    border: 1px solid #FF7000;
+    background: #FF7000;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 18px;
+}
+
+.btn-confirmation-delete {
+    border-radius: 8px;
+    border: 1px solid #FF4848;
+    background: #FF4848;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 18px;
+}
+
+.btn-save-modal-center {
+    border-radius: 8px;
+    border: 1px solid #FF7000;
+    background: #FF7000;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 50px;
+}
+
+.btn-reset-file {
+    border-radius: 8px;
+    border: none;
+    background: none;
+    color: #FF7000;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 18px;
+}
+
+
+.btn-edit-corner {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #FF7000;
+    background: #FF7000;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    line-height: 2.3;
+    font-weight: 600;
+    outline: none;
+    position: absolute;
+    transform: translate(-50%,-10%);
+    /*right: 25%;*/
+    right: 40px;
+
+    @include xw(991) {
+        transform: translate(-50%,-20%);
+        /*right: 30%;*/
+    }
+}
+
+.btn-delete-corner {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #FF4848;
+    background: #FF4848;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    line-height: 2.3;
+    font-weight: 600;
+    outline: none;
+    position: absolute;
+    transform: translate(-50%,-10%);
+    right: 0;
+
+    @include xw(991) {
+        transform: translate(-50%,-20%);
+    }
+}
+
+.btn-edit {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #FF7000;
+    background: #FF7000;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2.3;
+    font-weight: 600;
+    outline: none;
+    transform: translate(50%, -50%);
+    right: 50%;
+    top: 50%;
+    position: absolute;
+}
+
+
+.btn-trigger:before {
+    content: "\f13a";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    vertical-align: text-bottom;
+    font-size: 30px;
+    position: absolute;
+    right: 1%;
+    transform: translate(-20%, -50%);
+    top: 50%;
+    border-left: 2px solid #bebebe;
+    padding: 10px 0px 10px 15px;
+}
+
+.btn-trigger.collapsed:before {
+    content: "\f139";
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+}
+
+.btn-tab-model-detail {
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 15px;
+    text-decoration: none;
+    display: inline;
+    outline: none;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #FF7000;
+    margin-right: -2px;
+
+    &:hover {
+        background-color: #FF7000;
+        color: #ffffff;
+        border-color: #ffffff;
+    }
+
+    @include xw(991) {
+        font-size: 14px;
+    }
+}
+
+.active-tabs {
+    background-color: #FF7000 !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+
+    &:hover {
+        background-color: #ffffff !important;
+        color: #FF7000 !important;
+    }
+}
+
+.btn-tab-model-process {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 15px;
+    text-decoration: none;
+    display: inline;
+    outline: none;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #FF7000;
+
+    &:hover {
+        background-color: #FF7000;
+        color: #ffffff;
+        border-color: #ffffff;
+    }
+
+    @include xw(991) {
+        font-size: 13px;
+    }
+}
+
+//Stopwatch & Manual Submission
+.btn-radius-left {
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-radius-right {
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.btn-tab-stopwatch {
+    cursor: pointer;
+    font-size: 17px;
+    padding: 5px;
+    white-space: normal;
+    text-decoration: none;
+    display: inline;
+    outline: none;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #0D3858;
+    margin-right: -2px;
+    width: 35%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
+    height: 60px;
+    outline: none !important;
+    line-height: 22px;
+
+    @include xw(1700) {
+        font-size: 16px;
+    }
+
+
+
+    &:hover {
+        background-color: #02BE25;
+        color: #ffffff;
+        border-color: #ffffff;
+    }
+
+    @include xw(991) {
+        font-size: 14px;
+    }
+}
+
+.btn-tab-stopwatch.active-stopwatch {
+    background-color: #02BE25 !important;
+    border: 1px solid #02BE25 !important;
+    color: #ffffff !important;
+
+    &:hover {
+        background-color: #02961D !important;
+        color: #ffffff !important;
+        border: 1px solid #02961D !important;
+    }
+}
+
+.btn-save-stopwatch {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff6f00), color-stop(1, #ff6f00));
+    background: -moz-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+    background: -webkit-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+    background: -o-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+    background: -ms-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+    background: linear-gradient(to bottom, #ff6f00 5%, #ff6f00 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6f00', endColorstr='#ff6f00',GradientType=0);
+    background-color: #ff6f00;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #ff6f00;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 15px 25px;
+    text-decoration: none;
+    width: 100%;
+    outline: none;
+
+    @include xw(991) {
+        padding: 10px 20px;
+        font-size: 16px;
+        height: 45px;
+    }
+
+    &:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff6f00), color-stop(1, #ff6f00));
+        background: -moz-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+        background: -webkit-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+        background: -o-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+        background: -ms-linear-gradient(top, #ff6f00 5%, #ff6f00 100%);
+        background: linear-gradient(to bottom, #ff6f00 5%, #ff6f00 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6f00', endColorstr='#ff6f00',GradientType=0);
+        background-color: #ff6f00;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+}
+
+.btn-ignore-stopwatch {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $color-base), color-stop(1, $color-base));
+    background: -moz-linear-gradient(top, $color-base 5%, $color-base 100%);
+    background: -webkit-linear-gradient(top, $color-base 5%, $color-base 100%);
+    background: -o-linear-gradient(top, $color-base 5%, $color-base 100%);
+    background: -ms-linear-gradient(top, $color-base 5%, $color-base 100%);
+    background: linear-gradient(to bottom, $color-base 5%, $color-base 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-base', endColorstr='$color-base',GradientType=0);
+    background-color: $color-base;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid $color-base;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 15px 25px;
+    text-decoration: none;
+    width: 100%;
+    outline: none;
+
+    @include xw(991) {
+        padding: 10px 20px;
+        font-size: 16px;
+        height: 45px;
+    }
+
+    &:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $color-base), color-stop(1, $color-base));
+        background: -moz-linear-gradient(top, $color-base 5%, $color-base 100%);
+        background: -webkit-linear-gradient(top, $color-base 5%, $color-base 100%);
+        background: -o-linear-gradient(top, $color-base 5%, $color-base 100%);
+        background: -ms-linear-gradient(top, $color-base 5%, $color-base 100%);
+        background: linear-gradient(to bottom, $color-base 5%, $color-base 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-base', endColorstr='$color-base',GradientType=0);
+        background-color: $color-base;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+}

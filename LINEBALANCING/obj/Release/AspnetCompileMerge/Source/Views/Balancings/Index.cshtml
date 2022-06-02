@@ -1,0 +1,529 @@
+﻿@model LineBalancing.ViewModels.VMBalancing
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Select Line & Model";
+
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+
+<div class="l-box__select-model-line">
+    <button type="button" class="btn-back-homes-corner setDelay hideCont" data-dismiss="modal" onclick="window.location='@Url.Action("Index", "MainMenu")'"><i class="fas fa-home"></i> </button>
+
+    <div class="h-text--title-box-form-v1 setDelayText hideContText">Please select Line & Model</div>
+    <div class="solid-line-width"></div>
+
+    @Html.Label(isAdmin.ToString(), null, new { @id = "isAdmin", @hidden = "hidden" })
+
+    @if (!isAdmin)
+    {
+        <table class="table table-condensed table-borderless margin-t-30 margin-b-30 ">
+            <tr>
+                <td width="30%" class="h-text__point-jobs-name setDelayText hideContText"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                <td class="h-text__point-jobs-desc setDelay hideCont">: @Html.Label(Model.PlantCode, null, new { @id = "plant" })</td>
+            </tr>
+
+            <tr>
+                <td width="30%" class="h-text__point-jobs-name setDelayText hideContText"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                <td class="h-text__point-jobs-desc setDelay hideCont">: @Html.Label(Model.DepartmentName, null, new { @id = "department" })</td>
+            </tr>
+
+            <tr>
+                <td width="30%" class="h-text__point-jobs-name setDelayText hideContText"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Leader</td>
+                <td class="h-text__point-jobs-desc setDelay hideCont">
+                    :
+                    @Html.Label(Model.LeaderName, null, new { @id = "leaderName" })
+                    @Html.Label(Model.EmployeeNo, null, new { @id = "employeeNo", })
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <table class="table table-condensed table-borderless margin-t-30 margin-b-30">
+            <tr>
+                <td width="30%" class="h-text__point-jobs-name setDelayText hideContText"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                <td class="h-text__point-jobs-desc setDelay hideCont">
+                    <select class="form-control" id="ddlListPlant"></select>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="30%" class="h-text__point-jobs-name setDelayText hideContText"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                <td class="h-text__point-jobs-desc setDelay hideCont">
+                    <select class="form-control" id="ddlListDepartment"></select>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="30%" class="h-text__point-jobs-name setDelayText hideContText"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Leader</td>
+                <td class="h-text__point-jobs-desc setDelay hideCont">
+                    <select class="form-control selectpicker show-tick select-option-sm-picker" id="ddlListLeader" data-size="7"></select>
+                    <label id="leaderName" hidden="hidden"></label>
+                    <label id="employeeNo" hidden="hidden"></label>
+                </td>
+            </tr>
+        </table>
+    }
+
+    <div class="margin-b-30 setDelayText hideContText">
+        <select class="form-control select-option-custom" id="ddlListLine"></select>
+    </div>
+
+    <div class="margin-b-30 setDelayText hideContText">
+        <select class="form-control select-option-custom" id="ddlListModel"></select>
+    </div>
+
+    <div>
+        <label class="c-login__container-checkbox setDelayText hideContText">
+            One By One
+            @Html.CheckBox("IsOneByOne", false, new { @id = "isOneByOne" })
+            <span class="c-login__checkmark"></span>
+        </label>
+    </div>
+
+    <input type="submit" class="btn-oranges margin-t-40 setDelayText hideContText" id="apply" value="APPLY" />
+
+</div>
+
+
+<!-- Check available balancing process outstanding -->
+@if (Model.OutstandingJobCount > 0)
+{
+    <div id="messageOutstanding" class="modal fade overflow-h setDelay hideCont" role="dialog">
+        <div class="modal-dialog position-c-object c-custom-modal__wide">
+
+            <!-- Modal content-->
+            <div class="modal-content c-custom-modal__job-outstanding-height">
+                <div class="modal-header">
+                    <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                    <h4 class="modal-title c-custom-modal__modal-title-outstanding">@Html.DisplayFor(modelItem => Model.OutstandingJob)</h4>
+                </div>
+                <div class="modal-body overflow-y-modal-fix">
+                    <div id="list" class="c-custom-modal__container-list-outstanding">
+                        @{ Html.RenderAction("Scroll", new { startIndex = 0 }); }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+<div id="NotificationModal" class="modal fade setDelay hideCont" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+
+                <img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    <label id="notificationMessage"></label>
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var url = '@Url.Action("Scroll", "Balancings")';
+    var list = $('#list');
+
+    // Get data for dropdownlist
+    $(document).ready(function () {
+
+        $('.selectpicker').selectpicker({
+            liveSearch: true,
+            showSubtext: true
+        });
+
+        var isAdmin = $("#isAdmin").text().toUpperCase();
+
+        // console.log("isAdmin", isAdmin);
+
+        if (isAdmin === "TRUE")
+        {
+            $.getJSON('/Plants/Plants', null, function (data) {
+                $('#ddlListPlant').append('<option value=' + "Select Plant" + '>' + "Select Plant" + '</option>');
+
+                $.each(data.Plants, function () {
+                    $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+                });
+
+                $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+                $('#ddlListLeader').append('<option value=' + "Select Leader" + '>' + "Select Leader" + '</option>');
+                $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+                $('#ddlListModel').append('<option value=' + "Select Model" + '>' + "Select Model" + '</option>');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting plants !');
+            });
+        }
+        else
+        {
+            var selectedLeaderName = $("#leaderName").text();
+            if (selectedLeaderName != null)
+            {
+                // Get line by leader lines
+                $.getJSON('/LeaderLines/LeaderLines', { searchFor: selectedLeaderName }, function (data) {
+
+                    $('#ddlListLine option').remove();
+
+                    $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+                    $.each(data.LeaderLines, function () {
+                        $('#ddlListLine').append('<option value=' + this.Line + '>' + this.Line + '</option>');
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting leader lines !');
+                });
+            }
+        }
+    });
+
+
+    // Dropdown list plant change event
+    $('#ddlListPlant').change(function () {
+
+        var selectedPlant = $('#ddlListPlant').val();
+        if (selectedPlant != null) {
+            $.getJSON('/Departments/Departments', { searchFor: selectedPlant }, function (data) {
+
+                $('#ddlListDepartment option').remove();
+
+                $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+                $.each(data.Departments, function () {
+                    $('#ddlListDepartment').append('<option value=' + this.DepartmentName + '>' + this.DepartmentName + "-" + this.DepartmentDescription + '</option>');
+                });
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting departments !');
+            });
+        }
+
+    });
+
+    // Dropdown list department change event
+    $("#ddlListDepartment").change(function ()
+    {
+        var selectedDepartment = $('#ddlListDepartment').val();
+        if (selectedDepartment != null)
+        {
+            var selectedPlant = $('#ddlListPlant').val();
+
+            // Get leaders
+            $.getJSON('/Leaders/Leaders', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                $('#ddlListLeader option').remove();
+
+                $('#ddlListLeader').append('<option value=' + "Select Leader" + '>' + "Select Leader" + '</option>');
+
+                $.each(data.Leaders, function () {
+                    $('#ddlListLeader').append('<option data-subtext=' + this.LeaderName + '>' + this.EmployeeNo + " | " + this.LeaderName + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting leaders !');
+            });
+        }
+
+    });
+
+    // Dropdown leader line change event
+    $("#ddlListLeader").change(function ()
+    {
+        var splitSelectedLeader = $('#ddlListLeader').val();
+        if (splitSelectedLeader != null)
+        {
+            var selectedLeaderName = "";
+
+            var splitSelectedLeader = splitSelectedLeader.split(' | ');
+            if (splitSelectedLeader.length > 1) {
+                selectedLeaderName = splitSelectedLeader[1];
+            }
+
+            // Get line by leader lines
+            $.getJSON('/LeaderLines/LeaderLines', { searchFor: selectedLeaderName }, function (data) {
+
+                $('#ddlListLine option').remove();
+
+                $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+                $.each(data.LeaderLines, function () {
+                    $('#ddlListLine').append('<option value=' + this.Line + '>' + this.Line + '</option>');
+                });
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting leader lines !');
+            });
+        }
+    });
+
+    // Dropdown list line change event
+    $("#ddlListLine").change(function ()
+    {
+        var selectedLine = $('#ddlListLine').val();
+        if (selectedLine != null)
+        {
+            var selectedPlant = $('#ddlListPlant').val();
+            var selectedDepartment = $('#ddlListDepartment').val();
+
+            // Get models
+            $.getJSON('/Model/Models', { plant: selectedPlant, department: selectedDepartment, line: selectedLine }, function (data) {
+
+                $('#ddlListModel option').remove();
+                $('#ddlListModel').append('<option value=' + "Select Model" + '>' + "Select Model" + '</option>');
+
+                $.each(data.Models, function () {
+                    $('#ddlListModel').append('<option value=' + this.ModelName + '>' + this.ModelName + '</option>');
+                });
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting models !');
+            });
+        }
+    });
+
+
+    // Infinite scroll
+    $("#list").scroll(function ()
+    {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight)
+        {
+            $.get(url, { startIndex: start }, function (response)
+            {
+                if (response != "") {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    // Save data
+    $("#apply").on("click", function () {
+
+        var selectedEmployeeNo = "";
+        var selectedLeaderName = "";
+
+        var isAdmin = $("#isAdmin").text().toUpperCase();
+        if (isAdmin === "TRUE")
+        {
+            var plant = $('#ddlListPlant :selected').text();
+            var department = $('#ddlListDepartment :selected').text();
+
+            if (plant === 'Select Plant' || plant === '') {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text("Please fill plant !");
+                return;
+            }
+
+            if (department === 'Select Department' || department === '') {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text("Please select department !");
+                return;
+            }
+
+            // Split department name & description then override value
+            var splitSelectedDepartment = department.split('-');
+            if (splitSelectedDepartment.length > 1) {
+                department = splitSelectedDepartment[0];
+            }
+
+            // Split employee no & leader name
+            var leader = $("#ddlListLeader :selected").text();
+            if (leader === 'Select Leader' || leader === '') {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text("Please select leader !");
+                return;
+            }
+
+            var splitSelectedLeader = leader.split(' | ');
+            if (splitSelectedLeader.length > 1) {
+                selectedEmployeeNo = splitSelectedLeader[0];
+                selectedLeaderName = splitSelectedLeader[1];
+            }
+
+            if (employeeNo === '' || leaderName === '') {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text("Please select leader !");
+                return;
+            }
+        }
+        else
+        {
+            var plant = $("#plant").text();
+            var department = $("#department").text();
+
+            if (plant === '') {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text("Please select plant !");
+                return;
+            }
+
+            if (department === '') {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text("Please select department !");
+                return;
+            }
+
+            selectedEmployeeNo = $("#employeeNo").text();
+            selectedLeaderName = $("#leaderName").text();
+        }
+
+        var line = $("#ddlListLine :selected").text();
+        var model = $("#ddlListModel :selected").text();
+
+        if (line === 'Select Line' || line === '')
+        {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select line !");
+            return;
+        }
+
+        if (model === 'Select Model' || model === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select model !");
+            return;
+        }
+
+         // Get value from checkbox is one by one
+        var isOneByOne = $("#isOneByOne").prop("checked");
+
+        // Parse new value for creating data
+        var balancing =
+        {
+            Plant: plant,
+            Department: department,
+            Line: line,
+            EmployeeNo: selectedEmployeeNo,
+            LeaderName: selectedLeaderName,
+            Model: model,
+            IsOneByOne: isOneByOne
+        }
+
+        // console.log("save", balancing);
+
+        // Call server
+        var url = "/Balancings/CreateProcessChecking";
+        $.post(url, balancing, function (response)
+        {
+            // console.log("response", response.DTOBalancing);
+
+            if (response.Message != null) {
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text(response.Message);
+                return;
+            }
+
+            var balancingProcessId = response.DTOBalancing.BalancingProcessId;
+            var plant = response.DTOBalancing.Plant;
+            var department = response.DTOBalancing.Department;
+            var line = response.DTOBalancing.Line;
+            var employeeNo = response.DTOBalancing.EmployeeNo;
+            var model = response.DTOBalancing.Model;
+            var checkId = response.DTOBalancing.CheckId;
+
+            var openBalancingProcess = "/BalancingProcesses/Index?balancingProcessId=" + balancingProcessId +
+                                                                "&plant=" + plant +
+                                                                "&department=" + department +
+                                                                "&line=" + line +
+                                                                "&employeeNo=" + employeeNo+
+                                                                "&model=" + model +
+                                                                "&checkId=" + checkId +
+                                                                "&isOneByOne=" + isOneByOne;
+            window.open(openBalancingProcess, "_self");
+        });
+    });
+
+</script>

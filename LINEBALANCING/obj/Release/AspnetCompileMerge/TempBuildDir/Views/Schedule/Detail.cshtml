@@ -1,0 +1,178 @@
+﻿@model LineBalancing.ViewModels.VMMonthlySchedule
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Schedule Detail";
+
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    var dateFrom = Request.Params["dateFrom"];
+    var dateTo = Request.Params["dateTo"];
+    var remark = Request.Params["remark"];
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@if (!isAdmin)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Index","MainMenu")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+@* Back Button Previous Page Desktop *@
+<button type="button" class="btn-back-corner-md hidden-sm hidden-xs setDelay hideCont" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+
+
+<div class="l-box__list ">
+    <div class="h-text--title-box-form-v1 setDelay hideCont">
+        <button type="button" class="btn-back-page-mobile hidden-lg hidden-md" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+        <span>Schedule Detail</span>
+    </div>
+
+    <div class="solid-line-width hidden-sm hidden-xs"></div>
+
+    <div class="margin-t-40 margin-b-40 md-margin-b-20 setDelay hideCont">
+        <div class="row space-row-10">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="c-form__inside-icon">
+                    @Html.TextBox("Search", null, new { @class = "form-control", @placeholder = "Search...", @id = "searchText" })
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row setDelay hideCont">
+
+        <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+        <div id="list" class="overflow-y-box-list">
+            @{ Html.RenderAction("ScheduleDetail", new { dateFrom = dateFrom, dateTo = dateTo, remark = remark, startIndex = 0 }); }
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var list = $('#list');
+
+    // Searching
+    var delayTimer;
+    $('#searchText').bind('input', function () {
+
+        $('#list').html('');
+
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function () {
+            var currentUrl = window.location.href;
+            var url = new URL(currentUrl);
+            var dateFrom = url.searchParams.get("dateFrom");
+            var dateTo = url.searchParams.get("dateTo");
+            var remark = url.searchParams.get("remark");
+
+            // Override url
+            url = "/Schedule/ScheduleDetail?dateFrom=" + dateFrom +
+                "&dateTo=" + dateTo +
+                "&remark=" + remark;
+            var search = $('#searchText').val();
+            if (search.length > 0) {
+                $.get(url, { startIndex: 0, searchFor: search }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+            else {
+                // Reset paging
+                start = 0;
+
+                $.get(url, { startIndex: 0 }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+        }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+    });
+
+    // Infinite scroll
+    $("#list").scroll(function () {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight) {
+            var currentUrl = window.location.href;
+            var url = new URL(currentUrl);
+            var dateFrom = url.searchParams.get("dateFrom");
+            var dateTo = url.searchParams.get("dateTo");
+            var remark = url.searchParams.get("remark");
+
+            // Override url
+            url = "/Schedule/ScheduleDetail?dateFrom=" + dateFrom +
+                "&dateTo=" + dateTo +
+                "&remark=" + remark;
+            $.get(url, { startIndex: start }, function (response) {
+                if (response != "" && !response.IsLastData) {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+</script>

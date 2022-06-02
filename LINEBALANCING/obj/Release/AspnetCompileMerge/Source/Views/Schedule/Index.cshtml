@@ -1,0 +1,238 @@
+﻿@model LineBalancing.ViewModels.VMMonthlySchedule
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Monthly Schedule Page";
+
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@if (!isAdmin)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Index","MainMenu")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+
+<div class="l-box__list ">
+
+    <button type="button" class="btn-back-homes-corner setDelay hideCont" data-dismiss="modal" onclick="window.location='@Url.Action("Index", "MainMenu")'"><i class="fas fa-home"></i> </button>
+
+    <div class="h-text--title-box-form-v1 setDelay hideCont">List Schedule</div>
+    <div class="solid-line-width"></div>
+
+    @* List Item *@
+    <div class="row setDelay hideCont">
+
+        <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+        <div id="list" class="overflow-y-box-list">
+            @{ Html.RenderAction("Scroll", new { startIndex = 0 }); }
+        </div>
+
+    </div>
+</div>
+
+
+@* Floating Action Button Filter, Export*@
+<div>
+    <button type="button" class="c-fab__main-filter setDelay hideCont" data-toggle="modal" id="btnUpload"><i class="fas fa-plus"></i></button>
+</div>
+
+
+<!-- Modal Upload -->
+<div id="ImportModal" class="modal fade setDelay hideCont" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeImportModal"><i class="fas fa-times"></i> </button>
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div>
+                    <label for="fileImport" class="c-import-upload__box-v1">
+                        <span class="display-block">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="display-block">
+                            <p class="c-import-upload__file-name file-name"></p>
+                        </span>
+                        <span class="font-size-14 text-center display-block color-base">Upload file with extension .xlsx or .xls</span>
+                    </label>
+                </div>
+
+                <div class="display-none">
+                    <input type="file" id="fileImport" name="file" accept=".xlsx, .xls" />
+                </div>
+
+                <div class="margin-t-10 text-center">
+                    <button type=button id="downloadTemplate" class="font-size-15 color-base-green fweight-600 btn-link">Click to Download Template</button>
+                </div>
+                <div class="margin-t-60">
+                    <input type="submit" value="Import File" class="btn-import-file" id="upload" />
+                </div>
+
+                <div class="margin-t-10">
+                    <button type=button id="resetFileImport" class="btn-link btn-reset-file cursor-pointer">Reset Import</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="NotificationModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog top-10pc">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeNotificationModal"><i class="fas fa-times"></i> </button>
+
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" id="success" />
+                <img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" id="fail" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    <label id="notificationMessage"></label>
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="closeNotification">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var list = $('#list');
+
+    function loadData() {
+        $('#list').html('');
+
+        var url = "/Schedule/Scroll/"
+        $.get(url, { startIndex: 0 }, function (response) {
+            if (response != "") {
+
+                list.append(response);
+
+                if (start === 0) {
+                    start += 10; // increment for next call
+                }
+                else {
+                    start = 10; // reset to default value
+                }
+            }
+        });
+    }
+
+    // Detail
+    $(document).on("click", "#btnDetail", function (e) {
+        e.preventDefault();
+
+        var parameters = $(this).attr("data-id");
+        // console.log("parameters", parameters);
+
+        var values = parameters.split(',');
+        var dateFrom = values[0];
+        var dateTo = values[1];
+        var remark = values[2];
+
+        var scheduleDetail = "/Schedule/Detail?dateFrom=" + dateFrom +
+            "&dateTo=" + dateTo +
+            "&remark=" + remark;
+        window.open(scheduleDetail, "_self");
+    });
+
+    // Filter pop up
+    $(document).on("click", "#btnUpload", function (e) {
+        e.preventDefault();
+
+        $('#ImportModal').modal('show');
+    });
+
+    // Import data
+    $("#import").on("click", function () {
+        $('#ImportModal').modal('show');
+    });
+
+    // Upload data
+    $("#upload").on("click", function () {
+
+        var data = new FormData();
+        data.append('file', $('#fileImport').prop('files')[0]);
+
+        $.ajax({
+            type: "POST",
+            url: '/Schedule/Import',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                if (response.Message != null) {
+                    $('#ImportModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#ImportModal').modal('hide');
+                loadData();
+
+                // This function is set on app.js
+                resetUpload();
+            }
+        });
+    });
+
+    // Download template
+    $("#downloadTemplate").on("click", function () {
+        window.open("/Schedule/Template/", "_self");
+    });
+
+</script>

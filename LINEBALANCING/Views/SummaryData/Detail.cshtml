@@ -1,0 +1,587 @@
+﻿@model LineBalancing.ViewModels.VMSummaryData
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Summary Data Detail";
+
+    if (Model == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    var category = Request.Params["category"];
+    var currentLineBalancingDetailId = Url.RequestContext.RouteData.Values["id"].ToString();
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+@* Back Button Previous Page Desktop *@
+<button type="button" class="btn-back-corner-md hidden-sm hidden-xs setDelay hideCont" id="buttonBackDesktop"><i class="fas fa-arrow-left"></i> </button>
+
+
+<div class="l-box__list ">
+    <div class="h-text--title-box-form-v1 setDelay hideCont">
+        <button type="button" class="btn-back-page-mobile hidden-lg hidden-md" id="buttonBackMobile"><i class="fas fa-arrow-left"></i> </button>
+
+        @{
+            if (category == "Model")
+            {
+                <span>Summary Data By Model Detail</span>
+            }
+            else if (category == "Process")
+            {
+                <span>Summary Data By Process</span>
+            }
+        }
+
+    </div>
+
+    <div class="solid-line-width hidden-sm hidden-xs"></div>
+
+    <div class="margin-t-40 margin-b-40 md-margin-b-20 setDelay hideCont">
+        <div class="row space-row-10">
+
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="c-form__inside-icon">
+                    @Html.TextBox("Search", null, new { @class = "form-control", @placeholder = "Search...", @id = "searchText" })
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="text-right">
+                    <button type="button" class="btn-expand-all">
+                        <i class="fas fa-expand-arrows-alt"></i> <span class="hidden-sm hidden-xs">Expand All</span>
+                    </button>
+                    <button type="button" class="btn-collapse-all">
+                        <i class="fas fa-compress-arrows-alt"></i> <span class="hidden-sm hidden-xs">Collapse All</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row setDelay hideCont">
+
+        <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+        <div id="list" class="overflow-y-box-list">
+            @{
+                if (category == "Model")
+                {
+
+                    { Html.RenderAction("ModelDetail", new { id = currentLineBalancingDetailId, startIndex = 0 }); }
+                }
+                else if (category == "Process")
+                {
+                    { Html.RenderAction("ProcessDetail", new { id = currentLineBalancingDetailId, startIndex = 0 }); }
+                }
+            }
+        </div>
+
+        <div class="l-box__btn-tab-model">
+            @{
+                if (category == "Model")
+                {
+                    <button type="button" class="btn-tab-model-detail active-tabs" onclick="window.location='@Url.Action("Detail", "SummaryData", new { id = currentLineBalancingDetailId, category = "Model" })'">MODEL DETAIL</button>
+                    <button type="button" class="btn-tab-model-process" onclick="window.location='@Url.Action("Detail", "SummaryData", new { id = currentLineBalancingDetailId, category = "Process" })'">PROCESS</button>
+                }
+                else if (category == "Process")
+                {
+                    <button type="button" class="btn-tab-model-detail" onclick="window.location='@Url.Action("Detail", "SummaryData", new { id = currentLineBalancingDetailId, category = "Model" })'">MODEL DETAIL</button>
+                    <button type="button" class="btn-tab-model-process active-tabs" onclick="window.location='@Url.Action("Detail", "SummaryData", new { id = currentLineBalancingDetailId, category = "Process" })'">PROCESS</button>
+                }
+            }
+        </div>
+
+    </div>
+
+
+</div>
+
+
+@* Floating Action Button Filter*@
+<div class="setDelay hideCont">
+    <button type="button" class="c-fab__main-filter" data-toggle="modal" id="btnFilter"><i class="fas fa-filter"></i></button>
+    <button type="button" class="c-fab__main-export-data" data-toggle="modal" data-target="#ExportData" onclick="location.href ='@Url.Action("Export", "SummaryData", new { id = currentLineBalancingDetailId, category = category })'; return false;"><i class="fas fa-file-export"></i></button>
+</div>
+
+
+<!-- Modal  Filter -->
+<div id="modalFilter" class="modal fade setDelay hideCont" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body padding-30">
+                <div class="margin-b-30">
+                    <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+
+                    @{
+                        if (category == "Model")
+                        {
+                            <div class="h-text--title-box-form-v1">Filter Summary Data by Model Detail</div>
+                        }
+                        else if (category == "Process")
+                        {
+                            <div class="h-text--title-box-form-v1">Filter Summary Data by Process</div>
+                        }
+                    }
+
+                    <div class="solid-line-width"></div>
+
+                    <button type="submit" class="btn btn-success" id="reset">
+                        RESET FILTER
+                    </button>
+
+                    <form action="">
+
+                        <div class="margin-t-40 md-margin-t-20">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="h-text--lbl-form">Period</label>
+                                    @Html.DropDownList("Periode", Model.SelectListPeriode, null, new { @class = "form-control select-option-custom", @id = "ddlListPeriode" })
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="h-text--lbl-form">Plant</label>
+                                    <select class="form-control select-option-custom" id="ddlListPlant"></select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="margin-t-20 md-margin-t-10">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="h-text--lbl-form">Dept</label>
+                                    <select class="form-control select-option-custom" id="ddlListDepartment"></select>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="h-text--lbl-form">Line</label>
+                                    <select class="form-control select-option-custom" id="ddlListLine"></select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="margin-t-20 md-margin-t-10">
+                            <div class="row">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label class="h-text--lbl-form">Process</label>
+                                    <select class="form-control select-option-custom selectpicker show-tick" id="ddlListProcess" data-size="7"></select>
+                                </div>
+
+                                @{
+                                    if (category == "Process")
+                                    {
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-t-20 md-margin-t-10">
+                                            <label class="h-text--lbl-form">Model</label>
+                                            <select class="form-control select-option-custom selectpicker show-tick" id="ddlListModel" data-size="7"></select>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <button type="submit" class="btn-apply-circle" id="apply">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Export -->
+<div id="ExportData" class="modal fade setDelay hideCont" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" />
+                @*<img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" />*@
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    EXPORT DATA SUCCESS
+                </div>
+
+                <div class="h-text--desc-modal-status margin-t-10">
+                    your file has been export
+                </div>
+
+                @*<button type="button" class="btn-close-modal margin-b-10" onclick="window.location='@Url.Action("Index", "SummaryData")'">CLOSE</button>*@
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var list = $('#list');
+
+    // Get data for dropdownlist
+    $(document).ready(function () {
+
+        $('.selectpicker').selectpicker({
+            liveSearch: true,
+            showSubtext: true
+        });
+
+        getPlant();
+
+        //getProcess();
+    });
+
+    function getPlant()
+    {
+        // Set default value for select picker
+        $.getJSON('/Plants/Plants', null, function (data) {
+            $('#ddlListPlant option').remove();
+
+            $('#ddlListPlant').append('<option value=' + "ALL" + '>' + "Select Plant" + '</option>');
+
+            $.each(data.Plants, function () {
+                $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+            });
+
+            $('#ddlListDepartment option').remove();
+            $('#ddlListDepartment').append('<option value=' + "ALL" + '>' + "Select Department" + '</option>');
+
+            $('#ddlListLine option').remove();
+            $('#ddlListLine').append('<option value=' + "ALL" + '>' + "Select Line" + '</option>');
+
+            $('#ddlListModel option').remove();
+            $('#ddlListModel').append('<option value=' + "ALL" + '>' + "Select Model" + '</option>');
+            $("#ddlListModel").selectpicker("refresh");
+
+            $('#ddlListProcess option').remove();
+            $('#ddlListProcess').append('<option value=' + "ALL" + '>' + "Select Process" + '</option>');
+            $("#ddlListProcess").selectpicker("refresh");
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting plants !');
+        });
+    }
+
+     // Dropdown list plant change event.
+    $('#ddlListPlant').change(function ()
+    {
+        // Get departments
+        var selectedPlant = $('#ddlListPlant').val();
+        if (selectedPlant != null)
+        {
+            // console.log("selectedPlant", selectedPlant);
+
+            $.getJSON('/Departments/Departments', { searchFor: selectedPlant }, function (data) {
+
+                $('#ddlListDepartment option').remove();
+                $('#ddlListDepartment').append('<option value=' + "ALL" + '>' + "Select Department" + '</option>');
+
+                $.each(data.Departments, function () {
+                    $('#ddlListDepartment').append('<option value=' + this.DepartmentName + '>' + this.DepartmentName + '</option>');
+                });
+
+                $('#ddlListLine option').remove();
+                $('#ddlListLine').append('<option value=' + "ALL" + '>' + "Select Line" + '</option>');
+
+                $('#ddlListModel option').remove();
+                $('#ddlListModel').append('<option value=' + "ALL" + '>' + "Select Model" + '</option>');
+                $("#ddlListModel").selectpicker("refresh");
+
+                $('#ddlListProcess option').remove();
+                $('#ddlListProcess').append('<option value=' + "ALL" + '>' + "Select Process" + '</option>');
+                $("#ddlListProcess").selectpicker("refresh");
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting departments !');
+            });
+        }
+    });
+
+    // Dropdown list department change event.
+    $('#ddlListDepartment').change(function ()
+    {
+        var selectedDepartment = $('#ddlListDepartment').val();
+        if (selectedDepartment != null)
+        {
+            var selectedPlant = Plant = $('#ddlListPlant').val();
+
+            // Lines
+            $.getJSON('/Lines/Lines', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                $('#ddlListLine option').remove();
+                $('#ddlListLine').append('<option value=' + "ALL" + '>' + "Select Line" + '</option>');
+
+                $.each(data.Lines, function () {
+                    $('#ddlListLine').append('<option value=' + this.LineCode + '>' + this.LineCode + '</option>');
+                });
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting lines !');
+            });
+
+            // Models
+            $.getJSON('/Model/Models', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                $('#ddlListModel option').remove();
+                $('#ddlListModel').append('<option value=' + "ALL" + '>' + "Select Model" + '</option>');
+
+                $.each(data.Models, function () {
+                    $('#ddlListModel').append('<option data-subtext=' + this.ModelName + '>' + this.ModelName + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting models !');
+            });
+
+            // Processes
+            $.getJSON('/Processes/Processes', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                $('#ddlListProcess option').remove();
+                $('#ddlListProcess').append('<option value=' + "ALL" + '>' + "Select Process" + '</option>');
+
+                $.each(data.Processes, function () {
+                    $('#ddlListProcess').append('<option data-subtext=' + this.ProcessName + '>' + this.ProcessCode + " | " + this.ProcessName + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting processes !');
+            });
+        }
+    });
+
+
+    // Searching
+    var delayTimer;
+    $('#searchText').bind('input', function () {
+
+        $('#list').html('');
+
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function ()
+        {
+            var currentUrl = window.location.href;
+            var url = new URL(currentUrl);
+            var category = url.searchParams.get("category");
+
+            // Setup url action by category
+            var url = "";
+            if (category == "Model")
+            {
+                url = '@Url.Action("ModelDetail", "SummaryData", new { id = currentLineBalancingDetailId, category = category })';
+            }
+            else if (category == "Process")
+            {
+                url = '@Url.Action("ProcessDetail", "SummaryData", new { id = currentLineBalancingDetailId, category = category })';
+            }
+
+            var search = $('#searchText').val();
+            if (search.length > 0) {
+                $.get(url, { startIndex: 0, searchFor: search }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        if (!response.IsLastData) {
+                            list.append(response);
+                            start += 10; // increment for next call
+                        }
+                    }
+                });
+            }
+            else {
+                // Reset paging
+                start = 0;
+
+                $.get(url, { startIndex: 0 }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        if (!response.IsLastData) {
+                            list.append(response);
+                            start += 10; // increment for next call
+                        }
+                    }
+                });
+            }
+        }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+    });
+
+    // Infinite scroll
+    $("#list").scroll(function ()
+    {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight)
+        {
+            var currentUrl = window.location.href;
+            var url = new URL(currentUrl);
+            var category = url.searchParams.get("category");
+
+            // Setup url action by category
+            if (category == "Model")
+            {
+                // Override url
+                url = '@Url.Action("ModelDetail", "SummaryData", new { id = currentLineBalancingDetailId, category = category })';
+            }
+            else if (category == "Process")
+            {
+                // Override url
+                url = '@Url.Action("ProcessDetail", "SummaryData", new { id = currentLineBalancingDetailId, category = category })';
+            }
+
+            $.get(url, { startIndex: start }, function (response)
+            {
+                if (response != "" && !response.IsLastData)
+                {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    // Back button
+    $(document).on("click", "#buttonBackDesktop", function (e) {
+        e.preventDefault();
+
+        var openSummaryData = "/SummaryData/Index";
+        window.open(openSummaryData, "_self");
+    });
+
+    $(document).on("click", "#buttonBackMobile", function (e) {
+        e.preventDefault();
+
+        var openSummaryData = "/SummaryData/Index";
+        window.open(openSummaryData, "_self");
+    });
+
+    // Filter pop up
+    $(document).on("click", "#btnFilter", function (e) {
+        e.preventDefault();
+
+        $('#modalFilter').modal('show');
+    });
+
+    // Apply filter
+    $(document).on("click", "#apply", function (e) {
+        e.preventDefault();
+
+        var currentUrl = window.location.href;
+        var url = new URL(currentUrl);
+        var currentCategory = url.searchParams.get("Category");
+
+        // Get line balancing report id
+        var parameterId = currentUrl.slice(currentUrl.lastIndexOf('/') + 1);
+        var lastParameter = parameterId.slice(parameterId.lastIndexOf('?'));
+        var currentLineBlancingReportId = parameterId.replace(lastParameter, "");
+
+        var periode = $('#ddlListPeriode :selected').val();
+        var plant = $('#ddlListPlant :selected').val();
+        var department = $('#ddlListDepartment :selected').val();
+        var line = $('#ddlListLine :selected').val();
+        var model = $('#ddlListModel :selected').val();
+
+        var process = $('#ddlListProcess :selected').val();
+        var splitSelected = process.split(' | ');
+        var selectedProcess = splitSelected[1];
+
+        var summaryDataDetailFilter =
+        {
+            LineBalancingReportId: currentLineBlancingReportId,
+            Category: currentCategory,
+            Model: model,
+            Periode: periode,
+            Plant: plant,
+            Department: department,
+            Line: line,
+            Process: selectedProcess
+        };
+
+        // console.log("summaryDataDetailFilter", summaryDataDetailFilter);
+
+        $('#modalFilter').modal('hide');
+
+        $('#list').html('');
+
+        // Call server
+        var url = "/SummaryData/DetailFilter";
+        $.post(url, summaryDataDetailFilter, function (response) {
+
+            if (response.Message != null)
+            {
+                $('#dataNotFound').show();
+                $('#dataNotFound').text(response.Message);
+            }
+            else
+            {
+                $('#dataNotFound').hide();
+
+                list.append(response);
+            }
+        });
+    });
+
+    // Reset filter
+    $(document).on("click", "#reset", function (e) {
+        e.preventDefault();
+
+        $('#modalFilter form')[0].reset();
+
+        // reset data plant
+        getPlant();
+
+        // console.log("reset");
+    });
+</script>

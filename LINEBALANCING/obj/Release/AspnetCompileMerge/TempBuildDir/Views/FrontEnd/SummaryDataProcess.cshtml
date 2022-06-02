@@ -1,0 +1,743 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Summary Data Process";
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+@* Back Button Previous Page Desktop *@
+<button type="button" class="btn-back-corner-md hidden-sm hidden-xs" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+
+
+
+
+<div class="l-box__list ">
+    <div class="h-text--title-box-form-v1">
+        <button type="button" class="btn-back-page-mobile hidden-lg hidden-md" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+        Summary Data by Process
+    </div>
+
+    <div class="solid-line-width hidden-sm hidden-xs"></div>
+
+    <div class="margin-t-40 margin-b-40 md-margin-b-20">
+        <div class="row space-row-10">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="c-form__inside-icon">
+                    @Html.TextBox("Search", null, new { @class = "form-control", @placeholder = "Search..." })
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-84col-md-4 col-sm-4 col-xs-4">
+                <div class="text-right">
+                    <button type="button" class="btn-expand-all">
+                        <i class="fas fa-expand-arrows-alt"></i> <span class="hidden-sm hidden-xs">Expand All</span>
+                    </button>
+                    <button type="button" class="btn-collapse-all">
+                        <i class="fas fa-compress-arrows-alt"></i> <span class="hidden-sm hidden-xs">Collapse All</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @* List Item *@
+    <div class="row">
+        <div class="overflow-y-box-list">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item-model-detail">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="height-50">
+                                <div class="h-text--key-name-model-detail">
+                                    LB-DH01-001
+                                    <span class="display-block">
+                                        Check Date : 20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse1" aria-expanded="true" aria-controls="collapse1" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse-model-detail-process">
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <div class="h-text--period-process">
+                                                <span>201905</span>&nbsp;-&nbsp;<span>DEEP SOLDER</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <div class="h-text--box-status-detail-process">
+                                                HCT
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="solid-line-bottom-collapse" />
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                                    <td class="h-text__std-16-navy-b">:  1</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Std C/T</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                                    <td class="h-text__std-16-navy-b">:  Devi</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Cap/Shift</td>
+                                                    <td class="h-text__std-16-navy-b">:  5pcs</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                                    <td class="h-text__std-16-navy-b">:  19</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item-model-detail">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="height-50">
+                                <div class="h-text--key-name-model-detail">
+                                    LB-DH02-002
+                                    <span class="display-block">
+                                        Check Date : 20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse2" aria-expanded="true" aria-controls="collapse2" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse-model-detail-process">
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <div class="h-text--period-process">
+                                                <span>201905</span>&nbsp;-&nbsp;<span>DEEP SOLDER</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <div class="h-text--box-status-detail-process">
+                                                LCT
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="solid-line-bottom-collapse" />
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                                    <td class="h-text__std-16-navy-b">:  1</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Std C/T</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                                    <td class="h-text__std-16-navy-b">:  Devi</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Cap/Shift</td>
+                                                    <td class="h-text__std-16-navy-b">:  5pcs</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                                    <td class="h-text__std-16-navy-b">:  19</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item-model-detail">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="height-50">
+                                <div class="h-text--key-name-model-detail">
+                                    LB-DH03-003
+                                    <span class="display-block">
+                                        Check Date : 20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse3" aria-expanded="true" aria-controls="collapse3" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse-model-detail-process">
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <div class="h-text--period-process">
+                                                <span>201905</span>&nbsp;-&nbsp;<span>DEEP SOLDER</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+
+                                        </div>
+                                    </div>
+                                    <hr class="solid-line-bottom-collapse" />
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                                    <td class="h-text__std-16-navy-b">:  1</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Std C/T</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                                    <td class="h-text__std-16-navy-b">:  Devi</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Cap/Shift</td>
+                                                    <td class="h-text__std-16-navy-b">:  5pcs</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                                    <td class="h-text__std-16-navy-b">:  19</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item-model-detail">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                            <div class="height-50">
+                                <div class="h-text--key-name-model-detail">
+                                    LB-DH04-004
+                                    <span class="display-block">
+                                        Check Date : 20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse4" aria-expanded="true" aria-controls="collapse4" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse4" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse-model-detail-process">
+
+                                    <div class="row">
+                                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                            <div class="h-text--period-process">
+                                                <span>201905</span>&nbsp;-&nbsp;<span>DEEP SOLDER</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 col-sm-2 col-xs-2">
+                                            <div class="h-text--box-status-detail-process">
+                                                LCT
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="solid-line-bottom-collapse" />
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                                    <td class="h-text__std-16-navy-b">:  1</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Std C/T</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                                    <td class="h-text__std-16-navy-b">:  Devi</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Cap/Shift</td>
+                                                    <td class="h-text__std-16-navy-b">:  5pcs</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="60%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                                    <td class="h-text__std-16-navy-b">:  19</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="l-box__btn-tab-model">
+                <button type="button" class="btn-tab-model-detail" onclick="window.location='@Url.Action("SummaryDataModelDetail", "FrontEnd")'">MODEL DETAIL</button>
+                <button type="button" class="btn-tab-model-process active-tabs" onclick="window.location='@Url.Action("SummaryDataModelProcess", "FrontEnd")'">PROCESS</button>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+@* Floating Action Button Filter*@
+<div>
+    <button type="button" class="c-fab__main-filter" data-target="#modalFilter" data-toggle="modal"><i class="fas fa-filter"></i></button>
+    <button type="button" class="c-fab__main-export-data" data-target="#ExportData" data-toggle="modal"><i class="fas fa-file-export"></i></button>
+</div>
+
+
+<!-- Modal  Filter -->
+<div id="modalFilter" class="modal fade" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body padding-30">
+                <div class="overflow-y-filter-form">
+                    <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                    <div class="h-text--title-box-form-v1">Filter Summary Data by Process</div>
+                    <div class="solid-line-width"></div>
+
+                    <div class="margin-t-40">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Period</label>
+                                <select class="form-control c-form__select-option ">
+                                    <option>201905</option>
+                                    <option>201904</option>
+                                    <option>201903</option>
+                                </select>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Plant</label>
+                                <select class="form-control c-form__select-option ">
+                                    <option>2300</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="margin-t-20">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Dept</label>
+                                <select class="form-control c-form__select-option ">
+                                    <option>DH</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <label class="h-text--lbl-form">Line</label>
+                                <select class="form-control c-form__select-option ">
+                                    <option>DH-02</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="margin-t-20">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label class="h-text--lbl-form">Model</label>
+                                <select class="form-control c-form__select-option ">
+                                    <option>ALL</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="margin-t-20 margin-b-80">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label class="h-text--lbl-form">Process</label>
+                                <select class="form-control c-form__select-option ">
+                                    <option>ALL</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn-apply-circle" onclick="window.location='@Url.Action("SummaryDataModelDetail", "FrontEnd")'">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Export -->
+<div id="ExportData" class="modal fade" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" />
+                @*<img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" />*@
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    EXPORT DATA SUCCESS
+                </div>
+
+                <div class="h-text--desc-modal-status margin-t-10">
+                    your file has been export
+                </div>
+
+
+                <button type="button" class="btn-close-modal margin-b-10" onclick="window.location='@Url.Action("SummaryDataModel", "FrontEnd")'">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+

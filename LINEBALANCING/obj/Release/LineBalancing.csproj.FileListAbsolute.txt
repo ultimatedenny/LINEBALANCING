@@ -1,0 +1,318 @@
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ApplicationInsights.config
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\LineBalancing.dll.config
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\LineBalancing.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\LineBalancing.pdb
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\csc.exe
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\csc.exe.config
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\csc.rsp
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\csi.exe
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\csi.exe.config
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\csi.rsp
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.AppContext.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Console.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.Compression.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Claims.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.ValueTuple.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\vbc.exe
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\vbc.exe.config
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\vbc.rsp
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\VBCSCompiler.exe
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Antlr3.Runtime.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\BaseFormLibrary.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ClosedXML.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\DocumentFormat.OpenXml.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\EntityFramework.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\EntityFramework.SqlServer.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ExcelDataReader.DataSet.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ExcelDataReader.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ExcelNumberFormat.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\FastMember.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\LinqToExcel.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.Web.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Newtonsoft.Json.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Owin.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\PagedList.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\PagedList.Mvc.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Remotion.Data.Linq.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Remotion.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Remotion.Interfaces.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.IO.FileSystem.Primitives.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.IO.Packaging.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.Helpers.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.Mvc.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.Optimization.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.Razor.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.Razor.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\WebGrease.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Spire.DataExport.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\QrCodeNet.Encoding.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\DotNetZip.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Spire.License.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Spire.DataExport.ResourceMgr.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\BaseFormLibrary.pdb
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\BaseFormLibrary.dll.config
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ClosedXML.pdb
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ClosedXML.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\DocumentFormat.OpenXml.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\EntityFramework.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\EntityFramework.SqlServer.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ExcelDataReader.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ExcelDataReader.DataSet.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\ExcelNumberFormat.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\LinqToExcel.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\PagedList.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\PagedList.Mvc.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.Helpers.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.Mvc.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.Optimization.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.Razor.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.Razor.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Newtonsoft.Json.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Antlr3.Runtime.pdb
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.AI.Web.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\bin\Spire.License.xml
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.reinitialMigration.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addDateFromAndDateTo.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.changeLengthLine.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addEditReason.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.modifyEditReason.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.removeOldProperty.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addNewProperty.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addNewProperties.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addEditReasonProperties.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.modifyEditReason1.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.removeProcessCodeEditReason.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.pendingMigration.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.modifyLBReportModel.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.pendingMigration1.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addEditTime.resources
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.csproj.GenerateResource.cache
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.csproj.CopyComplete
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.dll
+C:\Users\Admin\Documents\sbmlinebalancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.pdb
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ApplicationInsights.config
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\LineBalancing.dll.config
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\LineBalancing.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\LineBalancing.pdb
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\csc.exe
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\csc.exe.config
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\csc.rsp
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\csi.exe
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\csi.exe.config
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\csi.rsp
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.Managed.Core.targets
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.AppContext.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Collections.Immutable.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Console.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.Compression.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.FileSystem.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.IO.Pipes.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Reflection.Metadata.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.AccessControl.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Claims.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Security.Principal.Windows.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.ValueTuple.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Xml.XmlDocument.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Xml.XPath.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\vbc.exe
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\vbc.exe.config
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\vbc.rsp
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\VBCSCompiler.exe
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\roslyn\VBCSCompiler.exe.config
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Antlr3.Runtime.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\BaseFormLibrary.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ClosedXML.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\DocumentFormat.OpenXml.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\EntityFramework.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\EntityFramework.SqlServer.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ExcelDataReader.DataSet.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ExcelDataReader.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ExcelNumberFormat.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\FastMember.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\LinqToExcel.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.Agent.Intercept.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.DependencyCollector.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.Web.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.WindowsServer.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.ApplicationInsights.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.Core.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.Cookies.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.OAuth.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Web.Infrastructure.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Newtonsoft.Json.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Owin.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\PagedList.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\PagedList.Mvc.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Remotion.Data.Linq.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Remotion.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Remotion.Interfaces.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Diagnostics.DiagnosticSource.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.IO.FileSystem.Primitives.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.IO.Packaging.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.Helpers.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.Mvc.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.Optimization.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.Razor.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.Deployment.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.Razor.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\WebGrease.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Spire.DataExport.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\QrCodeNet.Encoding.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\DotNetZip.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Spire.License.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Spire.DataExport.ResourceMgr.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\BaseFormLibrary.pdb
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ClosedXML.pdb
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ClosedXML.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\DocumentFormat.OpenXml.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\EntityFramework.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\EntityFramework.SqlServer.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ExcelDataReader.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ExcelDataReader.DataSet.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\ExcelNumberFormat.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\LinqToExcel.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.Core.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.Cookies.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.Owin.Security.OAuth.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\PagedList.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\PagedList.Mvc.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.Helpers.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.Mvc.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.Optimization.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.Razor.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.Deployment.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Web.WebPages.Razor.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Newtonsoft.Json.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Antlr3.Runtime.pdb
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\System.Diagnostics.DiagnosticSource.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.DependencyCollector.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.WindowsServer.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.AI.Web.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\bin\Spire.License.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.csprojResolveAssemblyReference.cache
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.reinitialMigration.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addDateFromAndDateTo.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.changeLengthLine.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addEditReason.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.modifyEditReason.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.removeOldProperty.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addNewProperty.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addNewProperties.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addEditReasonProperties.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.modifyEditReason1.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.removeProcessCodeEditReason.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.pendingMigration.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.modifyLBReportModel.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.pendingMigration1.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.addEditTime.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.Migrations.modify_data_type_on_line_process_model.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.csproj.GenerateResource.Cache
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\LineBalancing\obj\Release\LineBalancing.pdb

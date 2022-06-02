@@ -1,0 +1,393 @@
+﻿@{
+    /**/
+
+    /**/
+
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Select Line & Model";
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+
+<div class="l-box__select-model-line ">
+    <button type="button" class="btn-back-homes-corner " data-dismiss="modal" onclick="window.location='@Url.Action("MainMenu", "FrontEnd")'"><i class="fas fa-home"></i> </button>
+
+    <div class="h-text--title-box-form-v1">Please select Line & Model</div>
+
+    <div class="solid-line-width"></div>
+
+    <table class="table table-condensed table-borderless margin-t-30 margin-b-30">
+        <tr>
+            <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+            <td class="h-text__point-jobs-desc">:  2300</td>
+        </tr>
+
+        <tr>
+            <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+            <td class="h-text__point-jobs-desc">:  DH</td>
+        </tr>
+
+        <tr>
+            <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Leader</td>
+            <td class="h-text__point-jobs-desc">:  Iskandar</td>
+        </tr>
+    </table>
+
+    <select class="form-control c-form__select-option margin-b-30">
+        <option>DH-01</option>
+        <option>DH-02</option>
+        <option>DH-03</option>
+        <option>DH-04</option>
+    </select>
+
+    <select class="form-control c-form__select-option margin-b-30">
+        <option>DH C2000 2N</option>
+        <option>DH C3000 3N</option>
+        <option>DH C4000 4N</option>
+        <option>DH C5000 5N</option>
+    </select>
+
+    <label class="c-login__container-checkbox">
+        One By One
+        @Html.CheckBox("isNewlyEnrolled")
+        <span class="c-login__checkmark"></span>
+    </label>
+
+    <input type="submit" class="btn-oranges" value="APPLY" onclick="window.location='@Url.Action("ListProcessChecking", "FrontEnd")'" />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal  Message Outstanding -->
+<div id="messageOutstanding" class="modal fade overflow-h" role="dialog">
+    <div class="modal-dialog position-c-object c-custom-modal__wide">
+
+        <!-- Modal content-->
+        <div class="modal-content c-custom-modal__job-outstanding-height">
+            <div class="modal-header">
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                <h4 class="modal-title c-custom-modal__modal-title-outstanding">You have 3 Outstanding Job !</h4>
+            </div>
+            <div class="modal-body overflow-y-modal-fix">
+               
+                <div class="c-custom-modal__container-list-outstanding">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="c-custom-modal__list-outstanding-item margin-b-20">
+                                <div class="h-text__calendar-jobs">
+                                    <i class="fas fa-calendar-alt fa-fw"></i>201905
+                                </div>
+
+                                <table class="table table-condensed table-borderless">
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                                        <td class="h-text__point-jobs-desc">:  2300</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                                        <td class="h-text__point-jobs-desc">:  DH</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Line</td>
+                                        <td class="h-text__point-jobs-desc">:  DH-01</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Model</td>
+                                        <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                    </tr>
+                                </table>
+
+                                <hr class="dotted-line" />
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--code-list-outstanding">
+                                            LBH-DH01-001
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--status-list-outstanding text-right">
+                                            <i class="fas fa-circle h-text--status-in-progress"></i> In Progress
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="c-custom-modal__list-outstanding-item margin-b-20">
+                                <div class="h-text__calendar-jobs">
+                                    <i class="fas fa-calendar-alt fa-fw"></i>201905
+                                </div>
+
+                                <table class="table table-condensed table-borderless">
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                                        <td class="h-text__point-jobs-desc">:  2300</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                                        <td class="h-text__point-jobs-desc">:  DH</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Line</td>
+                                        <td class="h-text__point-jobs-desc">:  DH-01</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Model</td>
+                                        <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                    </tr>
+                                </table>
+
+                                <hr class="dotted-line" />
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--code-list-outstanding">
+                                            LBH-DH01-002
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--status-list-outstanding text-right">
+                                            <i class="fas fa-circle h-text--status-in-progress"></i> In Progress
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="c-custom-modal__list-outstanding-item margin-b-20">
+                                <div class="h-text__calendar-jobs">
+                                    <i class="fas fa-calendar-alt fa-fw"></i>201905
+                                </div>
+
+                                <table class="table table-condensed table-borderless">
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                                        <td class="h-text__point-jobs-desc">:  2300</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                                        <td class="h-text__point-jobs-desc">:  DH</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Line</td>
+                                        <td class="h-text__point-jobs-desc">:  DH-01</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Model</td>
+                                        <td class="h-text__point-jobs-desc">:  C4000 - 4N</td>
+                                    </tr>
+                                </table>
+
+                                <hr class="dotted-line" />
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--code-list-outstanding">
+                                            LBH-DH01-003
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--status-list-outstanding text-right">
+                                            <i class="fas fa-circle h-text--status-in-progress"></i> In Progress
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="c-custom-modal__list-outstanding-item margin-b-20">
+                                <div class="h-text__calendar-jobs">
+                                    <i class="fas fa-calendar-alt fa-fw"></i>201905
+                                </div>
+
+                                <table class="table table-condensed table-borderless">
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                                        <td class="h-text__point-jobs-desc">:  2300</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                                        <td class="h-text__point-jobs-desc">:  DH</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Line</td>
+                                        <td class="h-text__point-jobs-desc">:  DH-01</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Model</td>
+                                        <td class="h-text__point-jobs-desc">:  C4000 - 4N</td>
+                                    </tr>
+                                </table>
+
+                                <hr class="dotted-line" />
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--code-list-outstanding">
+                                            LBH-DH01-003
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--status-list-outstanding text-right">
+                                            <i class="fas fa-circle h-text--status-in-progress"></i> In Progress
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="c-custom-modal__list-outstanding-item margin-b-20">
+                                <div class="h-text__calendar-jobs">
+                                    <i class="fas fa-calendar-alt fa-fw"></i>201905
+                                </div>
+
+                                <table class="table table-condensed table-borderless">
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                                        <td class="h-text__point-jobs-desc">:  2300</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                                        <td class="h-text__point-jobs-desc">:  DH</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Line</td>
+                                        <td class="h-text__point-jobs-desc">:  DH-01</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Model</td>
+                                        <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                    </tr>
+                                </table>
+
+                                <hr class="dotted-line" />
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--code-list-outstanding">
+                                            LBH-DH01-002
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--status-list-outstanding text-right">
+                                            <i class="fas fa-circle h-text--status-in-progress"></i> In Progress
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="c-custom-modal__list-outstanding-item margin-b-20">
+                                <div class="h-text__calendar-jobs">
+                                    <i class="fas fa-calendar-alt fa-fw"></i>201905
+                                </div>
+
+                                <table class="table table-condensed table-borderless">
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                                        <td class="h-text__point-jobs-desc">:  2300</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                                        <td class="h-text__point-jobs-desc">:  DH</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Line</td>
+                                        <td class="h-text__point-jobs-desc">:  DH-01</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Model</td>
+                                        <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                    </tr>
+                                </table>
+
+                                <hr class="dotted-line" />
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--code-list-outstanding">
+                                            LBH-DH01-002
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="h-text--status-list-outstanding text-right">
+                                            <i class="fas fa-circle h-text--status-in-progress"></i> In Progress
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                        
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+

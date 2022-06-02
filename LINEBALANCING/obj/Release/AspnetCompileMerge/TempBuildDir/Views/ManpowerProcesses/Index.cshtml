@@ -1,0 +1,1014 @@
+﻿@model LineBalancing.ViewModels.VMManpowerProcess
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Master Data Manpower Process";
+
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+
+<div class="l-box__list ">
+    <div class="setDelay hideCont">
+        <button type="button" class="btn-back-homes-corner " data-dismiss="modal" onclick="window.location='@Url.Action("Index", "MainMenu")'"><i class="fas fa-home"></i> </button>
+
+        <div class="h-text--title-box-form-v1">List Master Data Manpower Process</div>
+
+        <div class="solid-line-width"></div>
+
+        <div class="margin-t-50  md-margin-t-30 sm-margin-t-20 margin-b-40 md-margin-b-20 ">
+            @Html.TextBox("Search", null, new { @class = "c-form__input form-control", @placeholder = "Search Manpower Process", @id = "searchText" })
+        </div>
+
+        @* List Item *@
+        <div class="row">
+
+            <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+            <div id="list" class="overflow-y-box-list">
+                @{ Html.RenderAction("Scroll", new { startIndex = 0 }); }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (isAdmin)
+{
+    @* Floating Action Button *@
+    <div class="setDelay hideCont">
+        <button type="button" class="c-fab__main"><i class="fas fa-plus"></i></button>
+        <div class="c-fab__box-item">
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-one">Add Data</label>
+                <div class="c-fab__item c-fab__item-one" id="add">
+                    <img src="~/Images/ic_adddata.png" />
+                </div>
+            </div>
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-two">Export File</label>
+                <div class="c-fab__item c-fab__item-two" id="export">
+                    <img src="~/Images/ic_export.png" />
+                </div>
+            </div>
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-three">Import File</label>
+                <div class="c-fab__item c-fab__item-three" id="import">
+                    <img src="~/Images/ic_import.png" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+<!-- Modal Add & Edit Data -->
+<div id="AddEditModal" class="modal fade overflow-h setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeAddEditModal"><i class="fas fa-times"></i> </button>
+
+        <!-- Modal content-->
+        <div class="modal-content md-modal-content sm-modal-content">
+            <div class="modal-body">
+
+                <div class="h-text--title-box-form-v1"><label id="modalTitle">Add Master Data Manpower Process</label></div>
+                <div class="solid-line-width"></div>
+
+                <label id="manpowerProcessId" hidden="hidden"></label>
+                <label id="createdTime" hidden="hidden"></label>
+                <label id="createdUser" hidden="hidden"></label>
+
+                <div class="margin-t-20">
+                    <label class="h-text--lbl-form">Plant</label>
+                    <select class="form-control select-option-custom" id="ddlListPlant"></select>
+                </div>
+
+                <div class="row margin-t-20">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div>
+                            <label class="h-text--lbl-form">Department</label>
+                            <select class="form-control select-option-custom" id="ddlListDepartment"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div>
+                            <label class="h-text--lbl-form">Line</label>
+                            <select class="form-control select-option-custom" id="ddlListLine"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="margin-t-20">
+                    <label class="h-text--lbl-form">Process</label>
+                    <select class="form-control select-option-custom selectpicker show-tick" id="ddlListLineProcess" data-size="7"></select>
+
+                    <label id="processCode" hidden="hidden"></label>
+                    <label id="processName" hidden="hidden"></label>
+                </div>
+
+                <div class="margin-t-20">
+                    <label class="h-text--lbl-form">Manpower</label>
+                    <select class="form-control select-option-custom selectpicker show-tick" id="ddlListManpower" data-size="7"></select>
+
+                    <label id="manpowerNo" hidden="hidden"></label>
+                    <label id="manpowerName" hidden="hidden"></label>
+                </div>
+
+                <div class="margin-t-30">
+                    <label class="c-login__container-checkbox">
+                        Active
+                        @Html.CheckBox("Active", new { @id = "active" })
+                        <span class="c-login__checkmark"></span>
+                    </label>
+                </div>
+
+                <input type="submit" class="btn-oranges" id="save" value="SAVE" />
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@* Modal Delete Data *@
+<div id="DeleteModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeDeleteModal"><i class="fas fa-times"></i> </button>
+
+                <div class="h-text--confirmation-modal">
+                    Are you sure want to delete this data ?
+                </div>
+
+                <button type="button" class="btn-confirmation-delete margin-t-30" id="delete">Yes</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Import -->
+<div id="ImportModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeImportModal"><i class="fas fa-times"></i> </button>
+
+                <div>
+                    <label for="fileImport" class="c-import-upload__box-v1">
+                        <span class="display-block">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="display-block">
+                            <p class="c-import-upload__file-name file-name"></p>
+                        </span>
+
+                        <span class="font-size-14 text-center display-block color-base">Upload file with extension .xlsx or .xls</span>
+                    </label>
+
+                </div>
+
+                <div class="display-none">
+                    <input type="file" id="fileImport" name="file" accept=".xlsx, .xls" />
+                </div>
+
+                <div class="margin-t-10 text-center">
+                    <button type=button id="downloadTemplate" class="font-size-15 color-base-green fweight-600 btn-link">Click to Download Template</button>
+                </div>
+                <div class="margin-t-60">
+                    <input type="submit" value="Import File" class="btn-import-file" id="upload" />
+                </div>
+
+                <div class="margin-t-10">
+                    <button type=button id="resetFileImport" class="btn-link btn-reset-file cursor-pointer">Reset Import</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="NotificationModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog top-10pc">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeNotificationModal"><i class="fas fa-times"></i> </button>
+
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" id="success" />
+                <img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" id="fail" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    <label id="notificationMessage"></label>
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="closeNotification">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var url = '@Url.Action("Scroll", "ManpowerProcesses")';
+    var list = $('#list');
+
+    var currentPlant = "";
+    var currentDepartment = "";
+    var currentLine = "";
+    var currentProcessCode = "";
+    var currentManpowerNo = "";
+
+    function loadData()
+    {
+        $('#list').html('');
+
+        var url = "/ManpowerProcesses/Scroll/"
+        $.get(url, { startIndex: 0 }, function (response) {
+            if (response != "") {
+
+                list.append(response);
+
+                if (start === 0) {
+                    start += 10; // increment for next call
+                }
+                else {
+                    start = 10; // reset to default value
+                }
+            }
+        });
+    }
+
+    // Get data for dropdownlist
+    $(document).ready(function () {
+
+        $('.selectpicker').selectpicker({
+            liveSearch: true,
+            showSubtext: true
+        });
+
+    });
+
+
+    // Dropdown list plant change event.
+    $('#ddlListPlant').change(function () {
+
+        // Get departments
+        var selectedPlant = $('#ddlListPlant').val();
+        if (selectedPlant != null) {
+            $.getJSON('/Departments/Departments', { searchFor: selectedPlant }, function (data) {
+
+                $('#ddlListDepartment option').remove();
+                $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+                $.each(data.Departments, function () {
+                    $('#ddlListDepartment').append('<option value=' + this.DepartmentName + '>' + this.DepartmentName + "-" + this.DepartmentDescription + '</option>');
+                });
+
+                $('#ddlListLine option').remove();
+                $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+                $('#ddlListLineProcess option').remove();
+                $('#ddlListLineProcess').append('<option value=' + "Select Line Process" + '>' + "Select Line Process" + '</option>');
+                $('.selectpicker').selectpicker('refresh');
+
+                $('#ddlListManpower option').remove();
+                $('#ddlListManpower').append('<option value=' + "Select Manpower" + '>' + "Select Manpower" + '</option>');
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting departments !');
+            });
+        }
+    });
+
+    // Dropdown list department change event.
+    $('#ddlListDepartment').change(function ()
+    {
+        var selectedDepartment = $('#ddlListDepartment').val();
+        if (selectedDepartment != null)
+        {
+            var selectedPlant = Plant = $('#ddlListPlant').val();
+
+            // Split department code & name then override value
+            var splitSelectedDepartment = selectedDepartment.split('-');
+            if (splitSelectedDepartment.length > 1) {
+                selectedDepartment = splitSelectedDepartment[0];
+            }
+
+            // Get lines
+            $.getJSON('/Lines/Lines', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                $('#ddlListLine option').remove();
+                $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+                $.each(data.Lines, function () {
+                    $('#ddlListLine').append('<option value=' + this.LineCode + '>' + this.LineCode + '</option>');
+                });
+
+                $('#ddlListLineProcess option').remove();
+                $('#ddlListLineProcess').append('<option value=' + "Select Line Process" + '>' + "Select Line Process" + '</option>');
+                $('.selectpicker').selectpicker('refresh');
+
+                $('#ddlListManpower option').remove();
+                $('#ddlListManpower').append('<option value=' + "Select Manpower" + '>' + "Select Manpower" + '</option>');
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting lines !');
+            });
+        }
+    });
+
+    // Dropdown list line change event.
+    $('#ddlListLine').change(function () {
+
+        var selectedLine = $('#ddlListLine').val();
+        if (selectedLine != null)
+        {
+            var selectedPlant = Plant = $('#ddlListPlant').val();
+            var selectedDepartment = $('#ddlListDepartment').val();
+
+            // Line processes
+            $.getJSON('/LineProcesses/LineProcesses', { plant: selectedPlant, department: selectedDepartment, line: selectedLine }, function (data) {
+
+                $('#ddlListLineProcess option').remove();
+                $('#ddlListLineProcess').append('<option value=' + "Select Line Process" + '>' + "Select Line Process" + '</option>');
+
+                $.each(data.LineProcesses, function () {
+                    $('#ddlListLineProcess').append('<option data-subtext=' + this.ProcessName + '>' + this.ProcessCode + " | " + this.ProcessName + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting line processes !');
+            });
+
+            // Manpowers
+            $.getJSON('/Manpowers/Manpowers', { plant: selectedPlant, department: selectedDepartment, line: selectedLine }, function (data) {
+
+                $('#ddlListManpower option').remove();
+                $('#ddlListManpower').append('<option value=' + "Select Manpower" + '>' + "Select Manpower" + '</option>');
+
+                $.each(data.Manpowers, function () {
+                    $('#ddlListManpower').append('<option data-subtext=' + this.ManpowerName + '>' + this.ManpowerNo + " | " + this.ManpowerName + '</option>');
+                });
+
+                $('.selectpicker').selectpicker('refresh');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting manpowers !');
+            });
+        }
+    });
+
+
+    // Searching
+    var delayTimer;
+    $('#searchText').bind('input', function ()
+    {
+        $('#list').html('');
+
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function () {
+            var search = $('#searchText').val();
+            if (search.length > 0) {
+                $.get(url, { startIndex: 0, searchFor: search }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+            else {
+                $.get(url, { startIndex: 0 }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+        }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+    });
+
+    // Infinite scroll
+    $("#list").scroll(function ()
+    {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight)
+        {
+            var url = "/ManpowerProcesses/Scroll/"
+            $.get(url, { startIndex: start }, function (response)
+            {
+                if (response != "")
+                {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    $("#add").click(function () {
+
+        $('#AddEditModal').modal('show');
+
+        $("#modalTitle").text('Add Master Data Manpower Process');
+
+        $("#createdTime").text('');
+        $("#createdUser").text('');
+
+        // Set default value for select picker
+        $.getJSON('/Plants/Plants', null, function (data) {
+            $('#ddlListPlant option').remove();
+
+            $('#ddlListPlant').append('<option value=' + "Select Plant" + '>' + "Select Plant" + '</option>');
+
+            $.each(data.Plants, function () {
+                $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+            });
+
+            $('#ddlListDepartment option').remove();
+            $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+            $('#ddlListLine option').remove();
+            $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+            $('#ddlListLineProcess option').remove();
+            $('#ddlListLineProcess').append('<option value=' + "Select Process" + '>' + "Select Process" + '</option>');
+            $('.selectpicker').selectpicker('refresh');
+
+            $('#ddlListManpower option').remove();
+            $('#ddlListManpower').append('<option value=' + "Select Manpower" + '>' + "Select Manpower" + '</option>');
+            $('.selectpicker').selectpicker('refresh');
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting plants !');
+        });
+
+        $("#processCode").text('');
+        $("#processName").text('');
+        $("#manpowerNo").text('');
+        $("#manpowerName").text('');
+
+        $('#active').prop('checked', false);
+
+        $(".c-fab__box-item").hide();
+    });
+
+    // Save data
+    $("#save").on("click", function () {
+
+        var createdTime = $("#createdTime").text();
+        var createdUser = $("#createdUser").text();
+
+        var plant = $('#ddlListPlant :selected').text();
+        var department = $('#ddlListDepartment :selected').text();
+        var line = $('#ddlListLine :selected').text();
+
+        if (plant === 'Select Plant' || plant === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select plant !");
+            return;
+        }
+
+        if (department === 'Select Department' || department === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select department !");
+            return;
+        }
+
+        // Split department code & name then override value
+        var splitSelectedDepartment = department.split('-');
+        if (splitSelectedDepartment.length > 1) {
+            department = splitSelectedDepartment[0];
+        }
+
+        if (line === 'Select Line' || line === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select line !");
+            return;
+        }
+
+        var lineProcess = $("#ddlListLineProcess :selected").text();
+        if (lineProcess === 'Select Process' || lineProcess === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select process !");
+            return;
+        }
+
+        // Split line process code & name
+        var processCode = "";
+        var processName = "";
+        var splitSelectedProcess = lineProcess.split(' | ');
+        if (splitSelectedProcess.length > 1) {
+            processCode = splitSelectedProcess[0];
+            processName = splitSelectedProcess[1];
+        }
+
+        if (processCode === '' || processName === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select process !");
+            return;
+        }
+
+        var manpower = $("#ddlListManpower :selected").text();
+        if (manpower === 'Select Manpower' || manpower === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select manpower !");
+            return;
+        }
+
+        // Split manpower no & manpower name
+        var manpowerNo = "";
+        var manpowerName = "";
+        var splitSelectedManpower = manpower.split(' | ');
+        if (splitSelectedManpower.length > 1) {
+            manpowerNo = splitSelectedManpower[0];
+            manpowerName = splitSelectedManpower[1];
+        }
+
+        if (manpowerNo === '' || manpowerName === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select manpower !");
+            return;
+        }
+
+        var active = $("#active").prop("checked");
+
+        var createNewManpowerProcess = $("#modalTitle").text();
+        if (createNewManpowerProcess === 'Add Master Data Manpower Process')
+        {
+            // Parse new value for creating data
+            var manpowerProcess =
+            {
+                Plant: plant,
+                Department: department,
+                Line: line,
+                ProcessCode: processCode,
+                ProcessName: processName,
+                ManpowerNo: manpowerNo,
+                ManpowerName: manpowerName,
+                Active: active
+            }
+
+            // console.log("save", manpowerProcess);
+
+            // Call server
+            var url = "/ManpowerProcesses/Create";
+            $.post(url, manpowerProcess, function (response)
+            {
+                if (response.Message != null)
+                {
+                    $('#AddEditModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#AddEditModal').modal('hide');
+                loadData();
+            });
+        }
+        else
+        {
+            // Override created time format
+            var createdTime = new Date(parseInt(createdTime)).toJSON();
+
+            // Parse new value for creating data
+            var manpowerProcess =
+            {
+                Plant: plant,
+                Department: department,
+                Line: line,
+                ProcessCode: processCode,
+                ProcessName: processName,
+                ManpowerNo: manpowerNo,
+                ManpowerName: manpowerName,
+                Active: active,
+                CreatedTime: createdTime,
+                CreatedUser: createdUser
+            }
+
+            // console.log("update", manpowerProcess);
+
+            // Call server
+            var url = "/ManpowerProcesses/Edit?currentPlant=" + currentPlant +
+                                               "&currentDepartment=" + currentDepartment +
+                                               "&currentLine=" + currentLine +
+                                               "&currentProcessCode=" + currentProcessCode +
+                                               "&currentManpowerNo=" + currentManpowerNo;
+            $.post(url, manpowerProcess, function (response)
+            {
+                if (response.Message != null) {
+                    $('#AddEditModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#AddEditModal').modal('hide');
+                loadData();
+            });
+        }
+    });
+
+    // Get data then show pop up
+    $(document).on("click", "#btnEditCorner", function (e)
+    {
+        e.preventDefault();
+
+        $('#AddEditModal').modal('show');
+
+        var parameters = $(this).attr("data-id")
+        var values = parameters.split(',');
+        currentPlant = values[0];
+        currentDepartment = values[1];
+        currentLine = values[2];
+        currentProcessCode = values[3];
+        currentManpowerNo = values[4];
+
+        // console.log("currentProcessCode", currentProcessCode);
+
+        // Change modal title
+        if (currentPlant != '' && currentDepartment != '' && currentLine != '' && currentProcessCode != '') {
+            $("#modalTitle").text("Update Master Data Manpower Process");
+        }
+
+        // Call server
+        var url = "/ManpowerProcesses/Edit?plant=" + currentPlant +
+                                          "&department=" + currentDepartment +
+                                          "&line=" + currentLine +
+                                          "&processCode=" + currentProcessCode +
+                                          "&manpowerNo=" + currentManpowerNo;
+        $.get(url, function (response)
+        {
+            // console.log("ManpowerProcess server", response.ManpowerProcess);
+
+            // Format date time
+            if (response.ManpowerProcess.CreatedTime != null) {
+                var replaceString = /-?\d+/;
+                var replacedDate = replaceString.exec(response.ManpowerProcess.CreatedTime);
+                var createdTime = parseInt(replacedDate[0], 10);
+
+                $("#createdTime").text(createdTime);
+            }
+
+            // Set value into properties
+            $("#manpowerProcessId").text(response.ManpowerProcess.Id);
+            $("#createdUser").text(response.ManpowerProcess.CreatedUser);
+
+            // Get plants
+            var selectedPlant = response.ManpowerProcess.Plant;
+            if (selectedPlant != null)
+            {
+                $.getJSON('/Plants/Plants', function (data) {
+
+                    $('#ddlListPlant option').remove();
+                    $('#ddlListPlant').append('<option value=' + "Select Plant" + '>' + "Select Plant" + '</option>');
+
+                    $.each(data.Plants, function () {
+                        $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+                    });
+
+                    $("[id*=ddlListPlant] option").each(function () {
+                        if ($(this).val().toUpperCase() == selectedPlant.toUpperCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting plants !');
+                });
+            }
+
+            // Get departments
+            var selectedDepartment = response.ManpowerProcess.Department;
+            if (selectedDepartment != null)
+            {
+                $.getJSON('/Departments/Departments', { searchFor: selectedPlant }, function (data) {
+
+                    $('#ddlListDepartment option').remove();
+                    $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+                    $.each(data.Departments, function () {
+                        $('#ddlListDepartment').append('<option value=' + this.DepartmentName + '>' + this.DepartmentName + "-" + this.DepartmentDescription + '</option>');
+                    });
+
+                    $("[id*=ddlListDepartment] option").each(function () {
+                        if ($(this).val().toUpperCase() == selectedDepartment.toUpperCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting departments !');
+                });
+            }
+
+            // Get lines
+            var selectedLine = response.ManpowerProcess.Line;
+            if (selectedLine != null)
+            {
+                $.getJSON('/Lines/Lines', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                    $('#ddlListLine option').remove();
+                    $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+                    $.each(data.Lines, function () {
+                        $('#ddlListLine').append('<option value=' + this.LineCode + '>' + this.LineCode + '</option>');
+                    });
+
+                    $("[id*=ddlListLine] option").each(function () {
+                        if ($(this).val().toUpperCase() == selectedLine.toUpperCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting lines !');
+                });
+            }
+
+            // Get line processes
+            var selectedProcessCode = response.ManpowerProcess.ProcessCode;
+            var selectedProcessName = response.ManpowerProcess.ProcessName;
+            if (selectedProcessCode != null && selectedProcessName != null)
+            {
+                var selectedProcess = selectedProcessCode + " | " + selectedProcessName;
+
+                $.getJSON('/LineProcesses/LineProcesses', { plant: selectedPlant, department: selectedDepartment, line: selectedLine }, function (data) {
+
+                    $('#ddlListLineProcess option').remove();
+                    $('#ddlListLineProcess').append('<option value=' + "Select Process" + '>' + "Select Process" + '</option>');
+
+                    $.each(data.LineProcesses, function () {
+                        $('#ddlListLineProcess').append('<option data-subtext=' + this.ProcessName + '>' + this.ProcessCode + " | " + this.ProcessName + '</option>');
+                    });
+
+                    $('select[id*=ddlListLineProcess]').val(selectedProcess);
+                    $('.selectpicker').selectpicker('refresh');
+
+                    // Assign splitted value (process code & name)
+                    var process = $('#ddlListLineProcess :selected').text();
+                    var splitSelected = process.split(' | ');
+
+                    if (splitSelected.length === 1) {
+                        $("#processCode").text("");
+                        $("#processName").text("");
+                    }
+                    else {
+                        $("#processCode").text(splitSelected[0]);
+                        $("#processName").text(splitSelected[1]);
+                    }
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting line processes !');
+                });
+            }
+
+            // Get manpowers
+            var selectedManpowerNo = response.ManpowerProcess.ManpowerNo;
+            var selectedManpowerName = response.ManpowerProcess.ManpowerName;
+            if (selectedManpowerNo != null && selectedManpowerName != null)
+            {
+                var selectedManpower = selectedManpowerNo + " | " + selectedManpowerName;
+
+                // Manpowers
+                $.getJSON('/Manpowers/Manpowers', { plant: selectedPlant, department: selectedDepartment, line: selectedLine }, function (data) {
+
+                    $('#ddlListManpower option').remove();
+                    $('#ddlListManpower').append('<option value=' + "Select Manpower" + '>' + "Select Manpower" + '</option>');
+
+                    $.each(data.Manpowers, function () {
+                        $('#ddlListManpower').append('<option data-subtext=' + this.ManpowerName + '>' + this.ManpowerNo + " | " + this.ManpowerName + '</option>');
+                    });
+
+                    $('select[id*=ddlListManpower]').val(selectedManpower);
+                    $('.selectpicker').selectpicker('refresh');
+
+                    // Assign splitted value (manpower no & manpower name)
+                    var manpower = $('#ddlListManpower :selected').text();
+                    var splitSelected = manpower.split(' | ');
+
+                    if (splitSelected.length === 1) {
+                        $("#manpowerNo").text("");
+                        $("#manpowerName").text("");
+                    }
+                    else {
+                        $("#manpowerNo").text(splitSelected[0]);
+                        $("#manpowerName").text(splitSelected[1]);
+                    }
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting manpowers !');
+                });
+            }
+
+            $('#standarCT').val(response.ManpowerProcess.StandarCT);
+            $('#active').prop('checked', response.ManpowerProcess.Active);
+
+        });
+    });
+
+    // Delete
+    $("#delete").on("click", function () {
+
+        // Call server
+        var url = "/ManpowerProcesses/Delete?currentPlant=" + currentPlant +
+                                            "&currentDepartment=" + currentDepartment +
+                                            "&currentLine=" + currentLine +
+                                            "&currentProcessCode=" + currentProcessCode +
+                                            "&currentManpowerNo=" + currentManpowerNo;
+        $.post(url, function (response) {
+
+            if (response.Message != null) {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text(response.Message);
+                return;
+            }
+
+            $('#DeleteModal').modal('hide');
+            loadData();
+        });
+    });
+
+    // Show delete pop up
+    $(document).on("click", "#btnDeleteCorner", function (e) {
+        e.preventDefault();
+
+        var parameters = $(this).attr("data-id")
+        var values = parameters.split(',');
+        currentPlant = values[0];
+        currentDepartment = values[1];
+        currentLine = values[2];
+        currentProcessCode = values[3];
+        currentManpowerNo = values[4];
+
+        $('#DeleteModal').modal('show');
+    });
+
+    // Import data
+    $("#import").on("click", function () {
+        $('#ImportModal').modal('show');
+    });
+
+    // Upload data
+    $("#upload").on("click", function () {
+
+        var data = new FormData();
+        data.append('file', $('#fileImport').prop('files')[0]);
+
+        $.ajax({
+            type: "POST",
+            url: '/ManpowerProcesses/Import',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                if (response.Message != null) {
+                    $('#ImportModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#ImportModal').modal('hide');
+                loadData();
+
+                 // This function is set on app.js
+                resetUpload();
+            }
+        });
+    });
+
+    // Export data
+    $("#export").on("click", function () {
+        window.open("/ManpowerProcesses/Export/", "_self");
+
+        $('#NotificationModal').modal('show');
+        $('#success').show();
+        $('#fail').hide();
+        $('#notificationMessage').text("Export success !");
+    });
+
+    // Download template
+    $("#downloadTemplate").on("click", function () {
+        window.open("/ManpowerProcesses/Template/", "_self");
+    });
+
+</script>

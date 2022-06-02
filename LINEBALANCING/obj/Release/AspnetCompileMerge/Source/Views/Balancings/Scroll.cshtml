@@ -1,0 +1,75 @@
+﻿@model LineBalancing.ViewModels.VMBalancing
+
+@{
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@foreach (var item in Model.OutstandingJobs)
+{
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <div class="c-custom-modal__list-outstanding-item margin-b-20">
+            <div class="h-text__calendar-jobs">
+                <i class="fas fa-calendar-alt fa-fw"></i> @Html.DisplayFor(modelItem => item.Periode)
+            </div>
+
+            <table class="table table-condensed table-borderless">
+                <tr>
+                    <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Plant</td>
+                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.Plant)</td>
+                </tr>
+
+                <tr>
+                    <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Dept</td>
+                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.Department)</td>
+                </tr>
+
+                <tr>
+                    <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Line</td>
+                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.Line)</td>
+                </tr>
+
+                <tr>
+                    <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Model</td>
+                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.Model)</td>
+                </tr>
+            </table>
+
+            <hr class="dotted-line" />
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="h-text--code-list-outstanding font-size-16">
+                        @Html.DisplayFor(modelItem => item.CheckID)
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="h-text--status-list-outstanding text-right font-size-16">
+                        <i class="fas fa-circle h-text--status-in-progress"></i> @Html.DisplayFor(modelItem => item.Status)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

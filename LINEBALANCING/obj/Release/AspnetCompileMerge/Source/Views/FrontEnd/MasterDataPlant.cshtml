@@ -1,0 +1,248 @@
+﻿@{
+    /**/
+
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Master Data Plant";
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+
+<div class="l-box__list ">
+    <button type="button" class="btn-back-homes-corner " data-dismiss="modal" onclick="window.location='@Url.Action("MainMenu", "FrontEnd")'"><i class="fas fa-home"></i> </button>
+
+    <div class="h-text--title-box-form-v1">List Master Data Plant</div>
+
+    <div class="solid-line-width"></div>
+
+    <div class="margin-t-50  md-margin-t-30 sm-margin-t-20 margin-b-40 md-margin-b-20 ">
+        @Html.TextBox("SearchPlant", null, new { @class = "c-form__input form-control", @placeholder = "Search Plant" })
+    </div>
+
+    @* List Item *@
+    <div class="row">
+        <div class="overflow-y-box-list">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30">
+                <div class="l-box__item">
+                    <button type="button" class="btn-edit-corner">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <div class="h-text--lbl">
+                                Code
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">
+                            <div class="h-text--value-navy">
+                                :  2100
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="dotted-line" />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="h-text--lbl">
+                                Referred to <span class="color-base">SBM-IM (Internal Manufacturing)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30">
+                <div class="l-box__item">
+                    <button type="button" class="btn-edit-corner">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <div class="h-text--lbl">
+                                Code
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">
+                            <div class="h-text--value-navy">
+                                :  2100
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="dotted-line" />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="h-text--lbl">
+                                Referred to <span class="color-base">Referred to SBM-Bike Assembly</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30">
+                <div class="l-box__item">
+                    <button type="button" class="btn-edit-corner">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <div class="h-text--lbl">
+                                Code
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">
+                            <div class="h-text--value-navy">
+                                :  2100
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="dotted-line" />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="h-text--lbl">
+                                Referred to <span class="color-base">SBM-Fishing Rod</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30">
+                <div class="l-box__item">
+                    <button type="button" class="btn-edit-corner">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <div class="h-text--lbl">
+                                Code
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">
+                            <div class="h-text--value-navy">
+                                :  2100
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="dotted-line" />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="h-text--lbl">
+                                Referred to <span class="color-base">SBM-IM (Internal Manufacturing)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@* Floating Action Button (Mobile View) *@
+<div>
+    <button type="button" class="c-fab__main"><i class="fas fa-plus"></i></button>
+    <div class="c-fab__box-item">
+        <div class="c-fab__item c-fab__item-one" id="AddData">
+            <img src="~/Images/ic_adddata.png" />
+        </div>
+        <div class="c-fab__item c-fab__item-two ExportImportData">
+            <img src="~/Images/ic_export.png" />
+        </div>
+        <div class="c-fab__item c-fab__item-three ExportImportData">
+            <img src="~/Images/ic_import.png" />
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal  Add & Edit Data -->
+<div id="AddEditModal" class="modal fade" role="dialog">
+    <div class="modal-dialog position-c-object">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                <div class="h-text--title-box-form-v1">Add Master Data Plant</div>
+                <div class="solid-line-width"></div>
+
+                <div class="margin-t-40">
+                    <label class="h-text--lbl-form">Plant Code</label>
+                    <select class="form-control c-form__select-option margin-b-30">
+                        <option>2100</option>
+                        <option>2200</option>
+                        <option>2300</option>
+                    </select>
+                </div>
+
+                <div class="margin-t-20">
+                    <label class="h-text--lbl-form">Referred to</label>
+                    <select class="form-control c-form__select-option margin-b-30">
+                        <option>SBM-IM (Internal Manufacturing)</option>
+                        <option>SBM-Bike Assembly</option>
+                        <option>SBM-Fishing Rod</option>
+                        <option>SBM-IM (Internal Manufacturing)</option>
+                    </select>
+                </div>
+
+                <input type="submit" class="btn-oranges" value="SAVE" onclick="window.location='@Url.Action("MasterDataPlant", "FrontEnd")'" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal Import & Export -->
+<div id="ImportExportModal" class="modal fade" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-dialog position-c-object xs-modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" />
+                    @*<img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" />*@
+
+                    <div class="h-text--title-modal-status margin-t-40">
+                        EXPORT DATA SUCCESS
+                    </div>
+
+                    <div class="h-text--desc-modal-status margin-t-10">
+                        your file has been export
+                    </div>
+
+
+                    <button type="button" class="btn-close-modal margin-b-10" onclick="window.location='@Url.Action("MasterDataPlant", "FrontEnd")'">CLOSE</button>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+

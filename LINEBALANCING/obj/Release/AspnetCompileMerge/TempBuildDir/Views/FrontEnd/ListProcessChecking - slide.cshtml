@@ -1,0 +1,948 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "List Process Checking";
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+
+    .slick-slide:focus, .slick-slide a {
+        outline: none;
+    }
+
+    .slide-stopwatch {
+        display: none !important;
+    }
+
+    .slide-stopwatch.slick-initialized {
+        display: block !important;
+    }
+</style>
+
+@* Back Button Previous Page Desktop *@
+<button type="button" class="btn-back-corner-md hidden-sm hidden-xs" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+
+
+
+
+<div class="l-box__list">
+    <div class="h-text--title-box-form-v1">
+        <button type="button" class="btn-back-page-mobile hidden-lg hidden-md" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+        List Process Checking
+    </div>
+
+    <div class="solid-line-width hidden-sm hidden-xs"></div>
+
+    <div class="margin-t-50 margin-b-40 md-margin-b-20">
+        <div class="row space-row-10">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="c-form__inside-icon">
+                    @Html.TextBox("SearchManPower", null, new { @class = "form-control", @placeholder = "Search Process or Man Power..." })
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-84col-md-4 col-sm-4 col-xs-4">
+                <div class="text-right">
+                    <button type="button" class="btn-expand-all">
+                        <i class="fas fa-expand-arrows-alt"></i> <span class="hidden-sm hidden-xs">Expand All</span>
+                    </button>
+                    <button type="button" class="btn-collapse-all">
+                        <i class="fas fa-compress-arrows-alt"></i> <span class="hidden-sm hidden-xs">Collapse All</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @* List Item *@
+    <div class="row">
+        <div class="overflow-y-box-list">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__default"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Code
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn Checking *@
+                            <div class="height-50">
+                                <button type="button" class="btn-base-brd btn-base-sm radius-6 fweight-600 position-c-object" data-toggle="modal" data-target=".stopwatch">
+                                    Checking
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Deep Solder
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn edit after success *@
+                            <div class="height-50">
+                                <button type="button" class="btn-edit" data-toggle="modal" data-target=".stopwatch">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Code
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn edit after success *@
+                            <div class="height-50">
+                                <button type="button" class="btn-edit" data-toggle="modal" data-target=".stopwatch">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse3" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__default"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Deep Solder
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn Checking *@
+                            <div class="height-50">
+                                <button type="button" class="btn-base-brd btn-base-sm radius-6 fweight-600 position-c-object" data-toggle="modal" data-target=".stopwatch">
+                                    Checking
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse4" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse4" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Code
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn edit after success *@
+                            <div class="height-50">
+                                <button type="button" class="btn-edit" data-toggle="modal" data-target=".stopwatch">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse5" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse5" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Code
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn edit after success *@
+                            <div class="height-50"> 
+                                <button type="button" class="btn-edit" data-toggle="modal" data-target=".stopwatch">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse6" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse6" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Code
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn edit after success *@
+                            <div class="height-50">
+                                <button type="button" class="btn-edit" data-toggle="modal" data-target=".stopwatch">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse7" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse7" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Code
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn edit after success *@
+                            <div class="height-50">
+                                <button type="button" class="btn-edit" data-toggle="modal" data-target=".stopwatch">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse6" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse6" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    Code
+                                    <span class="display-block">
+                                        Std C/T : 13
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            @* btn edit after success *@
+                            <div class="height-50">
+                                <button type="button" class="btn-edit" data-toggle="modal" data-target=".stopwatch">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse7" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse7" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__point-jobs-desc">:  C3000 - 3N</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                            <td class="h-text__point-jobs-desc">:  1</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                            <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Actual C/T</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                            <td class="h-text__point-jobs-desc">:  -</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn-apply-circle" id="SubmitProcessChecking" data-toggle="modal" data-target="#MessageApplyProcessChecking">
+        <i class="fas fa-check"></i>
+    </button>
+
+</div>
+
+
+
+<!-- Modal Message Detail Process Checking -->
+<div id="MessageApplyProcessChecking" class="modal fade" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" />
+                @*<img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" />*@
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    Line Balancing Check Already Finish
+                </div>
+
+                <div class="h-text--desc-modal-status margin-t-10">
+                    DH-02, Model "<b>DH C3000-3N</b>"
+                </div>
+
+                <div class="h-text--desc-modal-status margin-t-10">
+                    Check ID : "<b>LB-DHO2-001</b>"
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" onclick="window.location='@Url.Action("MainMenu", "FrontEnd")'">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal Message Detail Process Checking -->
+<div class="modal fade stopwatch" role="dialog">
+    <div class="modal-dialog position-c-object c-custom-modal__wide-stopwatch">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            @* Display On Mobile View *@
+            <div class="modal-header hidden-lg hidden-md">
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                <div class="h-text__std-18-orange-b">
+                    <i class="fas fa-angle-double-left">&nbsp;</i><i class="fas fa-angle-double-right"></i> Swipe Left or Right to Use Stopwatch
+                </div>
+            </div>
+            @*End Display On Mobile View *@
+
+            <div class="modal-body bg-color-f9">
+                <button type="button" class="close c-custom-modal__close-corner-overlap hidden-sm hidden-xs" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                <div class="overflow-y-stopwatch">
+                    <div class="row">
+                        <div class="slide-stopwatch">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 stopwatch-float">
+                                @* Display On Mobile View *@
+                                <div class="l-box__btn-tab-stopwatch hidden-lg hidden-md">
+                                    <div class="width-100pc">
+                                        <button type="button" class="btn btn-tab-stopwatch  btn-radius-left active-stopwatch choose-stopwatch-btn">Stopwatch</button>
+                                        <button type="button" class="btn btn-tab-stopwatch btn-radius-right choose-manual-btn">Manual Submission</button>
+                                    </div>
+                                </div>
+                                @*End Display On Mobile View *@
+                                <table class="table table-condensed table-borderless">
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Process</td>
+                                        <td class="h-text__point-jobs-desc">:  Cooling</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> MP Name</td>
+                                        <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Std C/T</td>
+                                        <td class="h-text__point-jobs-desc">:  15</td>
+                                    </tr>
+
+                                </table>
+
+                                <div class="margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                    <label class="h-text--lbl-form">Total Man Power</label>
+                                    <select class="form-control c-form__select-option">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </select>
+                                </div>
+
+                                <div class="margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                    <label class="h-text--lbl-form">Output Qty</label>
+                                    <select class="form-control c-form__select-option">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                    <label class="h-text--lbl-form">ACT C/T</label>
+                                    @Html.TextBox("Actct", null, new { @class = "c-form__input form-control", @placeholder = "Eg. 15", @id = "act-ct" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="l-box__checking">
+                                    <div class="choose-stopwatch">
+                                        <div class="circle">
+                                            <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" class="position-c-object">
+                                                <g transform="translate(110,110)">
+                                                    <circle r="100" class="e-c-base" />
+                                                    <g transform="rotate(-90)">
+                                                        <circle r="100" class="e-c-progress" />
+                                                        <g id="e-pointer">
+                                                            <circle cx="100" cy="0" r="8" class="e-c-pointer" />
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div class="box-controls">
+                                            <div class="controlls">
+                                                <input type="text" class="display-remain-time" readonly />
+                                                <button class="play" id="pause"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="choose-manual">
+                                        <div class="h-text--choose-manual">
+                                            Manual Submission Can't Use Stopwatch
+                                        </div>
+                                    </div>
+
+
+                                    <div class="l-box__btn-tab-stopwatch hidden-sm hidden-xs">
+                                        <div class="width-100pc">
+                                            <button type="button" class="btn btn-tab-stopwatch  btn-radius-left active-stopwatch choose-stopwatch-btn">Stopwatch</button>
+                                            <button type="button" class="btn btn-tab-stopwatch btn-radius-right choose-manual-btn">Manual Submission</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer c-custom-modal__footer-stopwatch">
+                <div class="row space-row-5">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+                        <div class="h-text--model-name-stopwatch">
+                            Model : C3000 - 3N
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <button type="button" class="btn-ignore-stopwatch" data-dismiss="modal"><i class="fas fa-sync-alt hidden-xs"></i> Ignore</button>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <button type="button" class="btn-save-stopwatch" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Modal Message Edit Detail Process Checking -->
+<div id="MessageEditProcessChecking" class="modal fade" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" />
+                @*<img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" />*@
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    EDIT CHECKING SUCCESS
+                </div>
+
+                <div class="h-text--desc-modal-status margin-t-10">
+                    your data has been edited
+                </div>
+                <button type="button" class="btn-close-modal margin-b-10" onclick="window.location='@Url.Action("ListProcessChecking", "FrontEnd")'">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+

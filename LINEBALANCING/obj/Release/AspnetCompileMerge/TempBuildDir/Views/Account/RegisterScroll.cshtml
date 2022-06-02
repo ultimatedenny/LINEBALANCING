@@ -1,0 +1,90 @@
+﻿@model LineBalancing.ViewModels.VMRegister
+
+@{
+    if (Model == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@foreach (var item in Model.RegisteredUsers)
+{
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-20">
+        <div class="l-box__item">
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        Username
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.UserName)
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <button type="button" class="btn-edit-corner" id="btnEditCorner" data-toggle="modal" data-id="@Html.DisplayFor(modelItem => item.Id)">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button type="button" class="btn-delete-corner" id="btnDeleteCorner" data-toggle="modal" data-id="@Html.DisplayFor(modelItem => item.Id)">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row margin-t-10">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        User Level
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.UserLevel)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-10">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        Name
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.LeaderName)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-10">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        Status
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Status)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,135 @@
+﻿@model LineBalancing.ViewModels.VMManpower
+
+@{
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@foreach (var item in Model.Manpowers)
+{
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-20">
+        <div class="l-box__item">
+
+            <div class="row">
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Plant
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Plant)
+                    </div>
+                </div>
+
+
+                @if (isAdmin)
+                {
+                    var plant = item.Plant;
+                    var department = item.Department;
+                    var line = item.Line;
+                    var manpowerNo = item.ManpowerNo;
+
+                    var parameters = plant + "," + department + "," + line + "," + manpowerNo;
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <button type="button" class="btn-edit-corner" id="btnEditCorner" data-toggle="modal" data-id="@Html.DisplayFor(modelItem => parameters)" data-dom-cache="false">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button type="button" class="btn-delete-corner" id="btnDeleteCorner" data-toggle="modal" data-id="@Html.DisplayFor(modelItem => parameters)" data-dom-cache="false">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                }
+
+            </div>
+            <hr class="dotted-line" />
+
+            <div class="row margin-t-10">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Employee No
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.ManpowerNo)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5 margin-b-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Employee Name
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.ManpowerName)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Dept.
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Department)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Line
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Line)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Status
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Status)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

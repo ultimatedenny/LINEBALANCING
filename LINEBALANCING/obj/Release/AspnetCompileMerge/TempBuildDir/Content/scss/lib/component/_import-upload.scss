@@ -1,0 +1,21 @@
+﻿.c-import-upload {
+    &__box-v1 {
+        width: 100%;
+        border: 3px dotted #00A0E9;
+        border-radius: 6px;
+        padding: 30px;
+        text-align: center;
+        font-size: 50px;
+        color: #FF7000;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+
+    &__file-name {
+        font-size: 16px;
+        color: $color-base-black;
+        font-weight: 600;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+}

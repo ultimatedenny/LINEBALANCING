@@ -1,0 +1,601 @@
+﻿@model LineBalancing.ViewModels.VMRegister
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Registered User";
+
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+
+<div class="l-box__list ">
+    <button type="button" class="btn-back-homes-corner setDelay hideCont" data-dismiss="modal" onclick="window.location='@Url.Action("Index", "MainMenu")'"><i class="fas fa-home"></i> </button>
+
+    <div class="h-text--title-box-form-v1 setDelay hideCont">List Registered User</div>
+    <div class="solid-line-width"></div>
+
+    <div class="margin-t-40 md-margin-t-20 margin-b-30">
+
+        <div class="row setDelay hideCont">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                @Html.TextBox("Search", null, new { @class = "c-form__input form-control", @placeholder = "Search", @id = "searchText" })
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                @Html.DropDownList("From", Model.SelectListStatus, null, new { @class = "form-control select-option-custom", @id = "ddlListStatus" })
+            </div>
+        </div>
+    </div>
+
+    @* List Item *@
+    <div class="row setDelay hideCont">
+
+        <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+        <div id="list" class="overflow-y-box-list">
+            @{ Html.RenderAction("RegisterScroll", new { startIndex = 0, searchFor = "", status = "Active" }); }
+        </div>
+
+    </div>
+</div>
+
+
+@* Floating Action Button (Mobile View) *@
+<div>
+    <button type="button" class="c-fab__main setDelay hideCont" id="add"><i class="fas fa-plus"></i></button>
+</div>
+
+
+<!-- Modal  Add & Edit Data -->
+<div id="AddEditModal" class="modal fade overflow-h setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeAddEditModal"><i class="fas fa-times"></i> </button>
+
+        <!-- Modal content-->
+        <div class="modal-content md-modal-content sm-modal-content">
+            <div class="modal-body">
+
+                <div class="h-text--title-box-form-v1"><label id="modalTitle">Register User</label></div>
+                <div class="solid-line-width"></div>
+
+                <label id="id" hidden="hidden"></label>
+                <label id="status" hidden="hidden"></label>
+
+                <div class="margin-t-40 md-margin-t-20">
+                    <label class="h-text--lbl-form">Username</label>
+                    @Html.TextBox("Username", null, new { @class = "c-form__input form-control ", @placeholder = "Eg. Yuni", @id = "username" })
+                </div>
+
+                <div class="margin-t-40 md-margin-t-20">
+                    <label class="h-text--lbl-form">User Level</label>
+                    <select id="ddlListUserLevel" class="c-form__input form-control">
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="USER">USER</option>
+                    </select>
+                </div>
+
+                <div class="margin-t-40 md-margin-t-20" id="selectEmployee">
+                    <label class="h-text--lbl-form">Employee</label>
+                    <select class="form-control select-option-custom selectpicker show-tick" id="ddlListLeader" data-size="7"></select>
+
+                    <label id="employeeNo" hidden="hidden"></label>
+                    <label id="leaderName" hidden="hidden"></label>
+                </div>
+
+                <input type="submit" class="btn-oranges" id="save" value="SAVE" />
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="DeleteModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeDeleteModal"><i class="fas fa-times"></i> </button>
+
+                <div class="h-text--confirmation-modal">
+                    <label id="deleteModalMessage"></label>
+                </div>
+
+                <button type="button" class="btn-confirmation-delete margin-t-30" id="delete">Yes</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="NotificationModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog top-10pc">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeNotificationModal"><i class="fas fa-times"></i> </button>
+
+                <img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    <label id="notificationMessage"></label>
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="closeNotification">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var url = '@Url.Action("RegisterScroll", "Account")';
+    var list = $('#list');
+
+    function loadData()
+    {
+        $('#list').html('');
+
+        var selectedStatus = $('#ddlListStatus').val();
+
+        var url = "/Account/RegisterScroll/"
+        $.get(url, { startIndex: 0, searchFor: null, status: selectedStatus }, function (response) {
+            if (response != "") {
+
+                list.append(response);
+
+                if (start === 0) {
+                    start += 10; // increment for next call
+                }
+                else {
+                    start = 10; // reset to default value
+                }
+            }
+        });
+    }
+
+    // Get data for dropdownlist
+    $(document).ready(function () {
+
+        $('.selectpicker').selectpicker({
+            liveSearch: true,
+            showSubtext: true
+        });
+
+    });
+
+    // Dropdown list status change event.
+    $('#ddlListStatus').change(function () {
+        $('#list').html('');
+
+        var search = $('#searchText').val();
+
+        // Get status
+        var selectedStatus = $('#ddlListStatus').val();
+        if (selectedStatus != null)
+        {
+            $.get(url, { startIndex: 0, searchFor: search, status: selectedStatus }, function (response) {
+                if (response.Message != null) {
+                    $('#dataNotFound').show();
+                    $('#dataNotFound').text(response.Message);
+                }
+                else {
+                    $('#dataNotFound').hide();
+
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    function selectUserLevel()
+    {
+        $("#selectEmployee").hide();
+
+        // Get user level
+        var selectedUserLevel = $("#ddlListUserLevel").val();
+        if (selectedUserLevel != "ADMIN") {
+            $("#selectEmployee").show();
+        }
+        else {
+            $("#selectEmployee").hide();
+        }
+    }
+
+    // Dropdown list user level change event.
+    $('#ddlListUserLevel').change(function ()
+    {
+        selectUserLevel();
+    });
+
+
+
+    // Searching
+    var delayTimer;
+    $('#searchText').bind('input', function ()
+    {
+        $('#list').html('');
+
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function ()
+        {
+            var selectedStatus = $('#ddlListStatus').val();
+
+            var search = $('#searchText').val();
+            if (search.length > 0) {
+                $.get(url, { startIndex: 0, searchFor: search, status: selectedStatus  }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+            else {
+                $.get(url, { startIndex: 0, searchFor: null, status: selectedStatus }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+        }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+    });
+
+    // Infinite scroll
+    $("#list").scroll(function ()
+    {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        var selectedStatus = $('#ddlListStatus').val();
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight)
+        {
+            var url = "/Account/RegisterScroll/"
+            $.get(url, { startIndex: start, searchFor: null, status: selectedStatus }, function (response)
+            {
+                if (response != "")
+                {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    $("#add").click(function () {
+
+        $("#ddlListUserLevel").val("ADMIN");
+        selectUserLevel();
+
+        $('#AddEditModal').modal('show');
+
+        $("#modalTitle").text('Register User');
+
+        $("#createdTime").text('');
+        $("#createdUser").text('');
+
+        // Set default value for select picker
+        $.getJSON('/Leaders/Leaders', null, function (data) {
+            $('#ddlListLeader option').remove();
+            $('#ddlListLeader').append('<option value=' + "Select Employee" + '>' + "Select Employee" + '</option>');
+
+            $.each(data.Leaders, function () {
+                $('#ddlListLeader').append('<option data-subtext=' + this.LeaderName + '>' + this.EmployeeNo + " | " + this.LeaderName + '</option>');
+            });
+
+            $('.selectpicker').selectpicker('refresh');
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting leader!');
+        });
+
+        $('#username').prop('readonly', false);
+        $("#username").val('');
+        $(".c-fab__box-item").hide();
+    });
+
+    // Save / Update
+    $("#save").on("click", function () {
+
+        var userLevel = $('#ddlListUserLevel :selected').text();
+        if (userLevel === 'Select User Level' || userLevel === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#notificationMessage').text("Please select user level !");
+            return;
+        }
+
+        if (userLevel != "ADMIN") {
+            var employee = $("#ddlListLeader :selected").text();
+            if (employee === 'Select Employee' || employee === '') {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#notificationMessage').text("Please select employee !");
+                return;
+            }
+
+            // Split employee no & name then override value
+            var employeeNo = "";
+            var leaderName = "";
+            var splitSelectedEmployee = employee.split('|');
+            if (splitSelectedEmployee.length > 1) {
+                employeeNo = splitSelectedEmployee[0];
+                leaderName = splitSelectedEmployee[1];
+            }
+        }
+
+        if (username === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#notificationMessage').text("Please fill username !");
+            return;
+        }
+
+        var username = $("#username").val();
+
+        var registerUser = $("#modalTitle").text();
+        if (registerUser === 'Register User')
+        {
+            // Parse new value for creating data
+            var register =
+            {
+                EmployeeNo: employeeNo,
+                LeaderName: leaderName,
+                UserLevel: userLevel,
+                Username: username
+            };
+
+            // console.log("save", register);
+
+            // Call server
+            var url = "/Account/Register";
+            $.post(url, register, function (response)
+            {
+                if (response.Message != null) {
+                    $('#AddEditModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#AddEditModal').modal('hide');
+                loadData();
+            });
+        }
+        else
+        {
+            // Parse new value for creating data
+            var register =
+            {
+                EmployeeNo: employeeNo,
+                LeaderName: leaderName,
+                UserLevel: userLevel,
+                Username: username
+            };
+
+            // console.log("update", register);
+
+            // Call server
+            var registeredUserId = $("#id").text();
+
+            var url = "/Account/Edit/" + registeredUserId;
+            $.post(url, register, function (response) {
+                if (response.Message != null) {
+                    $('#AddEditModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                $('#AddEditModal').modal('hide');
+                loadData();
+            });
+        }
+    });
+
+    // Get data then show pop up
+    $(document).on("click", "#btnEditCorner", function (e)
+    {
+        e.preventDefault();
+
+        $('#AddEditModal').modal('show');
+
+        var id = $(this).data('id');
+
+        // Change modal title
+        if (id != "") {
+            $("#modalTitle").text("Update Registered User");
+        }
+
+        // Call server
+        var url = "/Account/Edit/" + id;
+        $.get(url, function (response)
+        {
+            // console.log("Accounts server", response.RegisteredUser);
+
+            // Set value into properties
+            $("#id").text(response.RegisteredUser.Id);
+
+            var selectedEmployeeNo = response.RegisteredUser.EmployeeNo;
+            var selectedLeaderName = response.RegisteredUser.LeaderName;
+            if (selectedEmployeeNo != null && selectedLeaderName != null)
+            {
+                $.getJSON('/Leaders/Leaders', null, function (data) {
+                    $('#ddlListLeader option').remove();
+
+                    $.each(data.Leaders, function () {
+                        $('#ddlListLeader').append('<option data-subtext=' + this.LeaderName + '>' + this.EmployeeNo + " | " + this.LeaderName + '</option>');
+                    });
+
+                    var selectedEmployee = selectedEmployeeNo + " | " + selectedLeaderName;
+                    // console.log("selectedEmployee", selectedEmployee);
+
+                    $('select[id*=ddlListLeader]').val(selectedEmployee);
+                    $('.selectpicker').selectpicker('refresh');
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting employee !');
+                });
+            }
+
+            var selectedUserLevel = response.RegisteredUser.UserLevel;
+            if (selectedUserLevel != null)
+            {
+                $("#ddlListUserLevel").val(selectedUserLevel);
+
+                $("[id*=ddlListUserLevel] option").each(function () {
+                    if ($(this).val().toUpperCase() == selectedUserLevel.toUpperCase()) {
+                        $(this).attr('selected', 'selected');
+
+                         selectUserLevel();
+                    }
+                });
+            }
+
+            $("#status").val(response.RegisteredUser.Status);
+            $("#username").val(response.RegisteredUser.UserName);
+            $('#username').prop('readonly', true);
+
+        });
+    });
+
+    // Delete
+    $("#delete").on("click", function () {
+
+        var registeredUserId = $("#id").text();
+        var status = $("#status").text();
+        var leaderName = $("#ddlListLeader :selected").text();
+        var username = $("#username").val();
+
+        // Parse new value for creating data
+        var register =
+        {
+            Id: registeredUserId,
+            LeaderName: leaderName,
+            Username: username,
+            Status: status
+        };
+
+        // console.log("delete", register);
+
+        // Call server
+        var url = "/Account/Delete/";
+        $.post(url, register, function (response) {
+            if (response.Message != null) {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text(response.Message);
+                return;
+            }
+
+            $('#DeleteModal').modal('hide');
+            loadData();
+        });
+    });
+
+    // Show delete pop up
+    $(document).on("click", "#btnDeleteCorner", function (e) {
+        e.preventDefault();
+
+        // Call server
+        var id = $(this).data('id');
+        $("#id").text(id);
+
+        var url = "/Account/Edit/" + id;
+        $.get(url, function (response)
+        {
+            // console.log("Inactive", response.RegisteredUser);
+
+            // Set value into properties
+            $("#status").text(response.RegisteredUser.Status);
+
+            $('#DeleteModal').modal('show');
+
+            if (response.RegisteredUser.Status === "Active") {
+                $('#deleteModalMessage').text("Are you sure want to non-active this account ?");
+            }
+            else {
+                $('#deleteModalMessage').text("Are you sure want to activate this account ?");
+            }
+        });
+    });
+
+    // Import data
+    $("#import").on("click", function () {
+        $('#ImportModal').modal('show');
+    });
+
+</script>

@@ -1,0 +1,93 @@
+﻿@model LineBalancing.ViewModels.VMPlant
+
+@{
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@foreach (var item in Model.Plants)
+{
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30">
+        <div class="l-box__item">
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        Code
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.PlantCode)
+                    </div>
+                </div>
+
+                @if (isAdmin)
+                {
+                    var plant = item.PlantCode;
+
+                    var parameters = plant;
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <button type="button" class="btn-edit-corner" id="btnEditCorner" data-toggle="modal" data-id="@Html.DisplayFor(modelItem => parameters)" data-dom-cache="false">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+
+                        <button type="button" class="btn-delete-corner" id="btnDeleteCorner" data-toggle="modal" data-id="@Html.DisplayFor(modelItem => parameters)" data-dom-cache="false">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                }
+
+            </div>
+
+            <hr class="dotted-line" />
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        Refer to
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <div class="h-text--value-navy">
+                        : <span class="color-base">@Html.DisplayFor(modelItem => item.PlantDescription)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="h-text--lbl">
+                        Status
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Status)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

@@ -1,0 +1,109 @@
+﻿@model LineBalancing.ViewModels.VMMonthlySchedule
+
+@{
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@foreach (var item in Model.MonthlySchedules)
+{
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30">
+        <div class="l-box__item">
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="h-text--value-navy">
+                        @Html.DisplayFor(modelItem => item.ShortDateFrom) - @Html.DisplayFor(modelItem => item.ShortDateTo)
+                    </div>
+                </div>
+            </div>
+
+            <hr class="dotted-line" />
+
+            <div class="row margin-t-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Plant
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Plant)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Dept.
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Department)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Line
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Line)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Model
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.Model)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-t-5">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="h-text--lbl-sm">
+                        Process
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="h-text--value-navy">
+                        : @Html.DisplayFor(modelItem => item.ProcessName)
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

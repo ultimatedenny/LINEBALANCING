@@ -1,0 +1,981 @@
+﻿@model LineBalancing.ViewModels.VMBalancingProcess
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "List Balancing Process Checking";
+
+    if (Model == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+@* Back Button Previous Page Desktop *@
+<button type="button" class="btn-back-corner-md hidden-sm hidden-xs setDelay hideCont" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+
+
+<div class="l-box__list">
+
+    <div class="h-text--title-box-form-v1 setDelay hideCont">
+        <button type="button" class="btn-back-page-mobile hidden-lg hidden-md" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+        List Process Checking
+    </div>
+
+    <div class="solid-line-width hidden-sm hidden-xs"></div>
+
+    <div class="margin-t-50 margin-b-40 md-margin-b-20 setDelay hideCont">
+        <div class="row space-row-10">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="c-form__inside-icon">
+                    @Html.TextBox("Search", null, new { @class = "form-control", @placeholder = "Search", @id = "searchText" })
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-84col-md-4 col-sm-4 col-xs-4">
+                <div class="text-right">
+                    <button type="button" class="btn-expand-all">
+                        <i class="fas fa-expand-arrows-alt"></i> <span class="hidden-sm hidden-xs">Expand All</span>
+                    </button>
+                    <button type="button" class="btn-collapse-all">
+                        <i class="fas fa-compress-arrows-alt"></i> <span class="hidden-sm hidden-xs">Collapse All</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @* List Item *@
+    <div class="row setDelay hideCont">
+
+        <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+        <div id="list" class="overflow-y-box-list">
+            @{
+                var currentBalancingProcessId = Context.Request.QueryString["balancingProcessId"];
+                var currentPlant = Context.Request.QueryString["plant"];
+                var currentDepartment = Context.Request.QueryString["department"];
+                var currentLine = Context.Request.QueryString["line"];
+                var currentEmployeeNo = Context.Request.QueryString["employeeNo"];
+                var currentModel = Context.Request.QueryString["model"];
+                var currentIsOneByOne = Context.Request.QueryString["isOneByOne"];
+
+                Html.RenderAction("Scroll", new
+                {
+                    startIndex = 0,
+                    balancingProcessId = currentBalancingProcessId,
+                    plant = currentPlant,
+                    department = currentDepartment,
+                    line = currentLine,
+                    employeeNo = currentEmployeeNo,
+                    model = currentModel,
+                    isOneByOne = currentIsOneByOne
+                });
+            }
+        </div>
+    </div>
+
+    <button type="submit" class="btn-apply-circle setDelay hideCont" id="submitProcessChecking">
+        <i class="fas fa-check"></i>
+    </button>
+
+</div>
+
+
+<!-- Edit Reason Modal -->
+<div id="EditReason" class="modal fade setDelay hideCont" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+        <div class="modal-content">
+
+            <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+
+            <div class="modal-header h-text--header-modal">
+                Please input edit reason
+            </div>
+            <div class="modal-body padding-40">
+                <textarea class="form-control" rows="5" id="reason"></textarea>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-save-modal-center" id="saveReason">SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Message Detail After Process Checking -->
+<div id="MessageApplyProcessChecking" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    Line Balancing Check Already Finish
+                </div>
+
+                <div class="h-text--desc-modal-status margin-t-10">
+                    <label id="finishLine"></label>, Model "<b><label id="finishModel"></label></b>"
+                </div>
+
+                <div class="h-text--desc-modal-status margin-t-10">
+                    Check ID : "<b><label id="finishCheckID"></label></b>"
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="closeMessageProcessChecking">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Stopwatch -->
+<div id="Stopwatch" class="modal fade stopwatch setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object c-custom-modal__wide-stopwatch">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body bg-color-f9">
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeModalStopwatch"><i class="fas fa-times"></i> </button>
+
+                <div class="overflow-y-stopwatch">
+                    <div class="row  hidden-lg hidden-md">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @* Display On Mobile View *@
+                            <div class="l-box__btn-tab-stopwatch">
+                                <div class="width-100pc">
+                                    <button type="button" class="btn btn-tab-stopwatch  btn-radius-left active-stopwatch choose-stopwatch-btn btn-st">Stopwatch</button>
+                                    <button type="button" class="btn btn-tab-stopwatch btn-radius-right choose-manual-btn btn-mn">Manual Submission</button>
+                                </div>
+                            </div>
+                            @*End Display On Mobile View *@
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-5 l-box__checking">
+
+                            <div class="choose-stopwatch">
+                                <div class="h-text--message-stopwatch" id="ModalStopwatchNotification">
+                                    <div>
+                                        Please Select Total Man Power & Output Qty
+                                    </div>
+                                    <div>
+                                        before <b>Using Stopwatch</b>
+                                    </div>
+                                </div>
+                                <div id="ModalStopwatch">
+
+                                    <div id="processCheckingMode" class="font-size-12"></div>
+
+                                    <div class="circle">
+                                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" class="position-c-object box-width-circle-stopwatch">
+                                            <g transform="translate(110,110)">
+                                                <circle r="100" class="e-c-base" />
+                                                <g transform="rotate(-90)">
+                                                    <circle r="100" class="e-c-progress" />
+                                                    <g id="e-pointer">
+                                                        <circle cx="100" cy="0" r="8" class="e-c-pointer" />
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="box-controls">
+
+                                        <div class="controlls">
+                                            <input type="text" class="display-remain-time" readonly />
+                                            <button class="play" id="pause"></button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="choose-manual">
+                                <div class="h-text--choose-manual">
+                                    Manual Submission Can't Use Stopwatch
+                                </div>
+                            </div>
+
+                            <div class="l-box__btn-tab-stopwatch hidden-sm hidden-xs">
+                                <div id="buttonSubmission" class="width-100pc">
+                                    <button type="button" class="btn btn-tab-stopwatch btn-radius-left choose-stopwatch-btn btn-st active-stopwatch" id="buttonStopwatchSubmission">Stopwatch</button>
+                                    <button type="button" class="btn btn-tab-stopwatch btn-radius-right choose-manual-btn btn-mn" id="buttonManualSubmission">Manual Submission</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7">
+
+                            @* This hidden properties are used to parse & bind data while doing edit action  *@
+                            <label id="balancingProcessItemId" hidden="hidden"></label>
+                            <label id="createdTime" hidden="hidden"></label>
+                            <label id="createdUser" hidden="hidden"></label>
+                            <label id="editTime" hidden="hidden"></label>
+                            <label id="plant" hidden="hidden"></label>
+                            <label id="department" hidden="hidden"></label>
+                            <label id="line" hidden="hidden"></label>
+                            <label id="processCode" hidden="hidden"></label>
+                            <label id="employeeNo" hidden="hidden"></label>
+                            <label id="leaderName" hidden="hidden"></label>
+                            <label id="submissionType" hidden="hidden"></label>
+                            <label id="actualCT" hidden="hidden"></label>
+                            <label id="isOneByOne" hidden="hidden"></label>
+
+                            <table class="table table-condensed table-borderless">
+                                <tr>
+                                    <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Process</td>
+                                    <td class="h-text__point-jobs-desc">: <label id="processName"></label></td>
+                                </tr>
+
+                                <tr>
+                                    <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> MP Name</td>
+                                    <td class="h-text__point-jobs-desc">: <label id="manpowerName"></label></td>
+                                </tr>
+
+                                <tr>
+                                    <td width="30%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Std C/T</td>
+                                    <td class="h-text__point-jobs-desc">: <label id="standardCT"></label></td>
+                                </tr>
+                            </table>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                                    <div class="margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                        <label class="h-text--lbl-form-stopwatch">Total Man Power</label>
+                                        @Html.DropDownListFor(model => model.BalancingProcessItem.TotalManPower, Model.SelectListTotalManpower, "Select Total Manpower", new { @class = "form-control c-form__select-option-stopwatch", @id = "ddlListTotalManpower" })
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                                    <div class="margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                        <label class="h-text--lbl-form-stopwatch">Output Qty</label>
+                                        @Html.DropDownListFor(model => model.BalancingProcessItem.Quantity, Model.SelectListOutputQuantity, "Select Output Quantity", new { @class = "form-control c-form__select-option-stopwatch", @id = "ddlListOutputQuantity" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                        <label class="h-text--lbl-form-stopwatch">ACT C/T</label>
+                                        @Html.TextBox("Actct", null, new { @class = "c-form__input-stopwatch form-control", @placeholder = "Eg. 15", @id = "act-ct" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer c-custom-modal__footer-stopwatch">
+                <div class="row space-row-5">
+
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+                        <div class="h-text--model-name-stopwatch">
+                            Model : <label id="model"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <button type="button" id="ignore" class="btn-ignore-stopwatch"><i class="fas fa-sync-alt hidden-xs"></i> Ignore</button>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <button type="button" id="save" class="btn-save-stopwatch">Save</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Message Edit Detail Process Checking -->
+<div id="MessageEditProcessChecking" class="modal fade setDelay hideCont" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    EDIT CHECKING SUCCESS
+                </div>
+
+                <div class="h-text--desc-modal-status margin-t-10">
+                    your data has been edited
+                </div>
+                <button type="button" class="btn-close-modal margin-b-10" onclick="window.location='@Url.Action("ListProcessChecking", "FrontEnd")'">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Notification -->
+<div id="NotificationModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog top-10pc">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeNotificationModal"><i class="fas fa-times"></i> </button>
+
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" id="success" />
+                <img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" id="fail" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    <label id="notificationMessage"></label>
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="closeNotification">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="~/Scripts/helper.js"></script>
+<script type="text/javascript">
+
+    var currentUrl = window.location.href;
+    var urlParameter = getAllUrlParams(currentUrl);
+
+    // Get values from paramters
+    var plant = urlParameter.plant;
+    var department = urlParameter.department;
+    var line = urlParameter.line;
+    var employeeNo = urlParameter.employeeno;
+    var model = urlParameter.model;
+    var isOneByOne = urlParameter.isonebyone;
+    var balancingProcessId = urlParameter.balancingprocessid;
+    var checkId = urlParameter.checkid;
+    var isContinue = urlParameter.iscontinue;
+
+    var balancingProcessItemId = null;
+    var currentEditTime = null;
+    var isProcessCheckingCompeleted = false;
+
+    var start = 10;
+
+    var list = $('#list');
+
+    // Initialize list time lap
+    var listTimeLap = new Array();
+
+    function loadData() {
+
+        $('#list').html('');
+
+        var url = "/BalancingProcesses/Scroll?balancingProcessId=" + balancingProcessId +
+            "&plant=" + plant +
+            "&department=" + department +
+            "&line=" + line +
+            "&employeeNo=" + employeeNo +
+            "&model=" + model +
+            "&isOneByOne=" + isOneByOne;
+
+        $.get(url, { startIndex: 0 }, function (response) {
+            if (response != "") {
+                list.append(response);
+
+                if (start === 0) {
+                    start += 10; // increment for next call
+                }
+                else {
+                    start = 10; // reset to default value
+                }
+            }
+        });
+    }
+
+    // Dropdown list total manpower change event.
+    $('#ddlListTotalManpower').change(function () {
+        $('#ModalStopwatchNotification').hide();
+        $('#ModalStopwatch').show();
+
+        var totalManPower = $('#ddlListTotalManpower :selected').text();
+        var quantity = $('#ddlListOutputQuantity :selected').text();
+
+        if (totalManPower === 'Select Total Manpower' && quantity === 'Select Output Quantity') {
+            $('#ModalStopwatch').hide();
+            $('#ModalStopwatchNotification').show();
+        }
+        else if (totalManPower === 'Select Total Manpower' && quantity !== 'Select Output Quantity') {
+            $('#ModalStopwatch').hide();
+            $('#ModalStopwatchNotification').show();
+        }
+        else if (totalManPower !== 'Select Total Manpower' && quantity === 'Select Output Quantity') {
+            $('#ModalStopwatch').hide();
+            $('#ModalStopwatchNotification').show();
+        }
+    });
+
+    // Dropdown list output quantity change event.
+    $('#ddlListOutputQuantity').change(function () {
+        $('#ModalStopwatchNotification').hide();
+        $('#ModalStopwatch').show();
+
+        var totalManPower = $('#ddlListTotalManpower :selected').text();
+        var quantity = $('#ddlListOutputQuantity :selected').text();
+
+        if (quantity === 'Select Output Quantity' && totalManPower === 'Select Total Manpower') {
+            $('#ModalStopwatch').hide();
+            $('#ModalStopwatchNotification').show();
+        }
+        else if (quantity === 'Select Output Quantity' && totalManPower !== 'Select Total Manpower') {
+            $('#ModalStopwatch').hide();
+            $('#ModalStopwatchNotification').show();
+        }
+        else if (quantity !== 'Select Output Quantity' && totalManPower === 'Select Total Manpower') {
+            $('#ModalStopwatch').hide();
+            $('#ModalStopwatchNotification').show();
+        }
+    });
+
+
+    // Searching
+    $('#searchText').bind('input', function () {
+        list.html('');
+
+        // console.log("balancingProcessId", balancingProcessId);
+
+        var url = "/BalancingProcesses/Scroll?balancingProcessId=" + balancingProcessId +
+            "&plant=" + plant +
+            "&department=" + department +
+            "&line=" + line +
+            "&employeeNo=" + employeeNo +
+            "&model=" + model +
+            "&isOneByOne=" + isOneByOne;
+        var search = $('#searchText').val();
+        if (search.length > 0) {
+            $.get(url, { startIndex: 0, searchFor: search }, function (response) {
+                if (response.Message != null) {
+                    $('#dataNotFound').show();
+                    $('#dataNotFound').text(response.Message);
+                }
+                else {
+                    $('#dataNotFound').hide();
+
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+        else {
+            $.get(url, { startIndex: 0 }, function (response) {
+                if (response.Message != null) {
+                    $('#dataNotFound').show();
+                    $('#dataNotFound').text(response.Message);
+                }
+                else {
+                    $('#dataNotFound').hide();
+
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    // Infinite scroll
+    $("#list").scroll(function () {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight) {
+
+            // console.log("list", balancingProcessId);
+
+            var url = "/BalancingProcesses/Scroll?balancingProcessId=" + balancingProcessId +
+                "&plant=" + plant +
+                "&department=" + department +
+                "&line=" + line +
+                "&employeeNo=" + employeeNo +
+                "&model=" + model +
+                "&isOneByOne=" + isOneByOne;
+            $.get(url, { startIndex: start }, function (response) {
+                if (response != "") {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    // Stopwatch
+    $("#pause").on("click", function () {
+
+        // Disable input when counting
+        $('#ddlListTotalManpower').prop("disabled", true);
+        $('#ddlListOutputQuantity').prop("disabled", true);
+        $("#act-ct").prop("disabled", true);
+        $("#save").prop("disabled", true);
+
+        var actualCT = $(".display-remain-time").val();
+        // console.log("actualCT", actualCT);
+
+        $("#act-ct").val(actualCT);
+
+        // Enable button save
+        $("#save").prop("disabled", false);
+    });
+
+    // Edit pop up
+    $(document).on("click", "#btnEditCorner", function (e) {
+        e.preventDefault();
+
+        // Get balancing process item id then assign to global variable
+        balancingProcessItemId = $(this).data('id');
+
+        // Set title process checking method (based on url parameter)
+        var processCheckingMode = "";
+        if (isOneByOne == "false") {
+            processCheckingMode = "Process Checking Method : One Shot";
+        }
+        else {
+            processCheckingMode = "Process Checking Method : One By One";
+        }
+
+        $('#processCheckingMode').text(processCheckingMode);
+
+        // Call server
+        var url = "/BalancingProcesses/Detail/" + balancingProcessItemId;
+        $.get(url, function (response) {
+            // console.log("BalancingProcessItem", response.DTOBalancingProcessItem);
+
+            // Set value into properties
+            $("#balancingProcessItemId").text(response.DTOBalancingProcessItem.Id);
+            $("#createdTime").text(response.DTOBalancingProcessItem.CreatedTime);
+            $("#createdUser").text(response.DTOBalancingProcessItem.CreatedUser);
+
+            $("#model").text(response.DTOBalancingProcessItem.Model);
+            $("#standardCT").text(response.DTOBalancingProcessItem.StandardCT);
+            $("#plant").text(response.DTOBalancingProcessItem.Plant);
+            $("#department").text(response.DTOBalancingProcessItem.Department);
+            $("#line").text(response.DTOBalancingProcessItem.Line);
+            $("#processCode").text(response.DTOBalancingProcessItem.ProcessCode);
+            $("#processName").text(response.DTOBalancingProcessItem.ProcessName);
+
+            var selectedTotalManpower = response.DTOBalancingProcessItem.TotalManPower;
+            if (selectedTotalManpower != null) {
+                $("[id*=ddlListTotalManpower] option").each(function () {
+                    if (String($(this).val()) == selectedTotalManpower) {
+                        $(this).attr('selected', 'selected');
+                    }
+                });
+            }
+
+            $("#manpowerName").text(response.DTOBalancingProcessItem.ManpowerName);
+            $("#employeeNo").text(response.DTOBalancingProcessItem.EmployeeNo);
+            $("#leaderName").text(response.DTOBalancingProcessItem.LeaderName);
+            $("#submissionType").text(response.DTOBalancingProcessItem.SubmissionType);
+
+            var selectedOutputQuantity = response.DTOBalancingProcessItem.Quantity;
+            if (selectedOutputQuantity != null) {
+                $("[id*=ddlListOutputQuantity] option").each(function () {
+                    if ($(this).val() == selectedOutputQuantity) {
+                        $(this).attr('selected', 'selected');
+                    }
+                });
+            }
+
+            $("#act-ct").val("00");
+
+            if (response.DTOBalancingProcessItem.Status === 'DONE') {
+                $("#reason").val('');
+                $('#EditReason').modal('show');
+            }
+            else {
+                $('#Stopwatch').modal('show');
+            }
+
+            // Get edit times
+            $("#editTime").text(response.DTOBalancingProcessItem.EditTime);
+            currentEditTime = response.DTOBalancingProcessItem.EditTime;
+
+            // Show / hide stopwatch
+            $('#ModalStopwatchNotification').hide();
+            $('#ModalStopwatch').show();
+
+            var totalManPower = $('#ddlListTotalManpower :selected').text();
+            var quantity = $('#ddlListOutputQuantity :selected').text();
+
+            if (totalManPower === 'Select Total Manpower' && quantity === 'Select Output Quantity') {
+                $('#ModalStopwatch').hide();
+                $('#ModalStopwatchNotification').show();
+            }
+            else if (totalManPower === 'Select Total Manpower' && quantity !== 'Select Output Quantity') {
+                $('#ModalStopwatch').hide();
+                $('#ModalStopwatchNotification').show();
+            }
+            else if (totalManPower !== 'Select Total Manpower' && quantity === 'Select Output Quantity') {
+                $('#ModalStopwatch').hide();
+                $('#ModalStopwatchNotification').show();
+            }
+
+            // Enable input
+            $('#ddlListTotalManpower').prop("disabled", false);
+            $('#ddlListOutputQuantity').prop("disabled", false);
+            $("#act-ct").prop("disabled", false);
+            $("#save").prop("disabled", false);
+        });
+    });
+
+    // Assign event click on button stopwatch submission
+    $(".btn-st").click(function () {
+        $(".btn-mn").removeClass("active-stopwatch");
+        $(".btn-st").addClass("active-stopwatch");
+    });
+
+    // Assign event click on button manual submission
+    $(".btn-mn").click(function () {
+        $(".btn-st").removeClass("active-stopwatch");
+        $(".btn-mn").addClass("active-stopwatch");
+
+        $('#ddlListTotalManpower').prop("disabled", false);
+        $('#ddlListOutputQuantity').prop("disabled", false);
+        $("#act-ct").prop("disabled", false);
+    });
+
+    // Ignore (trigger event on timer.js to reset value)
+    $("#ignore").on("click", function () {
+        $('#ddlListTotalManpower').prop("disabled", false);
+        $('#ddlListOutputQuantity').prop("disabled", false);
+        $("#act-ct").prop("disabled", false);
+
+        // Check checking mode (STOPWATCH / MANUAL)
+        var isStopwatchSubmission = $('#buttonStopwatchSubmission').hasClass("active-stopwatch");
+        if (isStopwatchSubmission) {
+            $("#act-ct").prop("disabled", true);
+        }
+
+        $("#act-ct").val("00");
+
+        // Reset list time lap
+        listTimeLap = new Array();
+    });
+
+    // Save
+    $("#save").on("click", function () {
+
+        var createdTime = $("#createdTime").text();
+        var createdUser = $("#createdUser").text();
+
+        var model = $("#model").text();
+        var standardCT = $("#standardCT").text();
+        var plant = $("#plant").text();
+        var department = $("#department").text();
+        var line = $("#line").text();
+        var processCode = $("#processCode").text();
+        var processName = $("#processName").text();
+        var manpowerName = $("#manpowerName").text();
+        var employeeNo = $("#employeeNo").text();
+        var leaderName = $("#leaderName").text();
+
+        var totalManPower = $('#ddlListTotalManpower :selected').text();
+        if (totalManPower === 'Select Total Manpower' || totalManPower === '') {
+            $('#Stopwatch').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select total manpower !");
+            return;
+        }
+
+        var quantity = $('#ddlListOutputQuantity :selected').text();
+        if (quantity === 'Select Output Quantity' || quantity === '') {
+            $('#Stopwatch').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select output quantity !");
+            return;
+        }
+
+        var editTime = $("#editTime").text();
+
+        var actualCT = $('#act-ct').val();
+        if (actualCT === '') {
+            $('#Stopwatch').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please fill actual ct !");
+            return;
+        }
+
+        var isOneByOne = urlParameter.isonebyone;
+
+        if (balancingProcessItemId > 0) {
+            // Parse new value for updating data
+            var balancingProcessItem =
+            {
+                CheckId: checkId,
+                Model: model,
+                StandardCT: standardCT,
+                Plant: plant,
+                Department: department,
+                Line: line,
+                ProcessCode: processCode,
+                ProcessName: processName,
+                TotalManPower: totalManPower,
+                ManpowerName: manpowerName,
+                EmployeeNo: employeeNo,
+                LeaderName: leaderName,
+                Quantity: quantity,
+                EditTime: editTime,
+                ActualCT: actualCT,
+                IsOneByOne: isOneByOne,
+                CreatedTime: createdTime,
+                CreatedUser: createdUser
+            }
+
+            // console.log("save / edit", balancingProcessItem);
+
+            // Call server
+            var url = "/BalancingProcesses/Edit/" + balancingProcessItemId;
+            $.post(url, balancingProcessItem, function (response) {
+                // Reset value here
+                var totalManPower = $('#ddlListTotalManpower :selected').text();
+                if (totalManPower != "1")
+                    $('#ddlListTotalManpower').val("1");
+
+                $('#ddlListOutputQuantity').val("");
+                $("#act-ct").val("00");
+                $(".display-remain-time").val("00");
+
+                $('#Stopwatch').modal('hide');
+                loadData();
+            });
+        }
+    });
+
+    // Finish process checking
+    $("#submitProcessChecking").on("click", function () {
+
+        var currentUrl = window.location.href;
+        // console.log("submitProcessChecking", currentUrl);
+
+        // http://localhost:49518/BalancingProcesses/Index?plant=2300&department=DH&line=DH01&employeeNo=EMP002&model=C3000%203N&isOneByOne=false
+        var balancingFinishUrl = currentUrl.replace("Index", "Finish");
+
+        // Call server
+        $.get(balancingFinishUrl, function (response) {
+
+            if (response.Message != null) {
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text(response.Message);
+                return;
+            }
+
+            // Assign value if process checking is completed as parameter to redirect page
+            isProcessCheckingCompeleted = true;
+
+            $('#MessageApplyProcessChecking').modal('show');
+
+            // Assign value label
+            $("#finishCheckID").text(response.CheckID);
+            $("#finishLine").text(response.Line);
+            $("#finishModel").text(response.Model);
+        });
+    });
+
+    // Close messsage process checking
+    $("#closeMessageProcessChecking").on("click", function () {
+
+        // Check if continue process checking
+        if (isContinue) {
+            window.open("/SubmissionHistories/Index", "_self");
+        }
+        else if (isProcessCheckingCompeleted) {
+            window.history.back();
+        }
+    });
+
+    // Edit reason
+    $(document).on("click", "#saveReason", function (e) {
+        e.preventDefault();
+
+        if (currentEditTime != null) {
+
+            // Reset quantity
+            $("[id*=ddlListOutputQuantity] option").each(function () {
+                if (String($(this).val()) == 0) {
+                    $(this).attr('selected', 'selected');
+                }
+            });
+
+            // Reset actual CT
+            $("#act-ct").val("00");
+
+            var totalManPower = $('#ddlListTotalManpower :selected').text();
+            var quantity = $('#ddlListOutputQuantity :selected').text();
+            if (totalManPower === 'Select Total Manpower' && quantity === 'Select Output Quantity') {
+                $('#ModalStopwatch').hide();
+                $('#ModalStopwatchNotification').show();
+            }
+            else if (totalManPower === 'Select Total Manpower' && quantity !== 'Select Output Quantity') {
+                $('#ModalStopwatch').hide();
+                $('#ModalStopwatchNotification').show();
+            }
+            else if (totalManPower !== 'Select Total Manpower' && quantity === 'Select Output Quantity') {
+                $('#ModalStopwatch').hide();
+                $('#ModalStopwatchNotification').show();
+            }
+
+            var balancingProcessItemId = $("#balancingProcessItemId").text();
+            var plant = $("#plant").text();
+            var department = $("#department").text();
+            var line = $("#line").text();
+            var employeeNo = $("#employeeNo").text();
+            var model = $("#model").text();
+            var processCode = $("#processCode").text();
+            var editTime = $("#editTime").text();
+            var isOneByOne = urlParameter.isonebyone;
+
+            var editReason = $("#reason").val();
+            if (editReason === '') {
+                $('#EditReason').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text("Please fill in reason !");
+                return false;
+            }
+
+            // Parse new value
+            var vmReason =
+            {
+                BalancingProcessItemId: balancingProcessItemId,
+                CheckId: checkId,
+                Plant: plant,
+                Department: department,
+                Line: line,
+                EmployeeNo: employeeNo,
+                Model: model,
+                ProcessCode: processCode,
+                EditTime: editTime,
+                IsOneByOne: isOneByOne,
+                EditReason: editReason
+            }
+
+            // console.log("vmReason", vmReason);
+
+            // Call server
+            var url = "/BalancingProcesses/EditReason/" + balancingProcessItemId;
+            $.post(url, vmReason, function (response) {
+
+                if (response.Message != null) {
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    return;
+                }
+
+                // Hide pop up
+                $('#EditReason').modal('hide');
+
+                // Show stopwatch back after edit reason
+                $('#Stopwatch').modal('show');
+            });
+        }
+    });
+
+    // Close Modal stopwatch
+    $("#closeModalStopwatch").on("click", function () {
+
+        // Reset list time lap
+        listTimeLap = new Array();
+
+        // Reset value here
+        var totalManPower = $('#ddlListTotalManpower :selected').text();
+        if (totalManPower != "1")
+            $('#ddlListTotalManpower').val("1");
+
+        $('#ddlListOutputQuantity').val("");
+        $("#act-ct").val("00");
+        $(".display-remain-time").val("00");
+
+        $('#Stopwatch').modal('hide');
+        loadData();
+    });
+
+    // Close Notification Modal
+    $("#closeNotificationModal").on("click", function () {
+
+        $("#NotificationModal").hide();
+        $('#Stopwatch').removeClass('opacity-0');
+        $('#EditReason').removeClass('opacity-0');
+
+    });
+
+    // Close Notification
+    $("#closeNotification").on("click", function () {
+
+        $("#NotificationModal").hide();
+        $('#Stopwatch').removeClass('opacity-0');
+        $('#EditReason').removeClass('opacity-0');
+    });
+
+</script>

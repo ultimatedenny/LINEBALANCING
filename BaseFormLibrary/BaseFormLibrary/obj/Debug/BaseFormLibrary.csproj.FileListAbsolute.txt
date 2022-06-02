@@ -1,0 +1,178 @@
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoButton.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoButtonExport.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoCheckBox.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoCheckedListBox.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoComboBox.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDataGridView.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDataSet.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDateTimePicker.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoFuncButton.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoGroupBox.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoImport.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoLabel.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoLinkLabel.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoListBox.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoListView.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoMenuStrip.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoPanel.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoPictureBox.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoRadioButton.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTabControl.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTextBox.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTimer.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoToolStrip.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._BaseForm.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.Properties.Resources.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._ExportData.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._FindForm.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._Import.resources
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csproj.GenerateResource.cache
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csprojAssemblyReference.cache
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.dll.config
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.pdb
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\DotNetZip.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\itextsharp.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\QrCodeNet.Encoding.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.Barcode.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.DataExport.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.DataExport.ResourceMgr.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.License.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.Barcode.xml
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.License.xml
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csproj.CopyComplete
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.dll
+C:\Users\Admin\Downloads\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.pdb
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.dll.config
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.pdb
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\DotNetZip.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\itextsharp.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\QrCodeNet.Encoding.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.Barcode.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.DataExport.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.DataExport.ResourceMgr.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.License.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.Barcode.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.License.xml
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csprojResolveAssemblyReference.cache
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoButton.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoButtonExport.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoCheckBox.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoCheckedListBox.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoComboBox.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDataGridView.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDataSet.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDateTimePicker.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoFuncButton.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoGroupBox.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoImport.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoLabel.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoLinkLabel.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoListBox.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoListView.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoMenuStrip.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoPanel.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoPictureBox.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoRadioButton.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTabControl.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTextBox.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTimer.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoToolStrip.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._BaseForm.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.Properties.Resources.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._ExportData.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._FindForm.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._Import.resources
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csproj.GenerateResource.Cache
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.dll
+D:\PROJECT RITA\LB SOURCE\Line Balancing - 16 05 2020\File Code Line Balancing\LineBalancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.pdb
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.dll.config
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.pdb
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\DotNetZip.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\itextsharp.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\QrCodeNet.Encoding.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.Barcode.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.DataExport.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.DataExport.ResourceMgr.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.License.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.Barcode.xml
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.License.xml
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csprojResolveAssemblyReference.cache
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoButton.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoButtonExport.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoCheckBox.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoCheckedListBox.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoComboBox.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDataGridView.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDataSet.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDateTimePicker.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoFuncButton.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoGroupBox.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoImport.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoLabel.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoLinkLabel.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoListBox.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoListView.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoMenuStrip.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoPanel.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoPictureBox.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoRadioButton.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTabControl.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTextBox.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTimer.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoToolStrip.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._BaseForm.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.Properties.Resources.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._ExportData.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._FindForm.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._Import.resources
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csproj.GenerateResource.Cache
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.dll
+D:\PROJECT RITA\LINE BALANCING\LineBalancingNew\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.pdb
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.dll.config
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\BaseFormLibrary.pdb
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\DotNetZip.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\itextsharp.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\QrCodeNet.Encoding.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.Barcode.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.DataExport.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.DataExport.ResourceMgr.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.License.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.Barcode.xml
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\bin\Debug\Spire.License.xml
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoButton.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoButtonExport.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoCheckBox.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoCheckedListBox.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoComboBox.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDataGridView.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDataSet.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoDateTimePicker.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoFuncButton.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoGroupBox.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoImport.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoLabel.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoLinkLabel.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoListBox.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoListView.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoMenuStrip.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoPanel.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoPictureBox.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoRadioButton.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTabControl.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTextBox.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoTimer.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.ShimanoToolStrip.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._BaseForm.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.Properties.Resources.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._ExportData.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._FindForm.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary._Import.resources
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csproj.GenerateResource.Cache
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.dll
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.pdb
+D:\PROJECT RITA\2H20\Line Balancing\BaseFormLibrary\BaseFormLibrary\obj\Debug\BaseFormLibrary.csprojResolveAssemblyReference.cache

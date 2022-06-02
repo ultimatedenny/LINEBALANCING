@@ -1,0 +1,178 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Login Page";
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: url(../Images/bg-blur.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    @@media only screen and (max-width: 991px) {
+        body {
+            background: #ffffff;
+        }
+    }
+
+    @@media (max-width: 991px) {
+        .c-login__box {
+            background: 0 0;
+            box-shadow: none;
+            position: static;
+            transform: none;
+            width: 100%;
+            left: inherit;
+            top: 0;
+            bottom: inherit;
+            right: inherit;
+            margin: 0;
+            height: 70vh;
+            padding: 20px 20px 0;
+        }
+
+        .c-login__box-login {
+            background: 0 0;
+            box-shadow: none;
+            transform: none;
+            position: static;
+            right: inherit;
+            padding: 0;
+            height: inherit;
+            overflow-y: auto;
+            max-height: 70vh;
+            width: 100%;
+        }
+    }
+
+    @@media (max-height: 700px) {
+        .c-login__box-login {
+            padding: 2vw 2vw;
+        }
+
+        .c-login__btn-login {
+            margin-top: 35px;
+        }
+    }
+</style>
+
+<div class="c-login__box">
+    <div class=" hidden-sm hidden-xs">
+        <img src="~/Images/shimano-white-logo.png" class="img-responsive c-login__shimano-logo" />
+    </div>
+    <div class="c-login__box-login">
+        <div class="c-login__title-greeting">
+            Have a Nice Day
+        </div>
+        <div class="c-login__subtitle-greeting">
+            Please login to continue
+        </div>
+
+        <div class="c-login__box-form setDelay hideCont">
+
+            <div class="form-group">
+                @Html.TextBox("Username", null, new { @class = "c-login__username form-control input-hide", @placeholder = "Username", required = "required", @id = "username" })
+            </div>
+
+            <div class="form-group margin-t-40 sm-margin-t-30">
+                @Html.Password("Password", null, new { @class = "c-login__password form-control input-hide", @placeholder = "Password", required = "required", @id = "password" })
+            </div>
+
+            <input type="submit" class="c-login__btn-login" name="btnLogin" id="login" value="Sign in!" />
+
+            <div class="text-center margin-t-30">
+                <label class="c-login__label-forgot-password" id="forgotPassword">Forgot Password ?</label>
+                @*@Html.ActionLink("Forgot Password ?", null, null, new { @class = "c-login__label-forgot-password" })*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="c-login__img-curved-logo setDelay hideCont">
+    <img src="~/Images/bottom-shape-logo.png" />
+</div>
+
+
+<div id="NotificationModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog top-10pc">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeNotificationModal"><i class="fas fa-times"></i> </button>
+
+                <img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    <label id="notificationMessage"></label>
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="closeNotification">CLOSE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    // Login
+    $("#login").on("click", function () {
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        if (username === '') {
+            $('#AddEditModal').modal('hide');
+            $('#NotificationModal').modal('show');
+            $('#notificationMessage').text("Please fill username !");
+            return;
+        }
+
+        if (password === '') {
+            $('#AddEditModal').modal('hide');
+            $('#NotificationModal').modal('show');
+            $('#notificationMessage').text("Please fill password !");
+            return;
+        }
+
+        // Parse new value for creating data
+        var login =
+        {
+            Username: username,
+            Password: password
+        }
+
+        // Call server
+        var url = "/Account/Login";
+        $.post(url, login, function (response) {
+            if (response.RedirectTo !== '' && response.RedirectTo != undefined) {
+                window.open(response.RedirectTo, "_self");
+            }
+            else if (response.Message !== '' && response.Message != undefined) {
+                $('#NotificationModal').modal('show');
+                $('#notificationMessage').text(response.Message);
+            }
+        });
+
+    });
+
+    // Forgot password
+    $("#forgotPassword").on("click", function () {
+
+        $('#NotificationModal').modal('show');
+        $('#notificationMessage').text("Please contact your system administrator !");
+
+    });
+
+</script>

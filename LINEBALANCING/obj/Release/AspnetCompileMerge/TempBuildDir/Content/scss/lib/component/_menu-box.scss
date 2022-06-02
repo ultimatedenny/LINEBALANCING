@@ -1,0 +1,391 @@
+﻿.c-menu-box {
+    &__container {
+        display: block;
+        position: fixed;
+        height: auto;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 150px 150px 250px 150px;
+
+        @include xw(1500) {
+            margin: 100px 100px 250px 100px;
+        }
+
+        @include xw(1350) {
+            margin: 100px 50px 100px 50px;
+        }
+
+        @include xw(991) {
+            margin: 0 80px;
+        }
+    }
+
+    &__account-setting {
+        padding: 12px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        background: rgba(255,255,255,0.7);
+        border-radius: 6px;
+    }
+
+
+
+    &__avatar {
+        max-width: 100%;
+        height: 70px;
+        width: 70px;
+    }
+
+    &__profile-mobile {
+        display: none;
+
+        @include xw(991) {
+            display: block;
+            transform: translate(-50%,10%);
+            left: 50%;
+            position: absolute;
+            z-index: 2;
+            width: 100%;
+        }
+    }
+
+    &__avatar-mobile {
+        display: none;
+
+        @include xw(991) {
+            display: block;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto;
+        }
+    }
+
+    &__username {
+        color: #0D3858;
+        font-size: 20px;
+        position: absolute;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        transform: translate(20%, 80%);
+        display: inline;
+
+        @include xw(991) {
+            position: static;
+            transform: none;
+            text-align: center;
+            display: block;
+            font-size: 23px;
+            margin-top: 10px;
+        }
+    }
+
+    &__setting-master {
+        width: 20%;
+    }
+
+    &__master-data {
+        padding: 10px;
+        background: #02BE25;
+        max-width: 100%;
+        width: 70px;
+        height: 70px;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
+
+    &__setting-account {
+        padding: 10px;
+        background: $color-base-navy;
+        max-width: 100%;
+        width: 70px;
+        height: 70px;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        cursor: pointer;
+    }
+
+
+    &__main-menu {
+        margin-top: 20px;
+        padding: 50px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        background: rgba(255,255,255,0.2);
+        border-radius: 6px;
+
+        @include xw(991) {
+            box-shadow: none;
+            background: none;
+            border-radius: 0;
+            padding: 0;
+            transform: translate(-50%, 95%);
+            margin-top: 0px;
+            position: absolute;
+            left: 50%;
+            width: 100%;
+        }
+
+        @include xw(650) {
+            transform: translate(-50%, 100%);
+        }
+    }
+
+    &__item-main-menu {
+        padding: 35px;
+        max-width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        cursor: pointer;
+
+
+        @include xw(1300) {
+            padding: 25px;
+        }
+
+
+        @include xw(991) {
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 0px;
+            padding-right: 0px;
+            width: 75%;
+        }
+    }
+
+    &--item-main-menu-balancing {
+        background: $color-base;
+    }
+
+    &--item-main-menu-summary {
+        background: #00BDCD;
+    }
+
+    &--item-main-menu-dashboard {
+        background: #FF7000;
+    }
+
+    &--item-main-menu-submission {
+        background: #278E3A;
+    }
+
+    &__item-main-menu-img {
+        padding: 20px;
+        margin: 0 auto;
+        display: block;
+        width: 10vw;
+
+        @include xw(1300) {
+            padding: 5px;
+        }
+
+        @include xw(991) {
+            width: 17vw;
+            padding: 5px 20px 5px 20px;
+        }
+    }
+
+    &__item-main-menu-name {
+        color: $color-white;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        margin-top: 15px;
+
+        @include xw(1350) {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        @include xw(1100) {
+            font-size: 11px;
+        }
+
+        @include xw(991) {
+            margin-top: 0;
+        }
+
+        @include xw(700) {
+            font-size: 12px;
+        }
+    }
+
+    &__total-notif {
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        border: 2px solid $color-base;
+        background: #fff;
+        position: absolute;
+        top: -15px;
+        right: 0;
+        color: $color-base;
+        font-size: 20px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 2.3;
+        font-weight: 600;
+    }
+
+    &__system-name {
+        font-size: 40px;
+        color: $color-white;
+        font-weight: 600;
+        position: fixed;
+        bottom: 12%;
+        text-align: center;
+        width: 100%;
+    }
+
+
+    &__top-shape-title {
+        display: none;
+
+        @include xw(991) {
+            display: block;
+            top: 0;
+            width: 100%;
+            height: 210px;
+            position: fixed;
+            z-index: -1;
+        }
+    }
+
+    &__title-line-balancing {
+        text-align: center;
+        font-weight: 800;
+        color: #fff;
+        font-size: 40px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    &__bottom-shape {
+        display: none;
+
+        @include xw(991) {
+            display: block;
+            bottom: 0;
+            width: 100%;
+            height: 320px;
+            position: fixed;
+            z-index: -1;
+        }
+    }
+    /*Floating*/
+    &__f-btn-main {
+        display: block;
+        position: fixed;
+        border-radius: 100%;
+        width: 80px;
+        height: 80px;
+        background: $color-base-navy;
+        border: 2px solid $color-base-navy;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        bottom: 15px;
+        right: 15px;
+        color: $color-white;
+        font-size: 26px;
+        outline: none;
+    }
+
+    &__f-btn-main-item {
+        display: none;
+    }
+
+    &__f-btn-item-one {
+        position: fixed;
+        right: 15px;
+        width: 80px;
+        height: 80px;
+        bottom: 125px;
+        background: $color-base-navy;
+        border: 2px solid $color-base-navy;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        border-radius: 100%;
+        animation: fadein 2s;
+        -moz-animation: fadein 2s; /* Firefox */
+        -webkit-animation: fadein 2s; /* Safari and Chrome */
+        -o-animation: fadein 2s; /* Opera */
+        padding: 10px;
+
+        img {
+            width: 40px;
+            height: 40px;
+            margin: 0px auto;
+            display: block;
+            position: absolute;
+            transform: translate(25%, 25%);
+        }
+    }
+
+    &__f-btn-item-two {
+        position: fixed;
+        right: 15px;
+        width: 80px;
+        height: 80px;
+        bottom: 215px;
+        background: $color-base-navy;
+        border: 2px solid $color-base-navy;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        border-radius: 100%;
+        animation: fadein 2s;
+        -moz-animation: fadein 2s; /* Firefox */
+        -webkit-animation: fadein 2s; /* Safari and Chrome */
+        -o-animation: fadein 2s; /* Opera */
+        padding: 10px;
+
+        img {
+            width: 40px;
+            height: 40px;
+            margin: 0px auto;
+            display: block;
+            position: absolute;
+            transform: translate(25%, 25%);
+        }
+    }
+}
+
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

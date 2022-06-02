@@ -1,0 +1,190 @@
+/// <reference path="_mixins.scss" />
+/// <reference path="_colors.scss" />
+/// <reference path="_variable.scss" />
+/// <reference path="_component.scss" />
+/// <reference path="_helpers.scss" />
+
+
+/*===========================================
+   Base Style (Standart Style)
+  ===========================================
+*/
+html {
+    overflow: hidden;
+    font-size: 62.5%;
+
+
+    &::selection {
+        color: $color-white;
+        background: $color-base;
+        text-shadow: none;
+    }
+
+    &::-webkit-selection {
+        color: $color-white;
+        background: $color-base;
+        text-shadow: none;
+    }
+
+    &::-moz-selection {
+        color: $color-white;
+        background: $color-base;
+        text-shadow: none;
+    }
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #4DFFFF;
+        opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder { 
+        color: #4DFFFF;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+        color: #4DFFFF;
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+}
+
+html, html a, body {
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    font-size: 62.5%;
+}
+
+body {
+    font-family: $font-family-base !important;
+    color: $color-base-navy;
+    transform:none !important;
+}
+
+select option{
+    color:$color-base-navy !important;
+}
+select, option {
+    color: $color-base-navy !important;
+}
+
+p {
+    @include font($size: $font-size-15, $weight: $font-weight-300);
+    color: $color-base-black;
+    line-height: 2.4rem;
+    letter-spacing: 0.03px;
+
+    @include xw(500) {
+        font-size: 1.3rem;
+    }
+}
+
+
+em,
+li,
+li a {
+    /*@include font($size: $font-size-15, $weight: $font-weight-300, $family: $font-family-base);*/
+    @include font($size: $font-size-15, $weight: $font-weight-300);
+    /*color: $color-dark;*/
+    color: $color-base-black;
+}
+
+a {
+    /*@include font($family: $font-family-base);*/
+    color: $color-base-black;
+    outline: 0;
+
+    &:focus,
+    &:hover,
+    &:active {
+        outline: 0;
+        color: $color-base;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /*@include font($weight: $font-weight-300, $family: $font-family-base);*/
+    @include font($weight: $font-weight-300);
+    /*color: $color-dark;*/
+    color: $color-base-black;
+    /*line-height: $line-height-base;*/
+    line-height: 1.6;
+    margin: 0 0 15px;
+
+    > a {
+        /*color: $color-dark;*/
+        color: $color-base-black;
+
+        &:hover {
+            color: $color-base;
+            text-decoration: none;
+        }
+
+        &:focus {
+            text-decoration: none;
+        }
+    }
+}
+@include nw(600) {
+    .show-message {
+        display: none;
+    }
+
+    /*.show-message-potrait {
+        display: none;
+    }*/
+}
+@include xw(599) {
+    .hide-content {
+        display: none;
+    }
+
+    /*.show-message-potrait {
+        display: none;
+    }*/
+
+    .show-message {
+        display: block;
+        position: absolute;
+        text-align: center;
+        font-size: 4vw;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $color-base-orange;
+
+        img {
+            width: 60% !important;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+
+
+    /*@media (max-width:991px) and (orientation:landscape) {
+        .hide-content {
+            display: none;
+        }
+
+        .show-message-potrait {
+            display: block;
+            position: absolute;
+            text-align: center;
+            font-size: 4vw;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: $color-base-orange;
+
+            img {
+                width: 60% !important;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }*/

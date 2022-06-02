@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @* Main Css *@
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/main.min.css" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="hide-content">
+        @RenderBody()
+    </div>
+    <div class="show-message">
+        <img src="~/Images/il_engineers.png" class="img-responsive margin-b-20" />
+        Best Resolution Above Width 600 pixel
+    </div>
+
+    <!--JAVASCRIPT FUNCTION-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        //function enter btn login
+        $(function () {
+            $('#password').keypress(function (e) {
+                var key = e.which;
+                if (key == 13) {
+                    $('#login').click();
+                    return false;
+                }
+            });
+        });
+
+        window.onorientationchange = function () {
+            window.location.reload();
+        }
+
+        if (screen.width < 992) {
+            $(document).ready(function () {
+                $(".input-hide").focus(function () {
+                    $('.c-login__img-curved-logo').hide();
+                    //return false;
+                });
+
+                $(".input-hide").blur(function () {
+                    if (!$(this).val()) {
+                        $('.c-login__img-curved-logo').show();
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

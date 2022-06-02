@@ -1,0 +1,151 @@
+﻿@model LineBalancing.ViewModels.VMSubmissionHistory
+
+@{
+    if (Model == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@foreach (var item in Model.DTOLineBalancingReports)
+{
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+        <div class="l-box__item">
+
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="height-50">
+                        <i class="fas fa-circle @Html.DisplayFor(modelItem => item.StatusView)"></i>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-5 col-xs-5">
+                    <div class="height-50">
+                        <div class="h-text--key-name">
+                            @Html.DisplayFor(modelItem => item.CheckID)
+                            <span class="display-block">
+                                @Html.DisplayFor(modelItem => item.CheckingPeriode)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-2 col-xs-3">
+                    @* btn Checking *@
+                    <div class="height-50">
+
+                        @if (item.Status == "IN PROGRESS" || item.Status == "NOT RUNNING")
+                        {
+                            <button type="button" class="btn-base-brd btn-base-sm radius-6 fweight-600 position-c-object" id="btnContinue" data-id="@Html.DisplayFor(modelItem => item.CheckID)" data-dom-cache="false">
+                                Continue
+                            </button>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="height-50">
+                        <a data-toggle="collapse" href="#@Html.DisplayFor(modelItem => item.CheckID)" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                    </div>
+                </div>
+            </div>
+
+            @* Collapse Item *@
+            <div class="row">
+                <div id="@Html.DisplayFor(modelItem => item.CheckID)" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="l-box__item-collapse">
+                            <div class="row space-row-5">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                            <td class="h-text__std-16-navy-b">:  @Html.DisplayFor(modelItem => item.Periode)</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                            <td class="h-text__std-16-navy-b">:  @Html.DisplayFor(modelItem => item.Department)</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                            <td class="h-text__std-16-navy-b">:  @Html.DisplayFor(modelItem => item.Model)</td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                        <tr>
+                                            <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                            <td class="h-text__std-16-navy-b">:  @Html.DisplayFor(modelItem => item.Plant)</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                            <td class="h-text__std-16-navy-b">:  @Html.DisplayFor(modelItem => item.Line)</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total Man</td>
+                                            <td class="h-text__std-16-navy-b">:  @Html.DisplayFor(modelItem => item.TotalManPower)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <hr class="dotted-line-bottom-collapse" />
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="h-text__leader-submit-name">
+                                        <span>
+                                            <i class="fas fa-user-circle color-base"></i>
+                                        </span>
+                                        <span class="color-grey">
+                                            Leader
+                                        </span>
+                                        <span>
+                                            @Html.DisplayFor(modelItem => item.Leader)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="h-text__leader-submit-name">
+                                        <span>
+                                            <i class="fas fa-list-alt color-base-green"></i>
+                                        </span>
+                                        <span class="color-grey">
+                                            Submit By
+                                        </span>
+                                        <span>
+                                            @Html.DisplayFor(modelItem => item.Leader)
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}

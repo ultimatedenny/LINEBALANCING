@@ -1,0 +1,191 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Main Menu Page";
+}
+
+<style>
+    html, body
+    {
+        height: 100%;
+    }
+
+    body
+    {
+        background: url(../Images/bg-blur.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    @@media only screen and (max-width: 991px)
+    {
+        body
+        {
+            background: #ffffff;
+        }
+    }
+</style>
+
+@* Mobile View : Top Shape & Title system *@
+<div>
+    <img src="~/Images/top-system-title.png" class="c-menu-box__top-shape-title" />
+    <div class="c-menu-box__profile-mobile">
+        <div class="c-menu-box__title-line-balancing">
+            - Line Balancing -
+        </div>
+        <div>
+            <img src="~/Images/ic_avatar.png" class="c-menu-box__avatar-mobile" />
+        </div>
+        <div class="c-menu-box__username">
+            Hi, Hilarius
+        </div>
+    </div>
+</div>
+
+
+
+<div class="c-menu-box__container">
+    @* Desktop  Account Box Setting Menu *@
+    <div class="c-menu-box__account-setting hidden-sm hidden-xs">
+        <div class="row">
+            <div class="col-lg-9 col-md-8">
+                <img src="~/Images/ic_avatar.png" class="c-menu-box__avatar" />
+                <div class="c-menu-box__username">
+                    Hi, Hilarius
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-4">
+                <div class="pull-right">
+                    <img src="~/Images/ic_masterdata.png" class="c-menu-box__master-data" />
+
+                    <img src="~/Images/ic_setting.png" class="c-menu-box__setting-account" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*Account Box Main Menu *@
+    <div class="c-menu-box__main-menu">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="c-menu-box__item-main-menu c-menu-box--item-main-menu-balancing sm-float-r" onclick="window.location='@Url.Action("SelectLineModel", "FrontEnd")'">
+                    <img src="~/Images/ic_balancing.png" class="c-menu-box__item-main-menu-img" />
+                    <div class="c-menu-box__item-main-menu-name">
+                        BALANCING CHECK
+                    </div>
+
+                    <div class="c-menu-box__total-notif">
+                        5
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="c-menu-box__item-main-menu c-menu-box--item-main-menu-summary sm-float-l" onclick="window.location='@Url.Action("SummaryDataModel","FrontEnd")'">
+                    <img src="~/Images/ic_summary.png" class="c-menu-box__item-main-menu-img" />
+                    <div class="c-menu-box__item-main-menu-name">
+                        SUMMARY REPORT
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 md-margin-t-30">
+                <div class="c-menu-box__item-main-menu c-menu-box--item-main-menu-dashboard sm-float-r">
+                    <img src="~/Images/ic_dashboard.png" class="c-menu-box__item-main-menu-img" />
+                    <div class="c-menu-box__item-main-menu-name">
+                        DASHBOARD HISTORY
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 md-margin-t-30">
+                <div class="c-menu-box__item-main-menu c-menu-box--item-main-menu-submission sm-float-l" onclick="window.location='@Url.Action("SubmissionHistory", "FrontEnd")'">
+                    <img src="~/Images/ic_submission.png" class="c-menu-box__item-main-menu-img" />
+                    <div class="c-menu-box__item-main-menu-name">
+                        SUBMISSION HISTORY
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@* Side Menu Setting *@
+<div id="mySidenavSetting" class="sidenav">
+    <a href="javascript:void(0)" class="closebtnSetting"><i class="fas fa-times-circle"></i></a>
+    @Html.ActionLink("My Account", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Change Password", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("User Role", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Change Password", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Upload Schedule", "MainMenu", "FrontEnd")
+
+    <div class="box-logout">
+        <button type="submit" class="btn-logout" onclick="window.location='@Url.Action("Index", "FrontEnd")'">
+            <i class="fas fa-sign-out-alt fa-fw"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+@* Side Menu Master Data *@
+<div id="mySidenavMaster" class="sidenav">
+    <a href="javascript:void(0)" class="closebtnMaster"><i class="fas fa-times-circle"></i></a>
+    @Html.ActionLink("Data Plant", "MasterDataPlant", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Data Line", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Data Department", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Data Man Power", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Data Process", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Data Process", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Data Model Product", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Data Standart C/T", "MainMenu", "FrontEnd")
+    <hr />
+    @Html.ActionLink("Data Leader", "MainMenu", "FrontEnd")
+    <hr />
+
+    @Html.ActionLink("Data Leader vs Line", "MainMenu", "FrontEnd")
+    <hr />
+
+    @Html.ActionLink("Data Man vs Process", "MainMenu", "FrontEnd")
+
+</div>
+
+
+@* Title Line Balancing Bottom (Desktop View) *@
+<div class="c-menu-box__system-name hidden-sm hidden-xs">
+    - LINE BALANCING -
+</div>
+
+
+@* Shape Bottom (Mobile View) *@
+<img src="~/Images/bottom-shape.png" class="c-menu-box__bottom-shape" />
+
+
+@* Floating Action Button (Mobile View) *@
+<div class="hidden-lg hidden-md">
+    <button type="button" class="c-menu-box__f-btn-main"><i class="fas fa-plus"></i></button>
+    <div class="c-menu-box__f-btn-main-item">
+        <div class="c-menu-box__f-btn-item-one">
+            <img src="~/Images/ic_masterdata.png" />
+        </div>
+        <div class="c-menu-box__f-btn-item-two">
+            <img src="~/Images/ic_setting.png" />
+        </div>
+    </div>
+</div>
+

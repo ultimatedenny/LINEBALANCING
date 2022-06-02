@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5376AB19-0194-45A8-B3D7-342B6C8296D0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LineBalancing</RootNamespace>
+    <AssemblyName>LineBalancing</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="ApplicationContext-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=%28LocalDb%29\MSSQLLocalDB%3bInitial Catalog=LineBalancing.Context.ApplicationContext%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\ApplicationContext-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.94.2\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.4.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.4.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.4.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.4.0\lib\net45\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.3.0\lib\net45\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Authorization\CustomAuthorization.cs" />
+    <Compile Include="Authorization\CustomRoleProvider.cs" />
+    <Compile Include="Constanta\Constanta.cs" />
+    <Compile Include="Context\ApplicationContext.cs" />
+    <Compile Include="Context\ApplicationUser.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BalancingProcessesController.cs" />
+    <Compile Include="Controllers\BalancingsController.cs" />
+    <Compile Include="Controllers\FrontEndController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\LeaderLinesController.cs" />
+    <Compile Include="Controllers\LeadersController.cs" />
+    <Compile Include="Controllers\LineProcessesController.cs" />
+    <Compile Include="Controllers\LinesController.cs" />
+    <Compile Include="Controllers\MainMenuController.cs" />
+    <Compile Include="Controllers\ManpowerProcessesController.cs" />
+    <Compile Include="Controllers\ManPowersController.cs" />
+    <Compile Include="Controllers\ModelController.cs" />
+    <Compile Include="Controllers\ModelProcessesController.cs" />
+    <Compile Include="Controllers\PlantsController.cs" />
+    <Compile Include="Controllers\ProcessesController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\SubmissionHistoriesController.cs" />
+    <Compile Include="Controllers\SummaryDataController.cs" />
+    <Compile Include="DTOs\DTOBalancing.cs" />
+    <Compile Include="DTOs\DTOBalancingProcessItem.cs" />
+    <Compile Include="DTOs\DTOLineBalancingReport.cs" />
+    <Compile Include="DTOs\DTOMonthlySchedule.cs" />
+    <Compile Include="DTOs\DTORegisteredUser.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AuthenticationHelper.cs" />
+    <Compile Include="Helpers\BalancingProcessHelper.cs" />
+    <Compile Include="Helpers\DistinctHelper.cs" />
+    <Compile Include="Helpers\ExtensionHelper.cs" />
+    <Compile Include="Helpers\IDHelper.cs" />
+    <Compile Include="Helpers\StatusHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Interfaces\ICrud.cs" />
+    <Compile Include="Interfaces\IModifier.cs" />
+    <Compile Include="Migrations\201911111535425_reinitialMigration.cs" />
+    <Compile Include="Migrations\201911111535425_reinitialMigration.Designer.cs">
+      <DependentUpon>201911111535425_reinitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911151638216_addDateFromAndDateTo.cs" />
+    <Compile Include="Migrations\201911151638216_addDateFromAndDateTo.Designer.cs">
+      <DependentUpon>201911151638216_addDateFromAndDateTo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911260542429_changeLengthLine.cs" />
+    <Compile Include="Migrations\201911260542429_changeLengthLine.Designer.cs">
+      <DependentUpon>201911260542429_changeLengthLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912190107053_addEditReason.cs" />
+    <Compile Include="Migrations\201912190107053_addEditReason.Designer.cs">
+      <DependentUpon>201912190107053_addEditReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912190107552_modifyEditReason.cs" />
+    <Compile Include="Migrations\201912190107552_modifyEditReason.Designer.cs">
+      <DependentUpon>201912190107552_modifyEditReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912191431391_removeOldProperty.cs" />
+    <Compile Include="Migrations\201912191431391_removeOldProperty.Designer.cs">
+      <DependentUpon>201912191431391_removeOldProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912191440278_addNewProperty.cs" />
+    <Compile Include="Migrations\201912191440278_addNewProperty.Designer.cs">
+      <DependentUpon>201912191440278_addNewProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912191506130_addNewProperties.cs" />
+    <Compile Include="Migrations\201912191506130_addNewProperties.Designer.cs">
+      <DependentUpon>201912191506130_addNewProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002120112221_addEditReasonProperties.cs" />
+    <Compile Include="Migrations\202002120112221_addEditReasonProperties.Designer.cs">
+      <DependentUpon>202002120112221_addEditReasonProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002120520470_modifyEditReason1.cs" />
+    <Compile Include="Migrations\202002120520470_modifyEditReason1.Designer.cs">
+      <DependentUpon>202002120520470_modifyEditReason1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002120645067_removeProcessCodeEditReason.cs" />
+    <Compile Include="Migrations\202002120645067_removeProcessCodeEditReason.Designer.cs">
+      <DependentUpon>202002120645067_removeProcessCodeEditReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003070559119_pendingMigration.cs" />
+    <Compile Include="Migrations\202003070559119_pendingMigration.Designer.cs">
+      <DependentUpon>202003070559119_pendingMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003232246012_modifyLBReportModel.cs" />
+    <Compile Include="Migrations\202003232246012_modifyLBReportModel.Designer.cs">
+      <DependentUpon>202003232246012_modifyLBReportModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003232247306_pendingMigration1.cs" />
+    <Compile Include="Migrations\202003232247306_pendingMigration1.Designer.cs">
+      <DependentUpon>202003232247306_pendingMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004051937483_addEditTime.cs" />
+    <Compile Include="Migrations\202004051937483_addEditTime.Designer.cs">
+      <DependentUpon>202004051937483_addEditTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006250519558_modify_data_type_on_line_process_model.cs" />
+    <Compile Include="Migrations\202006250519558_modify_data_type_on_line_process_model.Designer.cs">
+      <DependentUpon>202006250519558_modify_data_type_on_line_process_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011262026101_ModifyLBReport.cs" />
+    <Compile Include="Migrations\202011262026101_ModifyLBReport.designer.cs">
+      <DependentUpon>202011262026101_ModifyLBReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102160837269_updatemodel.cs" />
+    <Compile Include="Migrations\202102160837269_updatemodel.designer.cs">
+      <DependentUpon>202102160837269_updatemodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\BalancingProcess.cs" />
+    <Compile Include="Models\BalancingProcessItem.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\EditReason.cs" />
+    <Compile Include="Models\LBReport.cs" />
+    <Compile Include="Models\Leader.cs" />
+    <Compile Include="Models\LeaderLine.cs" />
+    <Compile Include="Models\Line.cs" />
+    <Compile Include="Models\LineProcess.cs" />
+    <Compile Include="Models\ManPower.cs" />
+    <Compile Include="Models\ManpowerProcess.cs" />
+    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\ModelProcess.cs" />
+    <Compile Include="Models\MonthlySchedule.cs" />
+    <Compile Include="Models\Plant.cs" />
+    <Compile Include="Models\Process.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\VMModel.cs" />
+    <Compile Include="ViewModels\VMBalancing.cs" />
+    <Compile Include="ViewModels\VMBalancingProcess.cs" />
+    <Compile Include="ViewModels\VMDepartment.cs" />
+    <Compile Include="ViewModels\VMLeader.cs" />
+    <Compile Include="ViewModels\VMLeaderLine.cs" />
+    <Compile Include="ViewModels\VMLine.cs" />
+    <Compile Include="ViewModels\VMLineProcess.cs" />
+    <Compile Include="ViewModels\VMManpower.cs" />
+    <Compile Include="ViewModels\VMManpowerProcess.cs" />
+    <Compile Include="ViewModels\VMMenu.cs" />
+    <Compile Include="ViewModels\VMModelProcess.cs" />
+    <Compile Include="ViewModels\VMMonthlySchedule.cs" />
+    <Compile Include="ViewModels\VMPlant.cs" />
+    <Compile Include="ViewModels\VMProcess.cs" />
+    <Compile Include="ViewModels\VMReason.cs" />
+    <Compile Include="ViewModels\VMRegister.cs" />
+    <Compile Include="ViewModels\VMSubmissionHistory.cs" />
+    <Compile Include="ViewModels\VMSummaryData.cs" />
+    <Compile Include="ViewModels\VMCurrentUser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-select.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\main.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\slick-theme.css" />
+    <Content Include="Content\slick.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\calibril.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\Quicksand-Regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="gulpfile.js" />
+    <Content Include="Images\bg-blur.jpg" />
+    <Content Include="Images\bottom-shape-logo.png" />
+    <Content Include="Images\bottom-shape.png" />
+    <Content Include="Images\ic_adddata.png" />
+    <Content Include="Images\ic_avatar.png" />
+    <Content Include="Images\ic_balancing.png" />
+    <Content Include="Images\ic_dashboard.png" />
+    <Content Include="Images\ic_export.png" />
+    <Content Include="Images\ic_failedmodal.png" />
+    <Content Include="Images\ic_import.png" />
+    <Content Include="Images\ic_masterdata.png" />
+    <Content Include="Images\ic_setting.png" />
+    <Content Include="Images\ic_submission.png" />
+    <Content Include="Images\ic_successmodal.png" />
+    <Content Include="Images\ic_summary.png" />
+    <Content Include="Images\il_engineers.png" />
+    <Content Include="Images\origin\bg-blur-1.jpg" />
+    <Content Include="Images\origin\bg-no-blur.jpg" />
+    <Content Include="Images\shimano-white-logo-2.png" />
+    <Content Include="Images\shimano-white-logo.png" />
+    <Content Include="Images\top-system-title.png" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\bootstrap-select.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\scss\lib\component\_buttons.scss" />
+    <Content Include="Content\scss\lib\component\_login.scss" />
+    <Content Include="Content\scss\lib\helpers\_all-helpers.scss" />
+    <Content Include="Content\scss\lib\helpers\_text.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_animated.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_bordered-pulled.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_brands.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_core.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_fixed-width.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_fontawesome.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_icons.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_larger.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_list.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_mixins.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_regular.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_rotated-flipped.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_screen-reader.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_shims.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_solid.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_stacked.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_v4-shims.scss" />
+    <Content Include="Content\scss\lib\plugins\fontawesome\_variables.scss" />
+    <Content Include="Content\scss\lib\_base.scss" />
+    <Content Include="Content\scss\lib\_colors.scss" />
+    <Content Include="Content\scss\lib\_mixins.scss" />
+    <Content Include="Content\scss\lib\_variable.scss" />
+    <Content Include="Content\scss\main.scss" />
+    <Content Include="fonts\calibril.eot" />
+    <Content Include="fonts\calibril.otf" />
+    <Content Include="fonts\calibril.ttf" />
+    <Content Include="fonts\calibril.woff" />
+    <Content Include="fonts\calibril.woff2" />
+    <Content Include="fonts\Quicksand-Regular.eot" />
+    <Content Include="fonts\Quicksand-Regular.otf" />
+    <Content Include="fonts\Quicksand-Regular.ttf" />
+    <Content Include="fonts\Quicksand-Regular.woff" />
+    <Content Include="fonts\Quicksand-Regular.woff2" />
+    <Content Include="Scripts\helper.js" />
+    <Content Include="Scripts\slick.js" />
+    <Content Include="Scripts\timer.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Views\LeaderLines\Index.cshtml" />
+    <Content Include="Views\LeaderLines\Scroll.cshtml" />
+    <Content Include="Views\Processes\Index.cshtml" />
+    <Content Include="Views\Processes\Scroll.cshtml" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="Content\scss\lib\component\_menu-box.scss" />
+    <Content Include="Content\scss\lib\component\_sidemenu.scss" />
+    <Content Include="Content\scss\lib\component\_modal.scss" />
+    <Content Include="Content\scss\lib\Layout\_box.scss" />
+    <Content Include="Content\scss\lib\component\_fab.scss" />
+    <Content Include="Content\scss\lib\component\_form.scss" />
+    <Content Include="Content\scss\lib\component\_status.scss" />
+    <Content Include="Content\scss\lib\component\_timer.scss" />
+    <Content Include="Content\scss\lib\component\_import-upload.scss" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\newlinebalancing - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\newlinebalancing - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\testingwebappxxx - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\testingwebappxxx - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\FrontEnd\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\FrontEnd\MainMenu.cshtml" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="Views\Shared\_LayoutAfterLogin.cshtml" />
+    <Content Include="Views\FrontEnd\SelectLineModel.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\FrontEnd\MasterDataPlant.cshtml" />
+    <Content Include="Views\MainMenu\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Plants\Index.cshtml" />
+    <Content Include="Views\FrontEnd\ListProcessChecking.cshtml" />
+    <Content Include="Views\FrontEnd\SubmissionHistory.cshtml" />
+    <Content Include="Views\FrontEnd\SummaryDataModel.cshtml" />
+    <Content Include="Views\FrontEnd\SummaryDataModelDetail.cshtml" />
+    <Content Include="Views\FrontEnd\SummaryDataProcess.cshtml" />
+    <Content Include="Views\Plants\Scroll.cshtml" />
+    <Content Include="Views\FrontEnd\ListProcessChecking - slide.cshtml" />
+    <Content Include="Views\Lines\Index.cshtml" />
+    <Content Include="Views\Lines\Scroll.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Departments\Scroll.cshtml" />
+    <Content Include="Views\Leaders\Index.cshtml" />
+    <Content Include="Views\Leaders\Scroll.cshtml" />
+    <Content Include="Views\ManPowers\Index.cshtml" />
+    <Content Include="Views\ManPowers\Scroll.cshtml" />
+    <Content Include="Views\LineProcesses\Index.cshtml" />
+    <Content Include="Views\LineProcesses\Scroll.cshtml" />
+    <Content Include="Views\ManpowerProcesses\Scroll.cshtml" />
+    <Content Include="Views\Balancings\Index.cshtml" />
+    <Content Include="Views\Balancings\Scroll.cshtml" />
+    <Content Include="Views\BalancingProcesses\Index.cshtml" />
+    <Content Include="Views\BalancingProcesses\Scroll.cshtml" />
+    <Content Include="Views\ManpowerProcesses\Index.cshtml" />
+    <Content Include="Views\SubmissionHistories\Index.cshtml" />
+    <Content Include="Views\SubmissionHistories\Scroll.cshtml" />
+    <Content Include="Views\SummaryData\Index.cshtml" />
+    <Content Include="Views\SummaryData\Scroll.cshtml" />
+    <Content Include="Views\SummaryData\ModelDetail.cshtml" />
+    <Content Include="Views\SummaryData\ProcessDetail.cshtml" />
+    <Content Include="Views\SummaryData\Detail.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\ModelProcesses\Index.cshtml" />
+    <Content Include="Views\ModelProcesses\Scroll.cshtml" />
+    <Content Include="Views\Account\RegisterScroll.cshtml" />
+    <Content Include="Views\Model\Index.cshtml" />
+    <Content Include="Views\Model\Scroll.cshtml" />
+    <Content Include="Views\Schedule\Scroll.cshtml" />
+    <Content Include="Views\Schedule\Detail.cshtml" />
+    <Content Include="Views\Schedule\ScheduleDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="UploadFile\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseFormLibrary\BaseFormLibrary\BaseFormLibrary.csproj">
+      <Project>{c27d0377-fe46-4ec4-a08f-1d402956b3d5}</Project>
+      <Name>BaseFormLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201911111535425_reinitialMigration.resx">
+      <DependentUpon>201911111535425_reinitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911151638216_addDateFromAndDateTo.resx">
+      <DependentUpon>201911151638216_addDateFromAndDateTo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911260542429_changeLengthLine.resx">
+      <DependentUpon>201911260542429_changeLengthLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912190107053_addEditReason.resx">
+      <DependentUpon>201912190107053_addEditReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912190107552_modifyEditReason.resx">
+      <DependentUpon>201912190107552_modifyEditReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912191431391_removeOldProperty.resx">
+      <DependentUpon>201912191431391_removeOldProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912191440278_addNewProperty.resx">
+      <DependentUpon>201912191440278_addNewProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912191506130_addNewProperties.resx">
+      <DependentUpon>201912191506130_addNewProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002120112221_addEditReasonProperties.resx">
+      <DependentUpon>202002120112221_addEditReasonProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002120520470_modifyEditReason1.resx">
+      <DependentUpon>202002120520470_modifyEditReason1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002120645067_removeProcessCodeEditReason.resx">
+      <DependentUpon>202002120645067_removeProcessCodeEditReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003070559119_pendingMigration.resx">
+      <DependentUpon>202003070559119_pendingMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003232246012_modifyLBReportModel.resx">
+      <DependentUpon>202003232246012_modifyLBReportModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003232247306_pendingMigration1.resx">
+      <DependentUpon>202003232247306_pendingMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004051937483_addEditTime.resx">
+      <DependentUpon>202004051937483_addEditTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006250519558_modify_data_type_on_line_process_model.resx">
+      <DependentUpon>202006250519558_modify_data_type_on_line_process_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011262026101_ModifyLBReport.resx">
+      <DependentUpon>202011262026101_ModifyLBReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102160837269_updatemodel.resx">
+      <DependentUpon>202102160837269_updatemodel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53432</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:84</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,111 @@
+﻿.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    background-color: #F9F9F9;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 20px 8px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: $color-base-navy;
+    display: block;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.sidenav a:hover {
+    color: $color-base-orange;
+}
+
+.sidenav hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.sidenav .closebtnSetting,
+.sidenav .closebtnMaster {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: $color-base-navy;
+}
+
+.width-side {
+    width: 280px;
+}
+
+.box-logout {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    bottom: 0;
+}
+
+.btn-logout {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #FF4848), color-stop(1, #FF4848));
+    background: -moz-linear-gradient(top, #FF4848 5%, #FF4848 100%);
+    background: -webkit-linear-gradient(top, #FF4848 5%, #FF4848 100%);
+    background: -o-linear-gradient(top, #FF4848 5%, #FF4848 100%);
+    background: -ms-linear-gradient(top, #FF4848 5%, #FF4848 100%);
+    background: linear-gradient(to bottom, #FF4848 5%, #FF4848 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF4848', endColorstr='##FF4848',GradientType=0);
+    background-color: #FF4848;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #FF4848;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff !important;
+    font-family: Arial;
+    font-size: 25px;
+    padding: 16px 30px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    outline: none;
+
+    &:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #FF4848), color-stop(1, #FF4848));
+        background: -moz-linear-gradient(top, #FF4848 5%, #FF4848 100%);
+        background: -webkit-linear-gradient(top, #FF4848 5%, #FF4848 100%);
+        background: -o-linear-gradient(top, #FF4848 5%, #FF4848 100%);
+        background: -ms-linear-gradient(top, #FF4848 5%, #FF4848 100%);
+        background: linear-gradient(to bottom, #FF4848 5%, #FF4848 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF4848', endColorstr='#FF4848',GradientType=0);
+        background-color: #FF4848;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    @include xw(991) {
+        padding: 14px 28px;
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}

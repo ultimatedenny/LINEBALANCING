@@ -1,0 +1,195 @@
+﻿.c-fab {
+    &__main {
+        display: block;
+        position: fixed;
+        border-radius: 100%;
+        width: 80px;
+        height: 80px;
+        background: $color-base-navy;
+        border: 2px solid $color-base-navy;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.24);
+        bottom: 25px;
+        right: 25px;
+        color: $color-white;
+        font-size: 26px;
+        outline: none;
+        cursor: pointer;
+
+        @include xw(991) {
+            bottom: 15px;
+            right: 15px;
+            width: 65px;
+            height: 65px;
+            font-size: 18px;
+        }
+    }
+
+    &__main-export-data {
+        display: block;
+        position: fixed;
+        border-radius: 100%;
+        width: 80px;
+        height: 80px;
+        background: $color-base-green;
+        border: 2px solid $color-base-green;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.24);
+        bottom: 125px;
+        right: 25px;
+        color: $color-white;
+        font-size: 26px;
+        outline: none;
+        cursor: pointer;
+
+        @include xw(991) {
+            right: 10px;
+            bottom: 100px;
+        }
+
+        @include xw(768) {
+            width: 65px;
+            height: 65px;
+            font-size: 18px;
+        }
+    }
+
+
+    &__main-filter {
+        display: block;
+        position: fixed;
+        border-radius: 100%;
+        width: 80px;
+        height: 80px;
+        background: $color-base-navy;
+        border: 2px solid $color-base-navy;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.24);
+        bottom: 25px;
+        right: 25px;
+        color: $color-white;
+        font-size: 26px;
+        outline: none;
+        cursor: pointer;
+
+        @include xw(991) {
+            bottom: 10px;
+            right: 10px;
+        }
+
+        @include xw(768) {
+            width: 65px;
+            height: 65px;
+            font-size: 18px;
+        }
+    }
+
+    &__box-item {
+        display: none;
+    }
+
+    &__lbl-item {
+        position: fixed;
+        right: 120px;
+        background: $color-base-navy;
+        padding: 5px 10px;
+        font-size: 14px;
+        color: #fff;
+        border-radius: 4px;
+        animation: fadein 2s;
+        -moz-animation: fadein 2s; /* Firefox */
+        -webkit-animation: fadein 2s; /* Safari and Chrome */
+        -o-animation: fadein 2s; /* Opera */
+        @include xw(991) {
+            font-size: 12px;
+            right: 95px;
+        }
+    }
+
+    &__item {
+        position: fixed;
+        right: 25px;
+        width: 80px;
+        height: 80px;
+        background: $color-base-orange;
+        border: 2px solid $color-base-orange;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        border-radius: 100%;
+        animation: fadein 2s;
+        -moz-animation: fadein 2s; /* Firefox */
+        -webkit-animation: fadein 2s; /* Safari and Chrome */
+        -o-animation: fadein 2s; /* Opera */
+        padding: 10px;
+        cursor: pointer;
+
+        img {
+            width: 40px;
+            height: 40px;
+            margin: 0px auto;
+            display: block;
+            position: absolute;
+            transform: translate(25%, 25%);
+
+            @include xw(991) {
+                transform: none;
+            }
+        }
+    }
+
+    &__lbl-item-one {
+        bottom: 140px;
+
+        @include xw(991) {
+            bottom: 118px;
+        }
+    }
+
+    &__lbl-item-two {
+        bottom: 230px;
+
+        @include xw(991) {
+            bottom: 195px;
+        }
+    }
+
+    &__lbl-item-three {
+        bottom: 320px;
+
+        @include xw(991) {
+            bottom: 275px;
+        }
+    }
+
+    &__item-one {
+        bottom: 125px;
+
+        @include xw(991) {
+            right: 15px;
+            bottom: 105px;
+            width: 65px;
+            height: 65px;
+            font-size: 18px;
+        }
+    }
+
+    &__item-two {
+        bottom: 215px;
+
+        @include xw(991) {
+            right: 15px;
+            bottom: 185px;
+            width: 65px;
+            height: 65px;
+            font-size: 18px;
+        }
+    }
+
+    &__item-three {
+        bottom: 305px;
+
+        @include xw(991) {
+            right: 15px;
+            bottom: 265px;
+            width: 65px;
+            height: 65px;
+            font-size: 18px;
+        }
+    }
+}

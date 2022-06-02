@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C27D0377-FE46-4EC4-A08F-1D402956B3D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BaseFormLibrary</RootNamespace>
+    <AssemblyName>BaseFormLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetZip">
+      <HintPath>dll\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>dll\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Office.Interop.Excel.14.0.0.1\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="QrCodeNet.Encoding">
+      <HintPath>dll\QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Barcode, Version=1.4.0.11040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Spire.Barcode.1.4\lib\net40\Spire.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.DataExport">
+      <HintPath>dll\Spire.DataExport.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.DataExport.ResourceMgr">
+      <HintPath>dll\Spire.DataExport.ResourceMgr.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.3.6.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Spire.Barcode.1.4\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CryptorEngine.cs" />
+    <Compile Include="Ean13.cs" />
+    <Compile Include="gVar.cs" />
+    <Compile Include="ShimanoButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoButton.Designer.cs">
+      <DependentUpon>ShimanoButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoButtonExport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoButtonExport.Designer.cs">
+      <DependentUpon>ShimanoButtonExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoCheckBox.Designer.cs">
+      <DependentUpon>ShimanoCheckBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoCheckedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoCheckedListBox.Designer.cs">
+      <DependentUpon>ShimanoCheckedListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoComboBox.Designer.cs">
+      <DependentUpon>ShimanoComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoDataGridView.Designer.cs">
+      <DependentUpon>ShimanoDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoDataSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoDataSet.Designer.cs">
+      <DependentUpon>ShimanoDataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoDateTimePicker.Designer.cs">
+      <DependentUpon>ShimanoDateTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoFuncButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ShimanoFuncButton.Designer.cs">
+      <DependentUpon>ShimanoFuncButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoGroupBox.Designer.cs">
+      <DependentUpon>ShimanoGroupBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoImport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ShimanoImport.Designer.cs">
+      <DependentUpon>ShimanoImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoLabel.Designer.cs">
+      <DependentUpon>ShimanoLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoLinkLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoLinkLabel.Designer.cs">
+      <DependentUpon>ShimanoLinkLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoListBox.Designer.cs">
+      <DependentUpon>ShimanoListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoListView.Designer.cs">
+      <DependentUpon>ShimanoListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoMenuStrip.Designer.cs">
+      <DependentUpon>ShimanoMenuStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoMonthCalendar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoMonthCalendar.Designer.cs">
+      <DependentUpon>ShimanoMonthCalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoPanel.Designer.cs">
+      <DependentUpon>ShimanoPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoPictureBox.Designer.cs">
+      <DependentUpon>ShimanoPictureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoRadioButton.Designer.cs">
+      <DependentUpon>ShimanoRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoTabControl.Designer.cs">
+      <DependentUpon>ShimanoTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoTextBox.Designer.cs">
+      <DependentUpon>ShimanoTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoTimer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoTimer.Designer.cs">
+      <DependentUpon>ShimanoTimer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoToolStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoToolStrip.Designer.cs">
+      <DependentUpon>ShimanoToolStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShimanoTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShimanoTreeView.Designer.cs">
+      <DependentUpon>ShimanoTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysTool.cs" />
+    <Compile Include="SysUtlWeb.cs" />
+    <Compile Include="SysUtl.cs" />
+    <Compile Include="_BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_BaseForm.Designer.cs">
+      <DependentUpon>_BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_BaseForm_WEB.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_ExportData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_ExportData.Designer.cs">
+      <DependentUpon>_ExportData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_FindForm.Designer.cs">
+      <DependentUpon>_FindForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Import.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Import.Designer.cs">
+      <DependentUpon>_Import.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ShimanoButton.resx">
+      <DependentUpon>ShimanoButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoButtonExport.resx">
+      <DependentUpon>ShimanoButtonExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoCheckBox.resx">
+      <DependentUpon>ShimanoCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoCheckedListBox.resx">
+      <DependentUpon>ShimanoCheckedListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoComboBox.resx">
+      <DependentUpon>ShimanoComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoDataGridView.resx">
+      <DependentUpon>ShimanoDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoDataSet.resx">
+      <DependentUpon>ShimanoDataSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoDateTimePicker.resx">
+      <DependentUpon>ShimanoDateTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoFuncButton.resx">
+      <DependentUpon>ShimanoFuncButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoGroupBox.resx">
+      <DependentUpon>ShimanoGroupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoImport.resx">
+      <DependentUpon>ShimanoImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoLabel.resx">
+      <DependentUpon>ShimanoLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoLinkLabel.resx">
+      <DependentUpon>ShimanoLinkLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoListBox.resx">
+      <DependentUpon>ShimanoListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoListView.resx">
+      <DependentUpon>ShimanoListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoMenuStrip.resx">
+      <DependentUpon>ShimanoMenuStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoPanel.resx">
+      <DependentUpon>ShimanoPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoPictureBox.resx">
+      <DependentUpon>ShimanoPictureBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoRadioButton.resx">
+      <DependentUpon>ShimanoRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoTabControl.resx">
+      <DependentUpon>ShimanoTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoTextBox.resx">
+      <DependentUpon>ShimanoTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoTimer.resx">
+      <DependentUpon>ShimanoTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShimanoToolStrip.resx">
+      <DependentUpon>ShimanoToolStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_BaseForm.resx">
+      <DependentUpon>_BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="_ExportData.resx">
+      <DependentUpon>_ExportData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_FindForm.resx">
+      <DependentUpon>_FindForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Import.resx">
+      <DependentUpon>_Import.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Scripts\jquery-2.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\nugetexample.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

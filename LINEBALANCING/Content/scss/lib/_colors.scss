@@ -1,0 +1,366 @@
+/// <reference path="_mixins.scss" />
+/// <reference path="_variable.scss" />
+/// <reference path="_component.scss" />
+/// <reference path="_helpers.scss" />
+/// <reference path="_base.scss" />
+/*------------------------------------------------------------------
+	[Colors]
+------------------------------------------------------------------*/
+
+.color-base {
+    color: $color-base !important;
+}
+
+.color-base-navy {
+    color: $color-base-navy !important;
+}
+
+.color-base-green {
+    color: $color-base-green !important;
+}
+
+.color-cyan-green {
+    color: $color-cyan-green !important;
+}
+
+.color-333 {
+    color: $color-333 !important;
+}
+
+.color-white {
+    color: $color-white !important;
+}
+
+.color-white-dark {
+    color: $color-white-dark !important;
+}
+
+.color-subtitle {
+    color: $color-subtitle !important;
+}
+
+.color-sky-light {
+    color: $color-sky-light !important;
+}
+
+.color-tint-light {
+    color: $color-tint-light !important;
+}
+
+.color-dark {
+    color: $color-dark !important;
+}
+
+.color-dark-light {
+    color: $color-dark-light !important;
+}
+
+.color-blue {
+    color: $color-blue !important;
+}
+
+.color-blue-grey {
+    color: $color-blue-grey !important;
+}
+
+.color-grey {
+    color: $color-grey !important;
+}
+
+.color-teal {
+    color: $color-teal !important;
+}
+
+.color-green {
+    color: $color-green !important;
+}
+
+.color-red {
+    color: $color-red !important;
+}
+
+.color-pink {
+    color: $color-pink !important;
+}
+
+.color-purple {
+    color: $color-purple !important;
+}
+
+.color-gold {
+    color: $color-gold !important;
+}
+
+.color-fb {
+    color: $color-fb !important;
+}
+
+.color-tw {
+    color: $color-tw !important;
+}
+
+.color-dr {
+    color: $color-dr !important;
+}
+
+.color-yt {
+    color: $color-yt !important;
+}
+
+.color-ig {
+    color: $color-ig !important;
+}
+
+.color-base-light {
+    color: $color-base-light !important;
+}
+
+.color-blue-grey-light {
+    color: $color-blue-grey-light !important;
+}
+
+.color-grey-light {
+    color: $color-grey-light !important;
+}
+
+.color-blue-light {
+    color: $color-blue-light !important;
+}
+
+.color-teal-light {
+    color: $color-teal-light !important;
+}
+
+.color-green-light {
+    color: $color-green-light !important;
+}
+
+.color-red-light {
+    color: $color-red-light !important;
+}
+
+.color-pink-light {
+    color: $color-pink-light !important;
+}
+
+.color-purple-light {
+    color: $color-purple-light !important;
+}
+
+.color-gold-light {
+    color: $color-gold-light !important;
+}
+
+
+/*------------------------------------------------------------------
+    [Background Colors]
+------------------------------------------------------------------*/
+
+.bg-color-f9 {
+    background: #f9f9f9 !important;
+}
+.bg-color-base {
+    background: $color-base !important;
+}
+
+.bg-color-white {
+    background: $color-white !important;
+}
+
+.bg-color-transparent {
+    background: rgba(255,255,255,0.8) !important;
+}
+
+.bg-color-subtitle {
+    background: $color-subtitle !important;
+}
+
+.bg-color-sky-light {
+    background: $color-sky-light !important;
+}
+
+.bg-color-tint-light {
+    background: $color-tint-light !important;
+}
+
+.bg-color-dark {
+    background: $color-dark !important;
+}
+
+.bg-color-dark-light {
+    background: $color-dark-light !important;
+}
+
+.bg-color-blue-grey {
+    background: $color-blue-grey !important;
+}
+
+.bg-color-grey {
+    background: $color-grey !important;
+}
+
+.bg-color-blue {
+    background: $color-blue !important;
+}
+
+.bg-color-teal {
+    background: $color-teal !important;
+}
+
+.bg-color-green {
+    background: $color-green !important;
+}
+
+.bg-color-red {
+    background: $color-red !important;
+}
+
+.bg-color-pink {
+    background: $color-pink !important;
+}
+
+.bg-color-purple {
+    background: $color-purple !important;
+}
+
+.bg-color-gold {
+    background: $color-gold !important;
+}
+
+.bg-color-fb {
+    background: $color-fb !important;
+}
+
+.bg-color-tw {
+    background: $color-tw !important;
+}
+
+.bg-color-dr {
+    background: $color-dr !important;
+}
+
+.bg-color-yt {
+    background: $color-yt !important;
+}
+
+.bg-color-ig {
+    background: $color-ig !important;
+}
+
+.bg-color-base-light {
+    background: $color-base-light !important;
+}
+
+.bg-color-blue-grey-light {
+    background: $color-blue-grey-light !important;
+}
+
+.bg-color-grey-light {
+    background: $color-grey-light !important;
+}
+
+.bg-color-blue-light {
+    background: $color-blue-light !important;
+}
+
+.bg-color-teal-light {
+    background: $color-teal-light !important;
+}
+
+.bg-color-green-light {
+    background: $color-green-light !important;
+}
+
+.bg-color-red-light {
+    background: $color-red-light !important;
+}
+
+.bg-color-pink-light {
+    background: $color-pink-light !important;
+}
+
+.bg-color-purple-light {
+    background: $color-purple-light !important;
+}
+
+.bg-color-gold-light {
+    background: $color-gold-light !important;
+}
+
+.bg-tosca {
+    background: #009688 !important;
+}
+
+.bg-old-blue {
+    background: #3F51B5 !important;
+}
+
+.rs-gradient-tosca {
+    background: -moz-linear-gradient(269deg, rgba(211,47,47,1) 0%, rgba(255,103,89,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(211,47,47,1)), color-stop(100%, rgba(255,103,89,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(269deg, rgba(211,47,47,1) 0%, rgba(255,103,89,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(269deg, rgba(211,47,47,1) 0%, rgba(255,103,89,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(269deg, rgba(211,47,47,1) 0%, rgba(255,103,89,1) 100%); /* ie10+ */
+    background: linear-gradient(181deg, rgba(211,47,47,1) 0%, rgba(255,103,89,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D32F2F', endColorstr='#FF6759',GradientType=0 ); /* ie6-9 */
+}
+
+.rs-gradient-greenbeach {
+    background: -moz-linear-gradient(45deg, rgba(2,170,176,1) 0%, rgba(0,189,173,1) 56%, rgba(0,204,172,1) 98%, rgba(0,205,172,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(2,170,176,1)), color-stop(56%, rgba(0,189,173,1)), color-stop(98%, rgba(0,204,172,1)), color-stop(100%, rgba(0,205,172,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, rgba(2,170,176,1) 0%, rgba(0,189,173,1) 56%, rgba(0,204,172,1) 98%, rgba(0,205,172,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, rgba(2,170,176,1) 0%, rgba(0,189,173,1) 56%, rgba(0,204,172,1) 98%, rgba(0,205,172,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, rgba(2,170,176,1) 0%, rgba(0,189,173,1) 56%, rgba(0,204,172,1) 98%, rgba(0,205,172,1) 100%); /* ie10+ */
+    background: linear-gradient(45deg, rgba(2,170,176,1) 0%, rgba(0,189,173,1) 56%, rgba(0,204,172,1) 98%, rgba(0,205,172,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00CDAC', endColorstr='#02AAB0',GradientType=1 ); /* ie6-9 */
+}
+
+.rs-gradient-seaweed {
+    background: -moz-linear-gradient(45deg, rgba(76,184,196,1) 0%, rgba(60,211,173,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(76,184,196,1)), color-stop(100%, rgba(60,211,173,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, rgba(76,184,196,1) 0%, rgba(60,211,173,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, rgba(76,184,196,1) 0%, rgba(60,211,173,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, rgba(76,184,196,1) 0%, rgba(60,211,173,1) 100%); /* ie10+ */
+    background: linear-gradient(45deg, rgba(76,184,196,1) 0%, rgba(60,211,173,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3CD3AD', endColorstr='#4CB8C4',GradientType=1 ); /* ie6-9 */
+}
+
+.rs-gradient-fbmessanger {
+    background: -moz-linear-gradient(45deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(0,198,255,1)), color-stop(100%, rgba(0,114,255,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%); /* ie10+ */
+    background: linear-gradient(45deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0072ff', endColorstr='#00c6ff',GradientType=1 ); /* ie6-9 */
+}
+
+.rs-gradient-soundcloud {
+    background: -moz-linear-gradient(175deg, rgba(254,140,0,1) 0%, rgba(248,54,0,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(248,54,0,1)), color-stop(100%, rgba(254,140,0,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(175deg, rgba(254,140,0,1) 0%, rgba(248,54,0,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(175deg, rgba(254,140,0,1) 0%, rgba(248,54,0,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(175deg, rgba(254,140,0,1) 0%, rgba(248,54,0,1) 100%); /* ie10+ */
+    background: linear-gradient(275deg, rgba(254,140,0,1) 0%, rgba(248,54,0,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f83600', endColorstr='#fe8c00',GradientType=1 ); /* ie6-9 */
+}
+
+.rs-gradient-orange {
+    background: -moz-linear-gradient(45deg, rgba(254,138,66,1) 0%, rgba(255,43,77,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(254,138,66,1)), color-stop(100%, rgba(255,43,77,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, rgba(254,138,66,1) 0%, rgba(255,43,77,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, rgba(254,138,66,1) 0%, rgba(255,43,77,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, rgba(254,138,66,1) 0%, rgba(255,43,77,1) 100%); /* ie10+ */
+    background: linear-gradient(45deg, rgba(254,138,66,1) 0%, rgba(255,43,77,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FF2B4D', endColorstr='#FE8A42',GradientType=1 ); /* ie6-9 */
+}
+
+.rs-gradient-blue {
+    background: -moz-linear-gradient(45deg, rgba(116,116,191,1) 0%, rgba(52,138,199,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(116,116,191,1)), color-stop(100%, rgba(52,138,199,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, rgba(116,116,191,1) 0%, rgba(52,138,199,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, rgba(116,116,191,1) 0%, rgba(52,138,199,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, rgba(116,116,191,1) 0%, rgba(52,138,199,1) 100%); /* ie10+ */
+    background: linear-gradient(45deg, rgba(116,116,191,1) 0%, rgba(52,138,199,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#348AC7', endColorstr='#7474BF',GradientType=1 ); /* ie6-9 */
+}

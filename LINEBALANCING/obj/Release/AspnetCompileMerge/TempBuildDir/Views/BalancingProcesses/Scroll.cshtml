@@ -1,0 +1,120 @@
+﻿@model LineBalancing.ViewModels.VMBalancingProcess
+
+@{
+    if (Model == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+@foreach (var item in Model.DTOBalancingProcessItems)
+{
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+        <div class="l-box__item">
+
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="height-50">
+                        <i class="fas fa-circle @Html.DisplayFor(modelItem => item.StatusView)"></i>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-sm-5 col-xs-5">
+                    <div class="height-50">
+                        <div class="h-text--key-name">
+                            @Html.DisplayFor(modelItem => item.ProcessName)
+                            <span class="display-block">
+                                Actual C/T : @Html.DisplayFor(modelItem => item.ActualCTView)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-2 col-xs-3">
+
+                    @{
+                        if (item.Status == "NOT RUNNING")
+                        {
+                            <div class="height-50">
+                                <button type="button" class="btn-base-brd btn-base-sm radius-6 fweight-600 position-c-object" id="btnEditCorner" data-id="@Html.DisplayFor(modelItem => item.Id)">
+                                    Checking
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="height-50">
+                                <button type="button" class="btn-edit" id="btnEditCorner" data-id="@Html.DisplayFor(modelItem => item.Id)">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </div>
+                        }
+                    }
+
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div class="height-50">
+                        <a data-toggle="collapse" href="#@Html.DisplayFor(modelItem => item.Id)" aria-expanded="true" aria-controls="collapseOne" class="btn-trigger collapsed"></a>
+                    </div>
+                </div>
+            </div>
+
+            @* Collapse Item *@
+            <div class="row">
+                <div id="@Html.DisplayFor(modelItem => item.Id)" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="l-box__item-collapse">
+
+                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                <tr>
+                                    <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.Model)</td>
+                                </tr>
+
+                                <tr>
+                                    <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total MP</td>
+                                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.TotalManPower)</td>
+                                </tr>
+
+                                <tr>
+                                    <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> MP Name</td>
+                                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.ManpowerName)</td>
+                                </tr>
+
+                                <tr>
+                                    <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Standard C/T</td>
+                                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.StandardCT)</td>
+                                </tr>
+
+                                <tr>
+                                    <td width="35%" class="h-text__point-jobs-name"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Output Qty</td>
+                                    <td class="h-text__point-jobs-desc">:  @Html.DisplayFor(modelItem => item.Quantity)</td>
+                                </tr>
+
+                            </table>
+
+                            <hr class="dotted-line-bottom-collapse" />
+                            <div class="h-text--key-name-full text-center font-size-14 margin-b-0">
+                                - @Html.DisplayFor(modelItem => item.ProcessName) -
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}

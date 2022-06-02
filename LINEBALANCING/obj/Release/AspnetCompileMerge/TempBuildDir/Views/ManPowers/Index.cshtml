@@ -1,0 +1,852 @@
+﻿@model LineBalancing.ViewModels.VMManpower
+
+@{
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Master Data Manpower";
+
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+</style>
+
+
+<div class="l-box__list ">
+    <div class="setDelay hideCont">
+        <button type="button" class="btn-back-homes-corner " data-dismiss="modal" onclick="window.location='@Url.Action("Index", "MainMenu")'"><i class="fas fa-home"></i> </button>
+
+        <div class="h-text--title-box-form-v1">List Master Data Manpower</div>
+        <div class="solid-line-width"></div>
+
+        <div class="margin-t-50  md-margin-t-30 sm-margin-t-20 margin-b-40 md-margin-b-20 ">
+            @Html.TextBox("Search", null, new { @class = "c-form__input form-control", @placeholder = "Search", @id = "searchText" })
+        </div>
+
+        @* List Item *@
+        <div class="row">
+
+            <div id="dataNotFound" class="font-size-16 text-center"></div>
+
+            <div id="list" class="overflow-y-box-list">
+                @{ Html.RenderAction("Scroll", new { startIndex = 0 }); }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@if (isAdmin)
+{
+    @* Floating Action Button *@
+    <div class="setDelay hideCont">
+        <button type="button" class="c-fab__main"><i class="fas fa-plus"></i></button>
+        <div class="c-fab__box-item">
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-one">Add Data</label>
+                <div class="c-fab__item c-fab__item-one" id="add">
+                    <img src="~/Images/ic_adddata.png" />
+                </div>
+            </div>
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-two">Export File</label>
+                <div class="c-fab__item c-fab__item-two" id="export">
+                    <img src="~/Images/ic_export.png" />
+                </div>
+            </div>
+
+            <div>
+                <label class="c-fab__lbl-item c-fab__lbl-item-three">Import File</label>
+                <div class="c-fab__item c-fab__item-three" id="import">
+                    <img src="~/Images/ic_import.png" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+<!-- Modal  Add & Edit Data -->
+<div id="AddEditModal" class="modal fade overflow-h setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeAddEditModal"><i class="fas fa-times"></i> </button>
+
+        <!-- Modal content-->
+        <div class="modal-content md-modal-content sm-modal-content">
+            <div class="modal-body">
+
+                <div class="h-text--title-box-form-v1"><label id="modalTitle">Add Master Data Manpower</label></div>
+                <div class="solid-line-width"></div>
+
+                <label id="createdTime" hidden="hidden"></label>
+                <label id="createdUser" hidden="hidden"></label>
+
+                <div class="margin-t-30 md-margin-t-20">
+                    <label class="h-text--lbl-form">Plant</label>
+                    <select class="form-control select-option-custom" id="ddlListPlant"></select>
+                </div>
+
+                <div class="row margin-t-20">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div>
+                            <label class="h-text--lbl-form">Department</label>
+                            <select class="form-control select-option-custom" id="ddlListDepartment"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div>
+                            <label class="h-text--lbl-form">Line</label>
+                            <select class="form-control select-option-custom" id="ddlListLine"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="margin-t-20">
+                    <label class="h-text--lbl-form">Employee No</label>
+                    @Html.TextBox("Employee No", null, new { @class = "c-form__input form-control ", @placeholder = "Eg. MP-001", @id = "manpowerNo" })
+                </div>
+
+                <div class="margin-t-20">
+                    <label class="h-text--lbl-form">Employee Name</label>
+                    @Html.TextBox("Employee Name", null, new { @class = "c-form__input form-control ", @placeholder = "Eg. Yuni", @id = "manpowerName" })
+                </div>
+
+                <div class="margin-t-20">
+                    <label class="c-login__container-checkbox">
+                        Active
+                        @Html.CheckBox("Active", false, new { @id = "active" })
+                        <span class="c-login__checkmark"></span>
+                    </label>
+                </div>
+
+                <input type="submit" class="btn-oranges margin-t-30" id="save" value="SAVE" />
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="DeleteModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeDeleteModal"><i class="fas fa-times"></i> </button>
+
+                <div class="h-text--confirmation-modal">
+                    Are you sure want to delete this data ?
+                </div>
+
+                <button type="button" class="btn-confirmation-delete margin-t-30" id="delete">Yes</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal Import -->
+<div id="ImportModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeImportModal"><i class="fas fa-times"></i> </button>
+
+                <div>
+                    <label for="fileImport" class="c-import-upload__box-v1">
+                        <span class="display-block">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="display-block">
+                            <p class="c-import-upload__file-name file-name"></p>
+                        </span>
+                        <span class="font-size-14 text-center display-block color-base">Upload file with extension .xlsx or .xls</span>
+                    </label>
+
+                </div>
+
+                <div class="display-none">
+                    <input type="file" id="fileImport" name="file" accept=".xlsx, .xls" />
+                </div>
+
+                <div class="margin-t-10 text-center">
+                    <button type=button id="downloadTemplate" class="font-size-15 color-base-green fweight-600 btn-link">Click to Download Template</button>
+                </div>
+                <div class="margin-t-60">
+                    <input type="submit" value="Import File" class="btn-import-file" id="upload" />
+                </div>
+
+                <div class="margin-t-10">
+                    <button type=button id="resetFileImport" class="btn-link btn-reset-file cursor-pointer">Reset Import</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Notification -->
+<div id="NotificationModal" class="modal fade setDelay hideCont" role="dialog" data-backdrop="static">
+    <div class="modal-dialog top-10pc">
+
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal" id="closeNotificationModal"><i class="fas fa-times"></i> </button>
+
+                <img src="~/Images/ic_successmodal.png" class="img-responsive position-c width-60pc" id="success" />
+                <img src="~/Images/ic_failedmodal.png" class="img-responsive position-c width-60pc" id="fail" />
+
+                <div class="h-text--title-modal-status margin-t-40">
+                    <label id="notificationMessage"></label>
+                </div>
+
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="closeNotification">CLOSE</button>
+                <button type="button" class="btn-close-modal margin-b-10" data-dismiss="modal" id="buttonContinue">CONTINUE</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var start = 10;
+    var url = '@Url.Action("Scroll", "Manpowers")';
+    var list = $('#list');
+
+    var currentPlant = "";
+    var currentDepartment = "";
+    var currentLine = "";
+    var currentManpowerNo = "";
+
+    function loadData()
+    {
+        $('#list').html('');
+
+        var url = "/Manpowers/Scroll/"
+        $.get(url, { startIndex: 0 }, function (response) {
+            if (response != "") {
+
+                list.append(response);
+
+                if (start === 0) {
+                    start += 10; // increment for next call
+                }
+                else {
+                    start = 10; // reset to default value
+                }
+            }
+        });
+    }
+
+    // Dropdown list plant change event.
+    $('#ddlListPlant').change(function () {
+
+        // Get departments
+        var selectedPlant = $('#ddlListPlant').val();
+        if (selectedPlant != null) {
+            $.getJSON('/Departments/Departments', { searchFor: selectedPlant }, function (data) {
+
+                $('#ddlListDepartment option').remove();
+                $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+                $.each(data.Departments, function () {
+                    $('#ddlListDepartment').append('<option value=' + this.DepartmentName + '>' + this.DepartmentName + "-" + this.DepartmentDescription + '</option>');
+                });
+
+                $('#ddlListLine option').remove();
+                $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting departments !');
+            });
+        }
+
+    });
+
+    // Dropdown list department change event.
+    $('#ddlListDepartment').change(function () {
+
+        // Get lines
+        var selectedDepartment = $('#ddlListDepartment').val();
+        if (selectedDepartment != null)
+        {
+            var selectedPlant = Plant = $('#ddlListPlant').val();
+
+            $.getJSON('/Lines/Lines', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                $('#ddlListLine option').remove();
+                $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+                $.each(data.Lines, function () {
+                    $('#ddlListLine').append('<option value=' + this.LineCode + '>' + this.LineCode + '</option>');
+                });
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert('Error getting lines !');
+            });
+        }
+
+    });
+
+
+    // Searching
+    var delayTimer;
+    $('#searchText').bind('input', function ()
+    {
+        $('#list').html('');
+
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function () {
+            var search = $('#searchText').val();
+            if (search.length > 0) {
+                $.get(url, { startIndex: 0, searchFor: search }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+            else {
+                $.get(url, { startIndex: 0 }, function (response) {
+                    if (response.Message != null) {
+                        $('#dataNotFound').show();
+                        $('#dataNotFound').text(response.Message);
+                    }
+                    else {
+                        $('#dataNotFound').hide();
+
+                        list.append(response);
+                        start += 10; // increment for next call
+                    }
+                });
+            }
+        }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+    });
+
+    // Infinite scroll
+    $("#list").scroll(function ()
+    {
+        var clientHeight = document.getElementById('list').clientHeight;
+        var scrollHeight = document.getElementById('list').scrollHeight;
+        var scrollTop = document.getElementById('list').scrollTop;
+
+        if (scrollHeight - Math.floor(scrollTop) === clientHeight)
+        {
+            var url = "/Manpowers/Scroll/"
+            $.get(url, { startIndex: start }, function (response)
+            {
+                if (response != "")
+                {
+                    list.append(response);
+                    start += 10; // increment for next call
+                }
+            });
+        }
+    });
+
+    $("#add").click(function () {
+
+        $('#AddEditModal').modal('show');
+
+        $("#modalTitle").text('Add Master Data Manpower');
+
+        $("#createdTime").text('');
+        $("#createdUser").text('');
+
+        // Set default value for select picker
+        $.getJSON('/Plants/Plants', null, function (data) {
+            $('#ddlListPlant option').remove();
+
+            $('#ddlListPlant').append('<option value=' + "Select Plant" + '>' + "Select Plant" + '</option>');
+
+            $.each(data.Plants, function () {
+                $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+            });
+
+            $('#ddlListDepartment option').remove();
+            $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+            $('#ddlListLine option').remove();
+            $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting plants !');
+        });
+
+        $("#manpowerNo").val('');
+        $("#manpowerName").val('');
+
+        $('#active').prop('checked', false);
+
+        $(".c-fab__box-item").hide();
+    });
+
+    // Save / Update
+    $("#save").on("click", function () {
+
+        var createdTime = $("#createdTime").text();
+        var createdUser = $("#createdUser").text();
+
+        var plant = $('#ddlListPlant :selected').text();
+        var department = $('#ddlListDepartment :selected').text();
+        var line = $('#ddlListLine :selected').text();
+        var manpowerNo = $("#manpowerNo").val();
+        var manpowerName = $("#manpowerName").val();
+
+        if (plant === 'Select Plant' || plant === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select plant !");
+            $('#closeNotification').show();
+            $('#buttonContinue').hide();
+
+            return;
+        }
+
+        if (department === 'Select Department' || department === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select department !");
+            $('#closeNotification').show();
+            $('#buttonContinue').hide();
+
+            return;
+        }
+
+        // Split department code & name then override value
+        var splitSelectedDepartment = department.split('-');
+        if (splitSelectedDepartment.length > 1) {
+            department = splitSelectedDepartment[0];
+        }
+
+        if (line === 'Select Line' || line === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please select line !");
+            $('#closeNotification').show();
+            $('#buttonContinue').hide();
+
+            return;
+        }
+
+        if (manpowerNo === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please fill manpower no !");
+            $('#closeNotification').show();
+            $('#buttonContinue').hide();
+
+            return;
+        }
+
+        if (manpowerName === '') {
+            $('#AddEditModal').addClass('opacity-0');
+
+            $('#NotificationModal').modal('show');
+            $('#success').hide();
+            $('#fail').show();
+            $('#notificationMessage').text("Please fill manpower name !");
+            $('#closeNotification').show();
+            $('#buttonContinue').hide();
+
+            return;
+        }
+
+        var active = $("#active").prop("checked");
+
+        var createNewManpower = $("#modalTitle").text();
+        if (createNewManpower === 'Add Master Data Manpower')
+        {
+            // Parse new value for creating data
+            var manpower =
+            {
+                Plant: plant,
+                Department: department,
+                Line: line,
+                ManpowerNo: manpowerNo,
+                ManpowerName: manpowerName,
+                Active: active
+            }
+
+            // console.log("save", manpower);
+
+            // Call server
+            var url = "/Manpowers/Create";
+            $.post(url, manpower, function (response)
+            {
+                if (response.Message != null) {
+                    $('#AddEditModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    $('#closeNotification').show();
+                    $('#buttonContinue').hide();
+
+                    return;
+                }
+
+                $('#AddEditModal').modal('hide');
+                loadData();
+            });
+        }
+        else
+        {
+            // Override created time format
+            var createdTime = new Date(parseInt(createdTime)).toJSON();
+
+            // Parse new value for creating data
+            var manpower =
+            {
+                Plant: plant,
+                Department: department,
+                Line: line,
+                ManpowerNo: manpowerNo,
+                ManpowerName: manpowerName,
+                Active: active,
+                CreatedTime: createdTime,
+                CreatedUser: createdUser
+            }
+
+            // console.log("update", manpower);
+
+            // Call server
+            var url = "/Manpowers/Edit?currentPlant=" + currentPlant +
+                                        "&currentDepartment=" + currentDepartment +
+                                        "&currentLine=" + currentLine +
+                                        "&currentManpowerNo=" + currentManpowerNo;
+            $.post(url, manpower, function (response)
+            {
+                if (response.Message != null) {
+                    $('#AddEditModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    $('#closeNotification').show();
+                    $('#buttonContinue').hide();
+
+                    return;
+                }
+
+                $('#AddEditModal').modal('hide');
+                loadData();
+            });
+        }
+    });
+
+    // Get data then show pop up
+    $(document).on("click", "#btnEditCorner", function (e)
+    {
+        e.preventDefault();
+
+        $('#AddEditModal').modal('show');
+
+        var parameters = $(this).attr("data-id");
+        var values = parameters.split(',');
+        currentPlant = values[0];
+        currentDepartment = values[1];
+        currentLine = values[2];
+        currentManpowerNo = values[3];
+
+        // Change modal title
+        if (currentPlant != '' && currentDepartment != '' && currentLine != '' && currentManpowerNo != '') {
+            $("#modalTitle").text("Update Master Data Manpower");
+        }
+
+        // Call server
+        var url = "/Manpowers/Edit?plant=" + currentPlant +
+                                 "&department=" + currentDepartment +
+                                 "&line=" + currentLine +
+                                 "&manpowerNo=" + currentManpowerNo;
+        $.get(url, function (response)
+        {
+            // console.log("Manpowers server", response.Manpower);
+
+            // Format date time
+            if (response.Manpower.CreatedTime != null) {
+                var replaceString = /-?\d+/;
+                var replacedDate = replaceString.exec(response.Manpower.CreatedTime);
+                var createdTime = parseInt(replacedDate[0], 10);
+
+                $("#createdTime").text(createdTime);
+            }
+
+            // Set value into properties
+            $("#createdUser").text(response.Manpower.CreatedUser);
+
+            // Get plants
+            var selectedPlant = response.Manpower.Plant;
+            if (selectedPlant != null)
+            {
+                $.getJSON('/Plants/Plants', function (data) {
+
+                    $('#ddlListPlant option').remove();
+                    $('#ddlListPlant').append('<option value=' + "Select Plant" + '>' + "Select Plant" + '</option>');
+
+                    $.each(data.Plants, function () {
+                        $('#ddlListPlant').append('<option value=' + this.PlantCode + '>' + this.PlantCode + '</option>');
+                    });
+
+                    $("[id*=ddlListPlant] option").each(function () {
+                        if ($(this).val().toUpperCase() == selectedPlant.toUpperCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting plants !');
+                });
+            }
+
+            // Get departments
+            var selectedDepartment = response.Manpower.Department;
+            if (selectedDepartment != null)
+            {
+                $.getJSON('/Departments/Departments', { searchFor: selectedPlant }, function (data) {
+
+                    $('#ddlListDepartment option').remove();
+                    $('#ddlListDepartment').append('<option value=' + "Select Department" + '>' + "Select Department" + '</option>');
+
+                    $.each(data.Departments, function () {
+                        $('#ddlListDepartment').append('<option value=' + this.DepartmentName + '>' + this.DepartmentName + "-" + this.DepartmentDescription + '</option>');
+                    });
+
+                    $("[id*=ddlListDepartment] option").each(function () {
+                        if ($(this).val().toUpperCase() == selectedDepartment.toUpperCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting departments !');
+                });
+            }
+
+            // Get lines
+            var selectedLine = response.Manpower.Line;
+            if (selectedLine != null)
+            {
+                $.getJSON('/Lines/Lines', { plant: selectedPlant, department: selectedDepartment }, function (data) {
+
+                    $('#ddlListLine option').remove();
+                    $('#ddlListLine').append('<option value=' + "Select Line" + '>' + "Select Line" + '</option>');
+
+                    $.each(data.Lines, function () {
+                        $('#ddlListLine').append('<option value=' + this.LineCode + '>' + this.LineCode + '</option>');
+                    });
+
+                    $("[id*=ddlListLine] option").each(function () {
+                        if ($(this).val().toUpperCase() == selectedLine.toUpperCase()) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert('Error getting lines !');
+                });
+            }
+
+            $("#manpowerNo").val(response.Manpower.ManpowerNo);
+            $("#manpowerName").val(response.Manpower.ManpowerName);
+            $('#active').prop('checked', response.Manpower.Active);
+
+        });
+    });
+
+    // Delete
+    $("#delete").on("click", function () {
+
+        // Call server
+        var url = "/Manpowers/Delete?currentPlant=" + currentPlant +
+                                    "&currentDepartment=" + currentDepartment +
+                                    "&currentLine=" + currentLine +
+                                    "&currentManpowerNo=" + currentManpowerNo;
+        $.post(url, function (response)
+        {
+            if (response.Message != null) {
+                $('#AddEditModal').addClass('opacity-0');
+
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').show();
+                $('#notificationMessage').text(response.Message);
+                $('#closeNotification').show();
+                $('#buttonContinue').hide();
+
+                return;
+            }
+
+            $('#DeleteModal').modal('hide');
+            loadData();
+        });
+    });
+
+    // Show delete pop up
+    $(document).on("click", "#btnDeleteCorner", function (e) {
+        e.preventDefault();
+
+        var parameters = $(this).attr("data-id")
+        var values = parameters.split(',');
+        currentPlant = values[0];
+        currentDepartment = values[1];
+        currentLine = values[2];
+        currentManpowerNo = values[3];
+
+        var url = "/Manpowers/Edit?plant=" + currentPlant +
+                                 "&department=" + currentDepartment +
+                                 "&line=" + currentLine +
+                                 "&manpowerNo=" + currentManpowerNo;
+        $.get(url, function (response)
+        {
+            // console.log("Relational data", response.HasRelationalData);
+
+            var hasRelationalData = response.HasRelationalData;
+            if (hasRelationalData) {
+                $('#NotificationModal').modal('show');
+                $('#success').hide();
+                $('#fail').hide();
+                $('#notificationMessage').html("<div><span class='color-red text-uppercase display-block margin-b-20 font-size-30'>Warning!</span><span class='font-size-18'>This data is relational data, are you sure want to continue ?</span></div>");
+                $('#closeNotification').hide();
+                $('#buttonContinue').show().addClass('font-size-20 width-35pc padding-10 margin-b-20');
+            }
+            else {
+                $('#DeleteModal').modal('show');
+            }
+        });
+    });
+
+    // Button continue
+    $("#buttonContinue").on("click", function () {
+        $('#DeleteModal').modal('show');
+    });
+
+    // Import data
+    $("#import").on("click", function () {
+        $('#ImportModal').modal('show');
+    });
+
+    // Upload data
+    $("#upload").on("click", function () {
+
+        var data = new FormData();
+        data.append('file', $('#fileImport').prop('files')[0]);
+
+        $.ajax({
+            type: "POST",
+            url: '/Manpowers/Import',
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (response) {
+                if (response.Message != null) {
+                    $('#ImportModal').addClass('opacity-0');
+
+                    $('#NotificationModal').modal('show');
+                    $('#success').hide();
+                    $('#fail').show();
+                    $('#notificationMessage').text(response.Message);
+                    $('#closeNotification').show();
+                    $('#buttonContinue').hide();
+
+                    return;
+                }
+
+                $('#ImportModal').modal('hide');
+                loadData();
+
+                // This function is set on app.js
+                resetUpload();
+            }
+        });
+    });
+
+    // Export data
+    $("#export").on("click", function () {
+        window.open("/Manpowers/Export/", "_self");
+
+        $('#NotificationModal').modal('show');
+        $('#success').show();
+        $('#fail').hide();
+        $('#notificationMessage').text("Export success !");
+        $('#closeNotification').show();
+        $('#buttonContinue').hide();
+
+    });
+
+    // Download template
+    $("#downloadTemplate").on("click", function () {
+        window.open("/Manpowers/Template/", "_self");
+    });
+
+</script>

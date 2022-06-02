@@ -1,0 +1,87 @@
+﻿@model LineBalancing.ViewModels.VMMonthlySchedule
+
+@{
+    if (Model == null || Model.CurrentUser == null)
+    {
+        <script type="text/javascript">
+            window.location.href = "@Url.Action("Login", "Account")";
+        </script>
+
+        return;
+    }
+
+    bool isWindowsAuthentication = Model.CurrentUser.IsWindowsAuthentication;
+    bool isAdmin = Model.CurrentUser.IsAdmin;
+    string userName = Model.CurrentUser.Username;
+}
+
+@if (!Request.IsAuthenticated || Session["Login"] == null)
+{
+    <script type="text/javascript">
+        window.location.href = "@Url.Action("Login","Account")";
+    </script>
+
+    return;
+}
+
+<style>
+    .parent-box {
+        display: table;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .child-box {
+        vertical-align: middle;
+        display: table-cell;
+        color: #ff0000;
+    }
+</style>
+
+@foreach (var item in Model.MonthlySchedules)
+{
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-20">
+        <div class="l-box__item-model-detail">
+            <div class="row">
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <div class="height-50">
+                        <div class="h-text--key-name-model-detail">
+                            <div class="font-size-13">
+                                From : @Html.DisplayFor(modelItem => item.ShortDateFrom)
+                            </div>
+                            <div class="font-size-13">
+                                To : @Html.DisplayFor(modelItem => item.ShortDateTo)
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                @if (isAdmin)
+                {
+                    var dateFrom = item.DateFrom;
+                    var dateTo = item.DateTo;
+                    var remark = item.Remark;
+
+                    var parameters = dateFrom + "," + dateTo + "," + remark;
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <div class="height-50">
+                            <button type="button" class="btn-base-brd btn-base-sm radius-6 fweight-600 position-c-object" id="btnDetail" data-id="@Html.DisplayFor(modelItem => parameters)">
+                                Detail
+                            </button>
+                        </div>
+                    </div>
+                }
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <div class="parent-box height-50">
+                        <div class="child-box">
+                            @Html.DisplayFor(modelItem => item.Remark)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

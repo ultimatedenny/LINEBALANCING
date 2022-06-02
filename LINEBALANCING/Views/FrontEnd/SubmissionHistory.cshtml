@@ -1,0 +1,1054 @@
+﻿@{
+    /**/
+
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+    ViewBag.Title = "Submission History";
+}
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+    }
+
+    .slick-slide:focus, .slick-slide a {
+        outline: none;
+    }
+
+    .slide-stopwatch {
+        display: none !important;
+    }
+
+        .slide-stopwatch.slick-initialized {
+            display: block !important;
+        }
+</style>
+
+@* Back Button Previous Page Desktop *@
+<button type="button" class="btn-back-corner-md hidden-sm hidden-xs" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+
+
+
+
+<div class="l-box__list ">
+    <div class="h-text--title-box-form-v1">
+        <button type="button" class="btn-back-page-mobile hidden-lg hidden-md" onclick="window.history.go(-1); return false;"><i class="fas fa-arrow-left"></i> </button>
+        Submission History
+    </div>
+
+    <div class="solid-line-width hidden-sm hidden-xs"></div>
+
+    <div class="margin-t-50 margin-b-40 md-margin-b-20">
+        <div class="row space-row-10">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="c-form__inside-icon">
+                    @Html.TextBox("Search", null, new { @class = "form-control", @placeholder = "Search..." })
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="text-right">
+                    <button type="button" class="btn-expand-all">
+                        <i class="fas fa-expand-arrows-alt"></i> <span class="hidden-sm hidden-xs">Expand All</span>
+                    </button>
+                    <button type="button" class="btn-collapse-all">
+                        <i class="fas fa-compress-arrows-alt"></i> <span class="hidden-sm hidden-xs">Collapse All</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    @* List Item *@
+    <div class="row">
+        <div class="overflow-y-box-list">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__in-progress"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    LB-DH01-001
+                                    <span class="display-block">
+                                        20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            @* btn Continue (Status In Progress) *@
+                            <div class="height-50">
+                                <button type="button" class="btn-base-brd btn-base-sm radius-6 fweight-600 position-c-object" data-toggle="modal" data-target=".stopwatch">
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse1" aria-expanded="true" aria-controls="collapse1" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <div class="row space-row-5">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total Man</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__in-progress"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    LB-DH02-002
+                                    <span class="display-block">
+                                        20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            @* btn Continue (Status In Progress) *@
+                            <div class="height-50">
+                                <button type="button" class="btn-base-brd btn-base-sm radius-6 fweight-600 position-c-object" data-toggle="modal" data-target=".stopwatch">
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse2" aria-expanded="true" aria-controls="collapse2" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <div class="row space-row-5">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total Man</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__default"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    LB-DH03-003
+                                    <span class="display-block">
+                                        20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            @* btn Continue (Status In Progress) *@
+                            <div class="height-50">
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse3" aria-expanded="true" aria-controls="collapse3" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <div class="row space-row-5">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total Man</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    LB-DH04-004
+                                    <span class="display-block">
+                                        20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            @* btn Continue (Status In Progress) *@
+                            <div class="height-50">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse4" aria-expanded="true" aria-controls="collapse4" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse4" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <div class="row space-row-5">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total Man</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__success"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    LB-DH05-005
+                                    <span class="display-block">
+                                        20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            @* btn Continue (Status In Progress) *@
+                            <div class="height-50">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse5" aria-expanded="true" aria-controls="collapse5" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse5" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <div class="row space-row-5">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total Man</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-b-30 md-margin-b-20 sm-margin-20">
+                <div class="l-box__item">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <i class="fas fa-circle c-status__in-progress"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <div class="height-50">
+                                <div class="h-text--key-name">
+                                    LB-DH06-006
+                                    <span class="display-block">
+                                        20 June 19 17:00 PM
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            @* btn Continue (Status In Progress) *@
+                            <div class="height-50">
+                                <button type="button" class="btn-base-brd btn-base-sm radius-6 fweight-600 position-c-object" data-toggle="modal" data-target=".stopwatch">
+                                    Continue
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="height-50">
+                                <a data-toggle="collapse" href="#collapse6" aria-expanded="true" aria-controls="collapse6" class="btn-trigger collapsed"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @* Collapse Item *@
+                    <div class="row">
+                        <div id="collapse6" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="l-box__item-collapse">
+                                    <div class="row space-row-5">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Period</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Dept</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Model</td>
+                                                    <td class="h-text__std-16-navy-b">:  201905</td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table class="table table-condensed table-borderless margin-t-15 margin-b-0">
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Plant</td>
+                                                    <td class="h-text__std-16-navy-b">:  2300</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Line</td>
+                                                    <td class="h-text__std-16-navy-b">:  DH-01</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="50%" class="h-text__std-16-grey-b"><i class="fas fa-check-circle fa-fw color-base-navy"></i> Total Man</td>
+                                                    <td class="h-text__std-16-navy-b">:  15</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <hr class="dotted-line-bottom-collapse" />
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-user-circle color-base"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Leader
+                                                </span>
+                                                <span>
+                                                    Iskandar
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <div class="h-text__leader-submit-name">
+                                                <span>
+                                                    <i class="fas fa-list-alt color-base-green"></i>
+                                                </span>
+                                                <span class="color-grey">
+                                                    Submit By
+                                                </span>
+                                                <span>
+                                                    Thomas
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+@* Floating Action Button Filter*@
+<div>
+    <button type="button" class="c-fab__main" data-target="#modalFilter" data-toggle="modal"><i class="fas fa-filter"></i></button>
+</div>
+
+
+<!-- Modal  Filter -->
+<div id="modalFilter" class="modal fade overflow-h" role="dialog">
+    <div class="modal-dialog position-c-object xs-modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body padding-30">
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                <div class="h-text--title-box-form-v1">Filter Submission History</div>
+                <div class="solid-line-width"></div>
+
+                <div class="margin-t-40 md-margin-t-20 sm-margin-t-20">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <label class="h-text--lbl-form">From</label>
+                            <select class="form-control c-form__select-option margin-b-30">
+                                <option>201905</option>
+                                <option>201904</option>
+                                <option>201903</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <label class="h-text--lbl-form">Period</label>
+                            <select class="form-control c-form__select-option margin-b-30">
+                                <option>201905</option>
+                                <option>201904</option>
+                                <option>201903</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="margin-t-20 md-margin-t-5 md-margin-t-5">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <label class="h-text--lbl-form">Plant</label>
+                            <select class="form-control c-form__select-option margin-b-30">
+                                <option>2300</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <label class="h-text--lbl-form">Line</label>
+                            <select class="form-control c-form__select-option margin-b-30">
+                                <option>ALL</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="margin-t-20 md-margin-t-5 md-margin-t-5  margin-b-40 md-margin-b-20">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <label class="h-text--lbl-form">Model</label>
+                            <select class="form-control c-form__select-option margin-b-30">
+                                <option>ALL</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <label class="h-text--lbl-form">Status</label>
+                            <select class="form-control c-form__select-option margin-b-30">
+                                <option>ALL</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-apply-circle" onclick="window.location='@Url.Action("SubmissionHistory", "FrontEnd")'">
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<img src="~/Images/bottom-shape.png" class="shape-bottom-content" />
+
+
+
+<!-- Modal Stopwatch -->
+<div class="modal fade stopwatch" role="dialog">
+    <div class="modal-dialog position-c-object c-custom-modal__wide-stopwatch">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body bg-color-f9">
+                <button type="button" class="close c-custom-modal__close-corner-overlap" data-dismiss="modal"><i class="fas fa-times"></i> </button>
+                <div class="overflow-y-stopwatch">
+                    <div class="row  hidden-lg hidden-md">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @* Display On Mobile View *@
+                            <div class="l-box__btn-tab-stopwatch">
+                                <div class="width-100pc">
+                                    <button type="button" class="btn btn-tab-stopwatch  btn-radius-left active-stopwatch choose-stopwatch-btn">Stopwatch</button>
+                                    <button type="button" class="btn btn-tab-stopwatch btn-radius-right choose-manual-btn">Manual Submission</button>
+                                </div>
+                            </div>
+                            @*End Display On Mobile View *@
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-6 col-sm-5 col-xs-5 l-box__checking">
+                            <div class="choose-stopwatch">
+                                <div class="circle">
+                                    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" class="position-c-object box-width-circle-stopwatch">
+                                        <g transform="translate(110,110)">
+                                            <circle r="100" class="e-c-base" />
+                                            <g transform="rotate(-90)">
+                                                <circle r="100" class="e-c-progress" />
+                                                <g id="e-pointer">
+                                                    <circle cx="100" cy="0" r="8" class="e-c-pointer" />
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="box-controls">
+                                    <div class="controlls">
+                                        <input type="text" class="display-remain-time" readonly />
+                                        <button class="play" id="pause"></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="choose-manual">
+                                <div class="h-text--choose-manual">
+                                    Manual Submission Can't Use Stopwatch
+                                </div>
+                            </div>
+
+
+                            <div class="l-box__btn-tab-stopwatch hidden-sm hidden-xs">
+                                <div class="width-100pc">
+                                    <button type="button" class="btn btn-tab-stopwatch  btn-radius-left active-stopwatch choose-stopwatch-btn">Stopwatch</button>
+                                    <button type="button" class="btn btn-tab-stopwatch btn-radius-right choose-manual-btn">Manual Submission</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7">
+
+                            <table class="table table-condensed table-borderless">
+                                <tr>
+                                    <td width="40%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Process</td>
+                                    <td class="h-text__point-jobs-desc">:  Cooling</td>
+                                </tr>
+
+                                <tr>
+                                    <td width="40%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> MP Name</td>
+                                    <td class="h-text__point-jobs-desc">:  Yuli</td>
+                                </tr>
+
+                                <tr>
+                                    <td width="40%" class="h-text__point-jobs-name"><i class="fas fa-dot-circle fa-fw color-cyan-green"></i> Std C/T</td>
+                                    <td class="h-text__point-jobs-desc">:  15</td>
+                                </tr>
+
+                            </table>
+
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                                    <div class="margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                        <label class="h-text--lbl-form-stopwatch">Total Man Power</label>
+                                        <select class="form-control c-form__select-option-stopwatch">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                                    <div class="margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                        <label class="h-text--lbl-form-stopwatch">Output Qty</label>
+                                        <select class="form-control c-form__select-option-stopwatch">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group margin-t-20 md-margin-t-10 sm-margin-t-10">
+                                        <label class="h-text--lbl-form-stopwatch">ACT C/T</label>
+                                        @Html.TextBox("Actct", null, new { @class = "c-form__input-stopwatch form-control", @placeholder = "Eg. 15", @id = "act-ct" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer c-custom-modal__footer-stopwatch">
+                <div class="row space-row-5">
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+                        <div class="h-text--model-name-stopwatch">
+                            Model : C3000 - 3N
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <button type="button" class="btn-ignore-stopwatch" data-dismiss="modal"><i class="fas fa-sync-alt hidden-xs"></i> Ignore</button>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <button type="button" class="btn-save-stopwatch" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
